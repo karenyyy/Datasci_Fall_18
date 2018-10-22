@@ -1,0 +1,972 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+    \usepackage{float}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Homework 3}
+    \author{Jiarong Ye}
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection*{Tables}\label{tables}
+
+    \begin{figure}[H]
+\centering
+\includegraphics{table.png}
+\caption{}
+\end{figure}
+
+    \subsection*{Create Tables and Insert values with
+MySQL}\label{create-tables-and-insert-values-with-mysql}
+
+    \paragraph{DEPARTMENT}\label{department}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{DEPARTMENT}
+        \PY{p}{(}
+          \PY{n}{DepartmentID}   \PY{n}{INT} \PY{n}{AUTO\PYZus{}INCREMENT}
+            \PY{n}{PRIMARY} \PY{n}{KEY}\PY{p}{,}
+          \PY{n}{Name}           \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{OfficeAddress}  \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{DepartmentHead} \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{OfficePhone}    \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{DepartmentID}\PY{p}{)}
+        \PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{department_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{DEPARTMENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{OfficeAddress}\PY{p}{,} \PY{n}{DepartmentHead}\PY{p}{,} \PY{n}{OfficePhone}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Neurology}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Area A, Floor 1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dr. Gregory House}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 587\PYZhy{}2335}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{DEPARTMENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{OfficeAddress}\PY{p}{,} \PY{n}{DepartmentHead}\PY{p}{,} \PY{n}{OfficePhone}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cardiology}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Area B, Floor 2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dr. Lisa Cuddy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 587\PYZhy{}2334}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{DEPARTMENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{OfficeAddress}\PY{p}{,} \PY{n}{DepartmentHead}\PY{p}{,} \PY{n}{OfficePhone}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Critical care}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Area C, Floor 3}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dr. Eric Foreman}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 587\PYZhy{}2339}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{DEPARTMENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{OfficeAddress}\PY{p}{,} \PY{n}{DepartmentHead}\PY{p}{,} \PY{n}{OfficePhone}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Diagnostic imaging}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Area D, Floor 4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dr. Allison Cameron}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 587\PYZhy{}2336}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{DEPARTMENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{OfficeAddress}\PY{p}{,} \PY{n}{DepartmentHead}\PY{p}{,} \PY{n}{OfficePhone}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Oncology}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Area E, Floor 5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dr. James Wilson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 587\PYZhy{}2331}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    1 row inserted.
+
+Inserted row id: 1 (Query took 0.0479 seconds.)
+
+INSERT INTO DEPARTMENT (Name, OfficeAddress, DepartmentHead,
+OfficePhone) VALUES ('Neurology', 'Area A, Floor 1', 'Dr. Gregory
+House', '(814) 587-2335')
+
+1 row inserted.
+
+Inserted row id: 2 (Query took 0.3064 seconds.)
+
+INSERT INTO DEPARTMENT (Name, OfficeAddress, DepartmentHead,
+OfficePhone) VALUES ('Cardiology', 'Area B, Floor 2', 'Dr. Lisa Cuddy',
+'(814) 587-2334')
+
+1 row inserted.
+
+Inserted row id: 3 (Query took 0.0391 seconds.)
+
+INSERT INTO DEPARTMENT (Name, OfficeAddress, DepartmentHead,
+OfficePhone) VALUES ('Critical care', 'Area C, Floor 3', 'Dr. Eric
+Foreman', '(814) 587-2339')
+
+1 row inserted.
+
+Inserted row id: 4 (Query took 0.0460 seconds.)
+
+INSERT INTO DEPARTMENT (Name, OfficeAddress, DepartmentHead,
+OfficePhone) VALUES ('Diagnostic imaging', 'Area D, Floor 4', 'Dr.
+Allison Cameron', '(814) 587-2336')
+
+1 row inserted.
+
+Inserted row id: 5 (Query took 0.0459 seconds.)
+
+INSERT INTO DEPARTMENT (Name, OfficeAddress, DepartmentHead,
+OfficePhone) VALUES ('Oncology', 'Area E, Floor 5', 'Dr. James Wilson',
+'(814) 587-2331')
+
+    \begin{figure}[H]
+\centering
+\includegraphics{department_2.png}
+\caption{}
+\end{figure}
+
+    \paragraph{EMPLOYEE}\label{employee}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{EMPLOYEE}
+        \PY{p}{(}
+          \PY{n}{EmployeeID} \PY{n}{INT} \PY{n}{AUTO\PYZus{}INCREMENT}
+            \PY{n}{PRIMARY} \PY{n}{KEY}\PY{p}{,}
+          \PY{n}{Name}       \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Phone}      \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Email}      \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Address}    \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{SSN}        \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Certification}   \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{EMPLOYEE\PYZus{}EmployeeID\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}
+        \PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{employee_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{Certification}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sydney Heron}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 563\PYZhy{}7401}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sh@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{711\PYZhy{}2880 Nulla St. Manka}
+           \PY{n}{to} \PY{n}{PA}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{670}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1234}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{Certified} \PY{n}{Pediatric} \PY{n}{Nurse} \PY{p}{(}\PY{n}{CPN}\PY{p}{)}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{Certification}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reed Adamson}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 563\PYZhy{}7402}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ra@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{606\PYZhy{}3727 Ullamcorper. }
+           \PY{n}{Street} \PY{n}{Roseville} \PY{n}{PA}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{670}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4321}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{AIDS} \PY{n}{Certified} \PY{n}{Registered} \PY{n}{Nurse} \PY{p}{(}\PY{n}{ACRN}\PY{p}{)}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{Certification}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Megan Mostow}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 563\PYZhy{}7403}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mm@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ap \PYZsh{}867\PYZhy{}859 Sit Rd. Azusa }
+           \PY{n}{New} \PY{n}{York}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{670}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{o}{\PYZhy{}}\PY{l+m+mi}{6789}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{Family} \PY{n}{Nurse} \PY{n}{Practitioner}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{Certification}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sadie Harris}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 563\PYZhy{}7404}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{sah@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{7292 Dictum Av. San Antonio }
+           \PY{n}{MI}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{770}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4356}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{Certified} \PY{n}{Registered} \PY{n}{Nurse} \PY{n}{Anesthetist} \PY{p}{(}\PY{n}{CRNA}\PY{p}{)}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{Certification}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heather Brooks}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 563\PYZhy{}7404}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hb@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ap \PYZsh{}651\PYZhy{}8679 Sodales Av. }
+           \PY{n}{Tamuning} \PY{n}{PA}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{770}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4509}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{Advanced} \PY{n}{Oncology} \PY{n}{Certified} \PY{n}{Nurse} \PY{p}{(}\PY{n}{AOCN}\PY{p}{)}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+\end{Verbatim}
+
+
+    1 row inserted.
+
+Inserted row id: 1 (Query took 0.0845 seconds.)
+
+INSERT INTO EMPLOYEE (Name, Phone, Email, Address, SSN, Certification)
+VALUES ('Sydney Heron', '(814) 563-7401', 'sh@gmail.com', '711-2880
+Nulla St. Mankato PA', '670-20-1234', 'Certified Pediatric Nurse (CPN)')
+
+1 row inserted.
+
+Inserted row id: 2 (Query took 0.0371 seconds.)
+
+INSERT INTO EMPLOYEE (Name, Phone, Email, Address, SSN, Certification)
+VALUES ('Reed Adamson', '(814) 563-7402', 'ra@gmail.com', '606-3727
+Ullamcorper. Street Roseville PA', '670-20-4321', 'AIDS Certified
+Registered Nurse (ACRN)')
+
+1 row inserted.
+
+Inserted row id: 3 (Query took 0.0376 seconds.)
+
+INSERT INTO EMPLOYEE (Name, Phone, Email, Address, SSN, Certification)
+VALUES ('Megan Mostow', '(814) 563-7403', 'mm@gmail.com', 'Ap \#867-859
+Sit Rd. Azusa New York', '670-20-6789', 'Family Nurse Practitioner')
+
+1 row inserted.
+
+Inserted row id: 4 (Query took 0.0379 seconds.)
+
+INSERT INTO EMPLOYEE (Name, Phone, Email, Address, SSN, Certification)
+VALUES ('Sadie Harris', '(814) 563-7404', 'sah@gmail.com', '7292 Dictum
+Av. San Antonio MI', '770-20-4356', 'Certified Registered Nurse
+Anesthetist (CRNA)')
+
+1 row inserted.
+
+Inserted row id: 5 (Query took 0.0395 seconds.)
+
+INSERT INTO EMPLOYEE (Name, Phone, Email, Address, SSN, Certification)
+VALUES ('Heather Brooks', '(814) 563-7404', 'hb@gmail.com', 'Ap
+\#651-8679 Sodales Av. Tamuning PA', '770-20-4509', 'Advanced Oncology
+Certified Nurse (AOCN)')
+
+    \begin{figure}[H]
+\centering
+\includegraphics{employee_2.png}
+\caption{}
+\end{figure}
+
+    \paragraph{AFFILIATION}\label{affiliation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{AFFILIATION}
+        \PY{p}{(}
+          \PY{n}{EmployeeID}   \PY{n}{INT} \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{DepartmentID} \PY{n}{INT} \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{AFFILIATION\PYZus{}EmployeeID\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{AFFILIATION\PYZus{}DepartmentID\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{DepartmentID}\PY{p}{)}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{AFFILIATION\PYZus{}EMPLOYEE\PYZus{}EmployeeID\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{AFFILIATION\PYZus{}DEPARTMENT\PYZus{}DepartmentID\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{DepartmentID}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{DEPARTMENT} \PY{p}{(}\PY{n}{DepartmentID}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}
+        \PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{affiliation_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{AFFILIATION} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{,} \PY{n}{DepartmentID}\PY{p}{)} \PY{n}{VALUES} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{AFFILIATION} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{,} \PY{n}{DepartmentID}\PY{p}{)} \PY{n}{VALUES} \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{AFFILIATION} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{,} \PY{n}{DepartmentID}\PY{p}{)} \PY{n}{VALUES} \PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{AFFILIATION} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{,} \PY{n}{DepartmentID}\PY{p}{)} \PY{n}{VALUES} \PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{AFFILIATION} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{,} \PY{n}{DepartmentID}\PY{p}{)} \PY{n}{VALUES} \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    1 row inserted. (Query took 0.1137 seconds.)
+
+INSERT INTO AFFILIATION (EmployeeID, DepartmentID) VALUES (1, 3)
+
+1 row inserted. (Query took 0.0420 seconds.)
+
+INSERT INTO AFFILIATION (EmployeeID, DepartmentID) VALUES (2, 4)
+
+1 row inserted. (Query took 0.1310 seconds.)
+
+INSERT INTO AFFILIATION (EmployeeID, DepartmentID) VALUES (3, 2)
+
+1 row inserted. (Query took 0.0391 seconds.)
+
+INSERT INTO AFFILIATION (EmployeeID, DepartmentID) VALUES (4, 1)
+
+1 row inserted. (Query took 0.0403 seconds.)
+
+INSERT INTO AFFILIATION (EmployeeID, DepartmentID) VALUES (5, 5)
+
+    \begin{figure}[H]
+\centering
+\includegraphics{affiliation_2.png}
+\caption{}
+\end{figure}
+
+    \paragraph{ROOM}\label{room}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{ROOM}
+        \PY{p}{(}
+          \PY{n}{RoomNumber} \PY{n}{INT} \PY{n}{AUTO\PYZus{}INCREMENT}
+            \PY{n}{PRIMARY} \PY{n}{KEY}\PY{p}{,}
+          \PY{n}{Floor}      \PY{n}{INT}         \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{RoomType}   \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Available}  \PY{n}{TINYINT}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{RoomPhone}  \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{ROOM\PYZus{}RoomNumber\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)}
+        \PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{ROOM_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{ROOM} \PY{p}{(}\PY{n}{Floor}\PY{p}{,} \PY{n}{RoomType}\PY{p}{,} \PY{n}{Available}\PY{p}{,} \PY{n}{RoomPhone}\PY{p}{)} \PY{n}{VALUES} 
+                    \PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Surgery}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 873\PYZhy{}7090}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{ROOM} \PY{p}{(}\PY{n}{Floor}\PY{p}{,} \PY{n}{RoomType}\PY{p}{,} \PY{n}{Available}\PY{p}{,} \PY{n}{RoomPhone}\PY{p}{)} \PY{n}{VALUES} 
+                    \PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Consulting}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 873\PYZhy{}7091}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{ROOM} \PY{p}{(}\PY{n}{Floor}\PY{p}{,} \PY{n}{RoomType}\PY{p}{,} \PY{n}{Available}\PY{p}{,} \PY{n}{RoomPhone}\PY{p}{)} \PY{n}{VALUES} 
+                    \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dispensary}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 873\PYZhy{}7092}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{ROOM} \PY{p}{(}\PY{n}{Floor}\PY{p}{,} \PY{n}{RoomType}\PY{p}{,} \PY{n}{Available}\PY{p}{,} \PY{n}{RoomPhone}\PY{p}{)} \PY{n}{VALUES} 
+                    \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ER}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 873\PYZhy{}7093}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{ROOM} \PY{p}{(}\PY{n}{Floor}\PY{p}{,} \PY{n}{RoomType}\PY{p}{,} \PY{n}{Available}\PY{p}{,} \PY{n}{RoomPhone}\PY{p}{)} \PY{n}{VALUES} 
+                    \PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ICU}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(814) 873\PYZhy{}7094}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    1 row inserted.
+
+Inserted row id: 1 (Query took 0.0929 seconds.)
+
+INSERT INTO ROOM (Floor, RoomType, Available, RoomPhone) VALUES (4,
+'Surgery', 1, '(814) 873-7090')
+
+1 row inserted.
+
+Inserted row id: 2 (Query took 0.0539 seconds.)
+
+INSERT INTO ROOM (Floor, RoomType, Available, RoomPhone) VALUES (2,
+'Consulting', 1, '(814) 873-7091')
+
+1 row inserted.
+
+Inserted row id: 3 (Query took 0.0470 seconds.)
+
+INSERT INTO ROOM (Floor, RoomType, Available, RoomPhone) VALUES (1,
+'Dispensary', 1, '(814) 873-7092')
+
+1 row inserted.
+
+Inserted row id: 4 (Query took 0.0896 seconds.)
+
+INSERT INTO ROOM (Floor, RoomType, Available, RoomPhone) VALUES (1,
+'ER', 1, '(814) 873-7093')
+
+1 row inserted. Inserted row id: 5 (Query took 0.0863 seconds.) INSERT
+INTO ROOM (Floor, RoomType, Available, RoomPhone) VALUES (5, 'ICU', 1,
+'(814) 873-7094')
+
+    \begin{figure}[H]
+\centering
+\includegraphics{ROOM_2.png}
+\caption{}
+\end{figure}
+
+    \paragraph{SHIFT}\label{shift}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{SHIFT}
+        \PY{p}{(}
+          \PY{n}{ShiftID}    \PY{n}{INT} \PY{n}{AUTO\PYZus{}INCREMENT}
+            \PY{n}{PRIMARY} \PY{n}{KEY}\PY{p}{,}
+          \PY{n}{Date}       \PY{n}{DATE} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{StartTime}  \PY{n}{TIME} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{EndTime}    \PY{n}{TIME} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{EmployeeID} \PY{n}{INT}  \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{RoomNumber} \PY{n}{INT}  \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{SHIFT\PYZus{}ShiftID\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{ShiftID}\PY{p}{)}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{SHIFT\PYZus{}EMPLOYEE\PYZus{}EmployeeID\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{SHIFT\PYZus{}ROOM\PYZus{}RoomNumber\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{ROOM} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}
+        \PY{p}{)}\PY{p}{;}
+        \PY{n}{CREATE} \PY{n}{INDEX} \PY{n}{SHIFT\PYZus{}EMPLOYEE\PYZus{}EmployeeID\PYZus{}fk}
+          \PY{n}{ON} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}\PY{p}{;}
+        \PY{n}{CREATE} \PY{n}{INDEX} \PY{n}{SHIFT\PYZus{}ROOM\PYZus{}RoomNumber\PYZus{}fk}
+          \PY{n}{ON} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{shift_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}09\PYZhy{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{09:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{18:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}09\PYZhy{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{09:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{15:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}09\PYZhy{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{16:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{19:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}09\PYZhy{}11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{17:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{SHIFT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}09\PYZhy{}12}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{09:45:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{18:30:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    1 row inserted.
+
+Inserted row id: 1 (Query took 0.0384 seconds.)
+
+INSERT INTO SHIFT (Date, StartTime, EndTime, EmployeeID, RoomNumber)
+VALUES ('2018-09-10', '09:00:00', '18:00:00', 1, 3)
+
+1 row inserted.
+
+Inserted row id: 2 (Query took 0.0439 seconds.)
+
+INSERT INTO SHIFT (Date, StartTime, EndTime, EmployeeID, RoomNumber)
+VALUES ('2018-09-10', '09:00:00', '15:00:00', 2, 1)
+
+1 row inserted.
+
+Inserted row id: 3 (Query took 0.2483 seconds.)
+
+INSERT INTO SHIFT (Date, StartTime, EndTime, EmployeeID, RoomNumber)
+VALUES ('2018-09-10', '16:00:00', '19:00:00', 2, 5)
+
+1 row inserted.
+
+Inserted row id: 4 (Query took 0.0460 seconds.)
+
+INSERT INTO SHIFT (Date, StartTime, EndTime, EmployeeID, RoomNumber)
+VALUES ('2018-09-11', '10:00:00', '17:00:00', 3, 4)
+
+1 row inserted. Inserted row id: 5 (Query took 0.0385 seconds.) INSERT
+INTO SHIFT (Date, StartTime, EndTime, EmployeeID, RoomNumber) VALUES
+('2018-09-12', '09:45:00', '18:30:00', 5, 2)
+
+    \begin{figure}[H]
+\centering
+\includegraphics{shift_2.png}
+\caption{}
+\end{figure}
+
+    \paragraph{PATIENT}\label{patient}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{PATIENT}
+        \PY{p}{(}
+          \PY{n}{PatientID}       \PY{n}{INT} \PY{n}{AUTO\PYZus{}INCREMENT}
+            \PY{n}{PRIMARY} \PY{n}{KEY}\PY{p}{,}
+          \PY{n}{Name}            \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Phone}           \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Email}           \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{30}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Address}         \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{SSN}             \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{InsuranceNumber} \PY{n}{VARCHAR}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}  \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{PATIENT\PYZus{}PatientID\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{PatientID}\PY{p}{)}
+        \PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{patient_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{PATIENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{InsuranceNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Lawrence Moreno}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(684) 579\PYZhy{}1879}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lm@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{935\PYZhy{}9940 Tortor. Street }
+           \PY{n}{Santa} \PY{n}{Rosa} \PY{n}{MN}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{033}\PY{o}{\PYZhy{}}\PY{l+m+mi}{62}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1234}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{ZW} \PY{l+m+mi}{27} \PY{l+m+mi}{84} \PY{l+m+mi}{44} \PY{n}{D}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{PATIENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{InsuranceNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Aaron Hawkins}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(660) 663\PYZhy{}4518}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{im@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5587 Nunc. Avenue Erie }
+           \PY{n}{Rhode} \PY{n}{Island}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{574}\PY{o}{\PYZhy{}}\PY{l+m+mi}{28}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4856}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{OA} \PY{l+m+mi}{45} \PY{l+m+mi}{22} \PY{l+m+mi}{60} \PY{n}{C}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{PATIENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{InsuranceNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Melvin Porter}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(959) 119\PYZhy{}8364}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mp@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P.O. Box 132 1599 Curabitur }
+           \PY{n}{Rd}\PY{o}{.} \PY{n}{Bandera} \PY{n}{South} \PY{n}{Dakota}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{394}\PY{o}{\PYZhy{}}\PY{l+m+mi}{13}\PY{o}{\PYZhy{}}\PY{l+m+mi}{4509}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{NC} \PY{l+m+mi}{18} \PY{l+m+mi}{31} \PY{l+m+mi}{22} \PY{n}{C}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{PATIENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{InsuranceNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Joan Romero}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(248) 675\PYZhy{}4007}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{jr@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{666\PYZhy{}4366 Lacinia Avenue Idaho }
+           \PY{n}{Falls} \PY{n}{Ohio}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{650}\PY{o}{\PYZhy{}}\PY{l+m+mi}{42}\PY{o}{\PYZhy{}}\PY{l+m+mi}{0943}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{XM} \PY{l+m+mi}{95} \PY{l+m+mi}{88} \PY{l+m+mi}{11} \PY{n}{C}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{PATIENT} \PY{p}{(}\PY{n}{Name}\PY{p}{,} \PY{n}{Phone}\PY{p}{,} \PY{n}{Email}\PY{p}{,} \PY{n}{Address}\PY{p}{,} \PY{n}{SSN}\PY{p}{,} \PY{n}{InsuranceNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Davis Patrick}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{(939) 353\PYZhy{}1107}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dp@gmail.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{P.O. Box 147 2546 Sociosqu Rd. }
+           \PY{n}{Bethlehem} \PY{n}{Utah}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{l+m+mi}{158}\PY{o}{\PYZhy{}}\PY{l+m+mi}{74}\PY{o}{\PYZhy{}}\PY{l+m+mi}{8367}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, }\PY{l+s+s1}{\PYZsq{}}\PY{n}{CX} \PY{l+m+mi}{50} \PY{l+m+mi}{09} \PY{l+m+mi}{44} \PY{l+s+sa}{B}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{);}
+\end{Verbatim}
+
+
+    1 row inserted.
+
+Inserted row id: 1 (Query took 0.0370 seconds.)
+
+INSERT INTO PATIENT (Name, Phone, Email, Address, SSN, InsuranceNumber)
+VALUES ('Lawrence Moreno', '(684) 579-1879', 'lm@gmail.com', '935-9940
+Tortor. Street Santa Rosa MN', '033-62-1234', 'ZW 27 84 44 D')
+
+1 row inserted.
+
+Inserted row id: 2 (Query took 0.0366 seconds.)
+
+INSERT INTO PATIENT (Name, Phone, Email, Address, SSN, InsuranceNumber)
+VALUES ('Aaron Hawkins', '(660) 663-4518', 'im@gmail.com', '5587 Nunc.
+Avenue Erie Rhode Island', '574-28-4856', 'OA 45 22 60 C')
+
+1 row inserted.
+
+Inserted row id: 3 (Query took 0.0717 seconds.)
+
+INSERT INTO PATIENT (Name, Phone, Email, Address, SSN, InsuranceNumber)
+VALUES ('Melvin Porter', '(959) 119-8364', 'mp@gmail.com', 'P.O. Box 132
+1599 Curabitur Rd. Bandera South Dakota', '394-13-4509', 'NC 18 31 22
+C')
+
+1 row inserted.
+
+Inserted row id: 4 (Query took 0.0370 seconds.)
+
+INSERT INTO PATIENT (Name, Phone, Email, Address, SSN, InsuranceNumber)
+VALUES ('Joan Romero', '(248) 675-4007', 'jr@gmail.com', '666-4366
+Lacinia Avenue Idaho Falls Ohio', '650-42-0943', 'XM 95 88 11 C')
+
+1 row inserted.
+
+Inserted row id: 5 (Query took 0.0511 seconds.)
+
+INSERT INTO PATIENT (Name, Phone, Email, Address, SSN, InsuranceNumber)
+VALUES ('Davis Patrick', '(939) 353-1107', 'dp@gmail.com', 'P.O. Box 147
+2546 Sociosqu Rd. Bethlehem Utah', '158-74-8367', 'CX 50 09 44 B')
+
+    \begin{figure}[H]
+\centering
+\includegraphics{patient_2.png}
+\caption{}
+\end{figure}
+
+    \paragraph{APPOINTMENT}\label{appointment}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{CREATE} \PY{n}{TABLE} \PY{n}{APPOINTMENT}
+        \PY{p}{(}
+          \PY{n}{AppointmentID} \PY{n}{INT} \PY{n}{AUTO\PYZus{}INCREMENT}
+            \PY{n}{PRIMARY} \PY{n}{KEY}\PY{p}{,}
+          \PY{n}{Date}          \PY{n}{DATE} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{StartTime}     \PY{n}{TIME} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{EndTime}       \PY{n}{TIME} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{Description}   \PY{n}{TEXT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{EmployeeID}    \PY{n}{INT}  \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{PatientID}     \PY{n}{INT}  \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{RoomNumber}    \PY{n}{INT}  \PY{n}{NOT} \PY{n}{NULL}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{APPOINTMENT\PYZus{}AppointmentID\PYZus{}uindex}
+          \PY{n}{UNIQUE} \PY{p}{(}\PY{n}{AppointmentID}\PY{p}{)}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{APPOINTMENT\PYZus{}EMPLOYEE\PYZus{}EmployeeID\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{EMPLOYEE} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{APPOINTMENT\PYZus{}PATIENT\PYZus{}PatientID\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{PatientID}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{PATIENT} \PY{p}{(}\PY{n}{PatientID}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}\PY{p}{,}
+          \PY{n}{CONSTRAINT} \PY{n}{APPOINTMENT\PYZus{}ROOM\PYZus{}RoomNumber\PYZus{}fk}
+          \PY{n}{FOREIGN} \PY{n}{KEY} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)} \PY{n}{REFERENCES} \PY{n}{ROOM} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)}
+            \PY{n}{ON} \PY{n}{UPDATE} \PY{n}{CASCADE}
+            \PY{n}{ON} \PY{n}{DELETE} \PY{n}{CASCADE}
+        \PY{p}{)}\PY{p}{;}
+        \PY{n}{CREATE} \PY{n}{INDEX} \PY{n}{APPOINTMENT\PYZus{}EMPLOYEE\PYZus{}EmployeeID\PYZus{}fk}
+          \PY{n}{ON} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{EmployeeID}\PY{p}{)}\PY{p}{;}
+        \PY{n}{CREATE} \PY{n}{INDEX} \PY{n}{APPOINTMENT\PYZus{}PATIENT\PYZus{}PatientID\PYZus{}fk}
+          \PY{n}{ON} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{PatientID}\PY{p}{)}\PY{p}{;}
+        \PY{n}{CREATE} \PY{n}{INDEX} \PY{n}{APPOINTMENT\PYZus{}ROOM\PYZus{}RoomNumber\PYZus{}fk}
+          \PY{n}{ON} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{RoomNumber}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+
+    \begin{figure}[H]
+\centering
+\includegraphics{appointment_1.png}
+\caption{}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{Description}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} 
+                                 \PY{n}{PatientID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}9\PYZhy{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{14:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{15:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Constitutional \PYZhy{} NAD, has been }
+           \PY{n}{generally} \PY{n}{feeling} \PY{n}{well} \PY{n}{the} \PY{n}{last} \PY{n}{couple} \PY{n}{of} \PY{n}{weeks}\PY{p}{;}
+           \PY{n}{Eyes} \PY{o}{\PYZhy{}} \PY{n}{no} \PY{n}{changes} \PY{o+ow}{in} \PY{n}{vision}\PY{p}{,} \PY{n}{double} \PY{n}{vision}\PY{p}{,} \PY{n}{blurry} \PY{n}{vision}\PY{p}{,} \PY{n}{wears} \PY{n}{glasses}\PY{p}{;}
+           \PY{n}{ENT} \PY{o}{\PYZhy{}} \PY{n}{No} \PY{n}{congestion}\PY{p}{,} \PY{n}{changes} \PY{o+ow}{in} \PY{n}{hearing}\PY{p}{,} \PY{n}{does} \PY{o+ow}{not} \PY{n}{wear} \PY{n}{hearing} \PY{n}{aids}\PY{p}{;}
+           \PY{n}{Skin}\PY{o}{/}\PY{n}{Breast} \PY{o}{\PYZhy{}} \PY{n}{no} \PY{n}{rashes}\PY{p}{;}
+           \PY{n}{Cardiovascular} \PY{o}{\PYZhy{}} \PY{n}{No} \PY{n}{SOB}\PY{p}{,} \PY{n}{chest} \PY{n}{pain}\PY{p}{,} \PY{n}{heart} \PY{n}{palpitations}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, 3, 4, 2);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{Description}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} 
+                                 \PY{n}{PatientID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}9\PYZhy{}10}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{10:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{12:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cardiovascular: dyspnea on exertion; }
+           \PY{n}{denies} \PY{n}{chest} \PY{n}{pains}\PY{p}{,} \PY{n}{palpitations}\PY{p}{,} \PY{n}{syncope}\PY{p}{,} \PY{n}{orthopnea}\PY{p}{,} \PY{n}{PND}\PY{p}{,} \PY{n}{edema}\PY{p}{;}
+           \PY{n}{Respiratory}\PY{p}{:} \PY{n}{denies} \PY{n}{cough} \PY{o+ow}{and} \PY{n}{wheezing}\PY{p}{;}
+           \PY{n}{Gastrointestinal}\PY{p}{:} \PY{n}{denies} \PY{n}{jaundice}\PY{p}{;}
+           \PY{n}{Genitourinary}\PY{p}{:} \PY{n}{denies} \PY{n}{incontinence}\PY{p}{,} \PY{n}{dysuria}\PY{p}{,} \PY{n}{hematuria}\PY{p}{,} \PY{n}{urinary} \PY{n}{frequency}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}
+           \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{Description}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} 
+                                 \PY{n}{PatientID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}9\PYZhy{}11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{16:00:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{17:30:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Constitutional: Intermittent }
+           \PY{n}{chills} \PY{k}{with} \PY{n}{decreased} \PY{n}{appetite}\PY{o}{.} \PY{n}{No} \PY{n}{fevers}\PY{p}{,} \PY{n}{night} \PY{n}{sweats} \PY{o+ow}{or} \PY{n}{weight} \PY{n}{loss}\PY{p}{;}
+           \PY{n}{Eyes}\PY{p}{:} \PY{n}{No} \PY{n}{vision} \PY{n}{changes}\PY{p}{;}
+           \PY{n}{ENT}\PY{p}{:} \PY{n}{No} \PY{n}{URI} \PY{n}{symptoms}\PY{p}{,} \PY{n}{mouth} \PY{n}{ulcers} \PY{o+ow}{or} \PY{n}{dysphagia}\PY{p}{;}
+           \PY{n}{Skin}\PY{p}{:} \PY{n}{Jaundice} \PY{o+ow}{and} \PY{n}{scaly} \PY{n}{silver} \PY{n}{nonpruritic} \PY{n}{rash} \PY{n}{on} \PY{n}{right} \PY{n}{flexor} 
+           \PY{n}{surface} \PY{n}{of} \PY{n}{elbow}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, 2, 5, 3);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{Description}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} 
+                                 \PY{n}{PatientID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}9\PYZhy{}11}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{09:30:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{14:15:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Constitutional: denies anorexia }
+           \PY{o+ow}{and} \PY{n}{weight} \PY{n}{loss}\PY{p}{;}
+            \PY{n}{HEENT}\PY{p}{:} \PY{n}{denies} \PY{n}{decreased} \PY{n}{hearing} \PY{n}{blurring}\PY{p}{,} \PY{n}{diplopia}\PY{p}{,} \PY{n}{irritation}\PY{p}{,} 
+           \PY{n}{discharge}\PY{p}{,} \PY{n}{vision} \PY{n}{loss}\PY{p}{,} \PY{n}{eye} \PY{n}{pain}\PY{p}{,}
+            \PY{n}{photophobia}\PY{p}{,} \PY{n}{ear} \PY{n}{pain} \PY{o+ow}{or} \PY{n}{discharge}\PY{p}{,} \PY{n}{tinnitus}\PY{p}{,} \PY{n}{nasal} \PY{n}{obstruction} 
+           \PY{o+ow}{or} \PY{n}{discharge}\PY{p}{,} \PY{n}{nosebleeds}\PY{p}{,} \PY{n}{sore}
+            \PY{n}{throat}\PY{p}{,} \PY{n}{hoarseness}\PY{p}{,} \PY{n}{dysphagia}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, 4, 2, 1);}
+        
+        \PY{n}{INSERT} \PY{n}{INTO} \PY{n}{APPOINTMENT} \PY{p}{(}\PY{n}{Date}\PY{p}{,} \PY{n}{StartTime}\PY{p}{,} \PY{n}{EndTime}\PY{p}{,} \PY{n}{Description}\PY{p}{,} \PY{n}{EmployeeID}\PY{p}{,} 
+                                 \PY{n}{PatientID}\PY{p}{,} \PY{n}{RoomNumber}\PY{p}{)} \PY{n}{VALUES} 
+          \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{2018\PYZhy{}9\PYZhy{}12}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{14:45:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{15:30:00}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Cardiovascular – denies chest }
+           \PY{n}{pain}\PY{p}{;} \PY{n}{denies} \PY{n}{palpitations}\PY{p}{;}
+            \PY{n}{Pulmonary} \PY{err}{–} \PY{n}{denies} \PY{n}{shortness} \PY{n}{of} \PY{n}{breath}\PY{p}{,} \PY{n}{denies} \PY{n}{cough}\PY{p}{;}
+            \PY{n}{Gastrointestinal} \PY{err}{–} \PY{n}{As} \PY{n}{indicated} \PY{o+ow}{in} \PY{n}{the} \PY{n}{HPI}\PY{p}{,} \PY{n}{complains} \PY{n}{of} \PY{n}{sharp}\PY{p}{,} 
+           \PY{n}{epigastric} \PY{n}{abdominal} \PY{n}{pain}\PY{p}{;} 
+            \PY{n}{endorses} \PY{n}{constipation}\PY{p}{,} \PY{n}{denies} \PY{n}{diarrhea}\PY{p}{;} \PY{n}{endorses} \PY{n}{bloody} \PY{n}{stools}\PY{p}{;}
+            \PY{n}{Genitourinary} \PY{err}{–} \PY{n}{denies} \PY{n}{dysuria}\PY{p}{;} \PY{n}{denies} \PY{n}{increased} \PY{n}{frequency} \PY{o+ow}{or} 
+           \PY{n}{urgency} \PY{n}{of} \PY{n}{urination}\PY{p}{;}
+            \PY{n}{Neurologic} \PY{err}{–} \PY{n}{denies} \PY{n}{numbness} \PY{o+ow}{and} \PY{n}{tingling}\PY{p}{;} \PY{n}{denies} \PY{n}{paresthesias}\PY{p}{;}
+            \PY{n}{Muskuloskeletal} \PY{err}{–} \PY{n}{endorses} \PY{n}{abdominal} \PY{n}{pain} \PY{n}{occasionally} \PY{n}{after} 
+           \PY{n}{throwing} \PY{n}{the} \PY{n}{football}\PY{p}{;} 
+           \PY{n}{denies} \PY{n+nb}{any} \PY{n}{muscle} \PY{o+ow}{or} \PY{n}{joint} \PY{n}{pain}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, 5, 1, 2);}
+\end{Verbatim}
+
+
+    1 row inserted.
+
+Inserted row id: 1 (Query took 0.0384 seconds.)
+
+INSERT INTO APPOINTMENT (Date, StartTime, EndTime, Description,
+EmployeeID, PatientID, RoomNumber) VALUES ('2018-9-10', '14:00:00',
+'15:00:00', 'Constitutional - NAD, has been generally feeling well the
+last couple of weeks; Eyes - no changes in vision, double vision, blurry
+vision, wears glasses; ENT - No congestion, changes in hearing, does not
+wear hearing aids; Skin/Breast - no rashes; Cardiovascular - No SOB,
+chest pain, heart palpitations', 3, 4, 2)
+
+1 row inserted.
+
+Inserted row id: 2 (Query took 0.0339 seconds.)
+
+INSERT INTO APPOINTMENT (Date, StartTime, EndTime, Description,
+EmployeeID, PatientID, RoomNumber) VALUES ('2018-9-10', '10:00:00',
+'12:00:00', 'Cardiovascular: dyspnea on exertion; denies chest pains,
+palpitations, syncope, orthopnea, PND, edema; Respiratory: denies cough
+and wheezing; Gastrointestinal: denies jaundice; Genitourinary: denies
+incontinence, dysuria, hematuria, urinary frequency', 1, 3, 2)
+
+1 row inserted.
+
+Inserted row id: 3 (Query took 0.1315 seconds.)
+
+INSERT INTO APPOINTMENT (Date, StartTime, EndTime, Description,
+EmployeeID, PatientID, RoomNumber) VALUES ('2018-9-11', '16:00:00',
+'17:30:00', 'Constitutional: Intermittent chills with decreased
+appetite. No fevers, night sweats or weight loss; Eyes: No vision
+changes; ENT: No URI symptoms, mouth ulcers or dysphagia; Skin: Jaundice
+and scaly silver nonpruritic rash on right flexor surface of elbow', 2,
+5, 3)
+
+1 row inserted.
+
+Inserted row id: 4 (Query took 0.0371 seconds.)
+
+INSERT INTO APPOINTMENT (Date, StartTime, EndTime, Description,
+EmployeeID, PatientID, RoomNumber) VALUES ('2018-9-11', '09:30:00',
+'14:15:00', 'Constitutional: denies anorexia and weight loss; HEENT:
+denies decreased hearing blurring, diplopia, irritation, discharge,
+vision loss, eye pain, photophobia, ear pain or discharge, tinnitus,
+nasal obstruction or discharge, nosebleeds, sore throat, hoarseness,
+dysphagia', 4, 2, 1)
+
+1 row inserted.
+
+Inserted row id: 5 (Query took 0.0458 seconds.)
+
+INSERT INTO APPOINTMENT (Date, StartTime, EndTime, Description,
+EmployeeID, PatientID, RoomNumber) VALUES ('2018-9-12', '14:45:00',
+'15:30:00', 'Cardiovascular -- denies chest pain; denies palpitations;
+Pulmonary -- denies shortness of breath, denies cough; Gastrointestinal
+-- As indicated in the HPI, complains of sharp, epigastric abdominal
+pain; endorses constipation, denies diarrhea; endorses bloody stools;
+Genitourinary -- denies dysuria; denies increased frequency or urgency
+of urination; Neurologic -- denies numbness and tingling; denies
+paresthesias; Muskuloskeletal -- endorses abdominal pain occasionally
+after throwing the football; denies any muscle or joint pain', 5, 1, 2)
+
+    \begin{figure}[H]
+\centering
+\includegraphics{appointment_2.png}
+\caption{}
+\end{figure}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

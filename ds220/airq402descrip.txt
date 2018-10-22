@@ -1,0 +1,36 @@
+Dataset:   airq402.dat
+
+Source: U.S. Department of Transportation
+
+Description: Airfsres and passengers for U.S. Domestic Routes
+for 4th Quarter of 2002.
+
+Variables/Columns
+
+City1   1-3 
+City2   5-7
+Average Fare (AvgFare)    11-17
+Distance      20-23
+Average weekly passengers (AvgWklyPsgr)   26-33
+market leading airline (LdAirline)    36-37
+market share (LdShare)    40-45
+Average fare (LdAvgFare)    48-54
+Low price airline (LowAirline)   57-58
+market share (LowShare)    61-66
+price (LowFare)    69-75
+
+
+CREATE TABLE `airline data`
+(
+    City1 char,
+    City2 char,
+    `Average Fare (AvgFare)` double,
+    Distance double,
+    `Average weekly passengers (AvgWklyPsgr)` double,
+    `market leading airline (LdAirline)` char,
+    `market share (LdShare)` double,
+    `Average fare (LdAvgFare) ` double,
+    `Low price airline (LowAirline)` char,
+    `market share (LowShare)` double,
+    `price (LowFare)` double
+);

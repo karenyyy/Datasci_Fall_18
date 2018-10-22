@@ -1,0 +1,47 @@
+---
+title: "lab1"
+output: pdf_document
+---
+
+
+```{r}
+x=c(1,2,3,4,5,6)
+y=c(8,3,4,2,1,0)
+plot(x,y)
+```
+
+```{r}
+plot.ID=1:10
+treatment=c(rep("X",5), rep("Y",5))
+response=c(14,12,11,18,20,21,20,17,23,25)
+corn.yield=data.frame(plot.ID,treatment,response)
+corn.yield
+```
+
+```{r}
+summary(corn.yield)
+```
+
+
+```{r}
+mean(response)
+var(response)
+mean(response[treatment=='X'])
+```
+
+```{r}
+boxplot(response~treatment,data=corn.yield,
+                    main="Boxplot of Corn Yield With Different Fertilizers",
+                    xlab="Fertilizer",
+                    ylab="Yield (kg)")
+```
+
+
+```{r}
+hist(response,main="Histogram of Corn Yield (All Plots)")
+```
+
+```{r}
+plot(x=plot.ID,y=response)
+```
+

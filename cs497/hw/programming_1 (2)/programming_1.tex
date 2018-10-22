@@ -1,0 +1,1165 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Programming Assignment 1}
+    \author{Jiarong Ye}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection*{Import packages}\label{import-packages}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}138}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{import} \PY{n+nn}{operator}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{MinMaxScaler}\PY{p}{,} \PY{n}{LabelBinarizer}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{feature\PYZus{}selection} \PY{k}{import} \PY{n}{SelectKBest}\PY{p}{,} \PY{n}{chi2}\PY{p}{,} \PY{n}{mutual\PYZus{}info\PYZus{}classif}
+          \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+    \subsubsection*{Read the data}\label{read-the-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}139}]:} \PY{n}{bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bank\PYZhy{}additional\PYZhy{}full.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{bank}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}139}]:}    age        job  marital    education  default housing loan    contact  \textbackslash{}
+          0   56  housemaid  married     basic.4y       no      no   no  telephone   
+          1   57   services  married  high.school  unknown      no   no  telephone   
+          2   37   services  married  high.school       no     yes   no  telephone   
+          3   40     admin.  married     basic.6y       no      no   no  telephone   
+          4   56   services  married  high.school       no      no  yes  telephone   
+          
+            month day\_of\_week {\ldots}  campaign  pdays  previous     poutcome emp.var.rate  \textbackslash{}
+          0   may         mon {\ldots}         1    999         0  nonexistent          1.1   
+          1   may         mon {\ldots}         1    999         0  nonexistent          1.1   
+          2   may         mon {\ldots}         1    999         0  nonexistent          1.1   
+          3   may         mon {\ldots}         1    999         0  nonexistent          1.1   
+          4   may         mon {\ldots}         1    999         0  nonexistent          1.1   
+          
+             cons.price.idx  cons.conf.idx  euribor3m  nr.employed   y  
+          0          93.994          -36.4      4.857       5191.0  no  
+          1          93.994          -36.4      4.857       5191.0  no  
+          2          93.994          -36.4      4.857       5191.0  no  
+          3          93.994          -36.4      4.857       5191.0  no  
+          4          93.994          -36.4      4.857       5191.0  no  
+          
+          [5 rows x 21 columns]
+\end{Verbatim}
+            
+    \subsubsection*{Data Analysis}\label{data-analysis}
+
+    \paragraph{\texorpdfstring{\textbf{Task 1}:}{Task 1:}}\label{task-1}
+
+Plot the distribution of values in the class attribute of the dataset
+using a bar chart. Please describe what you observe, e.g. whether the
+data distribution is imbalanced.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}140}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+          \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{bank}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_6_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    As we observe the class distribution from the bar chart above, we can
+see that the distribution is extremely imbalanced, with
+\texttt{no}(clients who would not consider subscribing the product)
+taking up the majority, approximately 30000 clients more than
+\texttt{yes}(clients who are subscribers).
+
+    \paragraph{\texorpdfstring{\textbf{Task 2}:}{Task 2:}}\label{task-2}
+
+Read the reference and answer the following questions.
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \tightlist
+  \item
+    Please summarize the characteristics and differences of chi-square
+    function (https://en.wikipedia.org/wiki/Chi-squared\_test) and
+    mutual information functions
+    (https://en.wikipedia.org/wiki/Mutual\_information)
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Can we simply apply chi-square function and mutual information
+    function on Bank Marketing Dataset for feature selection? Please
+    explain. (hint: the difference between categorical and numerical
+    data)
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Employ chi-square or mutual information as appropriate to obtain a
+    measure between values of each feature and the class. Rank features
+    by their measures of chi-square and mutual information. Note: Please
+    make two lists: one for chi-square and the other for mutual
+    information. An attribute only belongs to one list.
+  \end{enumerate}
+\end{itemize}
+
+    \begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Both chi-square function and mutual information functions are feature
+  selection techniques that are used to rank features and measure how
+  important each feature is when doing the classification task:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  chi-square:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The chi-square test is a statistical test of independence to
+    determine the dependency of two variables.
+  \item
+    \[\chi^2=\sum_{i=1}^{n} \frac{(O_i - E_i)^2}{E_i},
+    O: \text{Observation}, \:
+    E: \text{Expectation}\]
+
+    \begin{itemize}
+    \tightlist
+    \item
+      If the chi-square test score is smaller, then the two features are
+      more likely to be independent, thus it's safe to discard that
+      feature variable without affecting the outcome.
+    \item
+      If the chi-square test score is high, then the two variables are
+      more likely correlated to each other, which indicates that the
+      feature variable is very important.
+    \end{itemize}
+  \item
+    By calculating the Chi square scores for all the features, we can
+    rank the features by the chi square scores, then choose the top
+    ranked features for model training.
+  \item
+    chi square test is more appropriate for categorical variables
+  \end{itemize}
+\item
+  mutual information function
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The goal of MI is to measure mutual dependence between variables,
+    and how strong the relation is between these variables. It is
+    closely associated with the idea of entropy, applied to quantify the
+    amount of information obtained.
+  \item
+    \[{\displaystyle I(X;Y)=\int _{Y}\int _{X}p(x,y)\log {\left({\frac {p(x,y)}{p(x)\,p(y)}}\right)}\;dx\,dy}\]
+  \item
+    thus if X and Y are independent, then their mutual information is
+    zero because \[p(x,y) = p(x)p(y)\]
+    \[\log {\left({\frac {p(x,y)}{p(x)\,p(y)}}\right)} = \log 1 = 0\]
+  \item
+    closely associated with the idea of entropy:
+  \end{itemize}
+\end{itemize}
+
+\[{\displaystyle {\begin{aligned}I(X;Y)&{}=\sum _{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)p(y)}}\\&{}=\sum _{x,y}p(x,y)\log {\frac {p(x,y)}{p(x)}}-\sum _{x,y}p(x,y)\log p(y)\\&{}=\sum _{x,y}p(x)p(y|x)\log p(y|x)-\sum _{x,y}\log p(y)p(x,y)\\&{}=\sum _{x}p(x)\left(\sum _{y}p(y|x)\log p(y|x)\right)-\sum _{y}\log p(y)\left(\sum _{x}p(x,y)\right)\\&{}=-\sum _{x}p(x)\mathrm {H} (Y|X=x)-\sum _{y}p(y)\log p(y)\\&{}=-\mathrm {H} (Y|X)+\mathrm {H} (Y)\\&{}=\mathrm {H} (Y)-\mathrm {H} (Y|X)\\&{}=\mathrm {H} (X)+ \mathrm{H}(Y) - \mathrm {H} (X, Y)
+.\\\end{aligned}}}\] - intuition of the equation:
+\texttt{the\ amount\ of\ uncertainty\ in\ Y\ which\ is\ removed\ by\ knowing\ X}
+- Unlike chi square test, mutual info function could be applied to both
+categorical and numerical variables
+
+    \begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    No.
+  \end{enumerate}
+\end{itemize}
+
+Test and explain as follows:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}141}]:} \PY{k}{def} \PY{n+nf}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{top\PYZus{}k}\PY{p}{,} \PY{n}{score\PYZus{}func}\PY{p}{)}\PY{p}{:}
+              \PY{n}{selector} \PY{o}{=} \PY{n}{SelectKBest}\PY{p}{(}\PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{score\PYZus{}func}\PY{p}{,} \PY{n}{k}\PY{o}{=}\PY{n}{top\PYZus{}k}\PY{p}{)}
+              \PY{k}{try}\PY{p}{:}
+                  \PY{n}{X\PYZus{}selected} \PY{o}{=} \PY{n}{selector}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+                  \PY{n}{mask} \PY{o}{=} \PY{n}{X\PYZus{}selected}\PY{o}{.}\PY{n}{get\PYZus{}support}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{scores} \PY{o}{=} \PY{n}{X\PYZus{}selected}\PY{o}{.}\PY{n}{scores\PYZus{}}
+                  \PY{n}{res} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{mask}\PY{p}{]}\PY{p}{,} \PY{n}{scores}\PY{p}{[}\PY{n}{mask}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                  \PY{k}{return} \PY{n+nb}{sorted}\PY{p}{(}\PY{n}{res}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{key}\PY{o}{=}\PY{n}{operator}\PY{o}{.}\PY{n}{itemgetter}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} 
+                                \PY{n}{reverse}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+              \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{n}{e}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}142}]:} \PY{n}{categorical\PYZus{}cols} \PY{o}{=} \PY{n}{bank}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{dtypes}\PY{o}{==}\PY{n+nb}{object}\PY{p}{]}
+          \PY{n}{numerical\PYZus{}cols} \PY{o}{=} \PY{n}{bank}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{dtypes}\PY{o}{!=}\PY{n+nb}{object}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}143}]:} \PY{n}{X} \PY{o}{=} \PY{n}{bank}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}
+          \PY{n}{y} \PY{o}{=} \PY{n}{bank}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}144}]:} \PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{o}{=}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} \PY{n}{top\PYZus{}k}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} \PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{chi2}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+could not convert string to float: 'failure'
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}145}]:} \PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{o}{=}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} \PY{n}{top\PYZus{}k}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} 
+                         \PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{mutual\PYZus{}info\PYZus{}classif}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+could not convert string to float: 'failure'
+
+    \end{Verbatim}
+
+    \subparagraph{Thus we should encode the categorical variables
+first:}\label{thus-we-should-encode-the-categorical-variables-first}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}146}]:} \PY{k}{def} \PY{n+nf}{convert}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{p}{:}
+              \PY{n}{df}\PY{p}{[}\PY{n}{x}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{category}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{cat}\PY{o}{.}\PY{n}{codes}
+              \PY{k}{return} \PY{n}{df}
+              
+          \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{bank}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{dtypes}\PY{o}{==}\PY{n+nb}{object}\PY{p}{]}\PY{p}{:}
+              \PY{n}{convert}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{col}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}147}]:} \PY{n}{bank}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}147}]:}    age  job  marital  education  default  housing  loan  contact  month  \textbackslash{}
+          0   56    3        1          0        0        0     0        1      6   
+          1   57    7        1          3        1        0     0        1      6   
+          2   37    7        1          3        0        2     0        1      6   
+          3   40    0        1          1        0        0     0        1      6   
+          4   56    7        1          3        0        0     2        1      6   
+          
+             day\_of\_week {\ldots}  campaign  pdays  previous  poutcome  emp.var.rate  \textbackslash{}
+          0            1 {\ldots}         1    999         0         1           1.1   
+          1            1 {\ldots}         1    999         0         1           1.1   
+          2            1 {\ldots}         1    999         0         1           1.1   
+          3            1 {\ldots}         1    999         0         1           1.1   
+          4            1 {\ldots}         1    999         0         1           1.1   
+          
+             cons.price.idx  cons.conf.idx  euribor3m  nr.employed  y  
+          0          93.994          -36.4      4.857       5191.0  0  
+          1          93.994          -36.4      4.857       5191.0  0  
+          2          93.994          -36.4      4.857       5191.0  0  
+          3          93.994          -36.4      4.857       5191.0  0  
+          4          93.994          -36.4      4.857       5191.0  0  
+          
+          [5 rows x 21 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}148}]:} \PY{n}{X} \PY{o}{=} \PY{n}{bank}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}
+          \PY{n}{y} \PY{o}{=} \PY{n}{bank}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{20}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}149}]:} \PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{o}{=}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} \PY{n}{top\PYZus{}k}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} 
+                         \PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{chi2}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Input X must be non-negative.
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}150}]:} \PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{o}{=}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} \PY{n}{top\PYZus{}k}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} 
+                         \PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{mutual\PYZus{}info\PYZus{}classif}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}150}]:} [('duration', 0.07614671423151775),
+           ('euribor3m', 0.07327347008256746),
+           ('cons.conf.idx', 0.06994188994231076),
+           ('cons.price.idx', 0.06767037174509372),
+           ('nr.employed', 0.06362196307631929),
+           ('emp.var.rate', 0.05779197709582329),
+           ('poutcome', 0.03847041057059419),
+           ('pdays', 0.036971336336834026),
+           ('month', 0.02829677448265744),
+           ('previous', 0.02261469360740831),
+           ('job', 0.013174539253746786),
+           ('contact', 0.013130998323356291),
+           ('age', 0.011946569515146166),
+           ('campaign', 0.006822691894516009),
+           ('marital', 0.006396233281845021),
+           ('default', 0.004979385163925043),
+           ('housing', 0.004813778452020578),
+           ('education', 0.004016400197124348),
+           ('day\_of\_week', 0.003497944805602282),
+           ('loan', 0.0)]
+\end{Verbatim}
+            
+    \subparagraph{Note: after categorical
+encoding:}\label{note-after-categorical-encoding}
+
+\begin{itemize}
+\tightlist
+\item
+  mutual info function is applicable for both categorical and numerical
+  variables;
+\item
+  for \(\chi ^2\), we should split the dataset to categorical variables
+  and numerical variables and apply \(\chi ^2\) on only categorical
+  ones;
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  c):
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}151}]:} \PY{n}{X\PYZus{}categorical} \PY{o}{=} \PY{n}{bank}\PY{p}{[}\PY{n}{categorical\PYZus{}cols}\PY{p}{]}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+          \PY{n}{X\PYZus{}numerical} \PY{o}{=} \PY{n}{bank}\PY{p}{[}\PY{n}{numerical\PYZus{}cols}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}152}]:} \PY{n}{categorical\PYZus{}list} \PY{o}{=} \PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{o}{=}\PY{n}{X\PYZus{}categorical}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} 
+                                            \PY{n}{top\PYZus{}k}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X\PYZus{}categorical}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} 
+                                            \PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{chi2}\PY{p}{)}
+          \PY{n}{categorical\PYZus{}list}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}152}]:} [('contact', 547.9583093880087),
+           ('default', 321.9229031035162),
+           ('education', 167.60728300206605),
+           ('poutcome', 98.23117431597791),
+           ('job', 90.17553267281917),
+           ('marital', 27.79559829132918),
+           ('day\_of\_week', 10.231444571849314),
+           ('housing', 4.978734333542827),
+           ('month', 1.9272840371275475),
+           ('loan', 1.587004275347953)]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}153}]:} \PY{n}{numerical\PYZus{}list} \PY{o}{=} \PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{X}\PY{o}{=}\PY{n}{X\PYZus{}numerical}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{y}\PY{p}{,} 
+                                          \PY{n}{top\PYZus{}k}\PY{o}{=}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X\PYZus{}numerical}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{,} 
+                                          \PY{n}{score\PYZus{}func}\PY{o}{=}\PY{n}{mutual\PYZus{}info\PYZus{}classif}\PY{p}{)}
+          \PY{n}{numerical\PYZus{}list}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}153}]:} [('duration', 0.07525225098886623),
+           ('euribor3m', 0.07316573548893013),
+           ('cons.conf.idx', 0.06938219910495858),
+           ('cons.price.idx', 0.06827983845588737),
+           ('nr.employed', 0.06604616380774075),
+           ('emp.var.rate', 0.055734119670813875),
+           ('pdays', 0.034706598816409695),
+           ('previous', 0.017722656028922534),
+           ('age', 0.015810661522751568),
+           ('campaign', 0.0034902133516785394)]
+\end{Verbatim}
+            
+    \paragraph{\texorpdfstring{\textbf{Task 3}:}{Task 3:}}\label{task-3}
+
+Based on the two ranked lists obtained in Task 2, plot the value
+distribution of (i) the highest ranked three categorical features, (ii)
+the lowest ranked three categorical features, (iii) the highest ranked
+three numerical features, and (iv) the lowest ranked three numerical
+features. Describe what you observe from these value distributions.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}154}]:} \PY{n}{bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bank\PYZhy{}additional\PYZhy{}full.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}155}]:} \PY{k}{def} \PY{n+nf}{plots}\PY{p}{(}\PY{n}{var\PYZus{}list}\PY{p}{,} \PY{n}{type\PYZus{}}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+              \PY{k}{if} \PY{n}{type\PYZus{}}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                  \PY{k}{for} \PY{n}{var} \PY{o+ow}{in} \PY{n}{var\PYZus{}list}\PY{p}{:}
+                      \PY{n}{ct} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{crosstab}\PY{p}{(}\PY{n}{bank}\PY{p}{[}\PY{n}{var}\PY{p}{]}\PY{p}{,} \PY{n}{bank}\PY{o}{.}\PY{n}{y}\PY{p}{)}
+                      \PY{n+nb}{print}\PY{p}{(}\PY{n}{ct}\PY{p}{)}
+                      \PY{n}{ax} \PY{o}{=} \PY{n}{ct}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{stacked}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                      \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+                      \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+              \PY{k}{elif} \PY{n}{type\PYZus{}}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                  \PY{k}{for} \PY{n}{var} \PY{o+ow}{in} \PY{n}{var\PYZus{}list}\PY{p}{:}
+                      \PY{n}{x\PYZus{}multi} \PY{o}{=} \PY{p}{[}\PY{n}{bank}\PY{p}{[}\PY{n}{var}\PY{p}{]}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{values} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{set}\PY{p}{(}\PY{n}{bank}\PY{o}{.}\PY{n}{y}\PY{p}{)}\PY{p}{]}
+                      \PY{n}{plt}\PY{o}{.}\PY{n}{hist}\PY{p}{(}\PY{n}{x\PYZus{}multi}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{,} \PY{n}{histtype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                      \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{n}{var}\PY{p}{)}
+                      \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{x\PYZus{}multi}\PY{p}{,} \PY{n}{labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{n}{bank}\PY{o}{.}\PY{n}{y}\PY{p}{)}\PY{p}{)}
+                      \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \subparagraph{i) Highest 3 categorical:}\label{i-highest-3-categorical}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}156}]:} \PY{n}{plots}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{categorical\PYZus{}list}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+y             no   yes
+contact               
+cellular   22291  3853
+telephone  14257   787
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_31_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+y           no   yes
+default             
+no       28391  4197
+unknown   8154   443
+yes          3     0
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_31_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+y                       no   yes
+education                       
+basic.4y              3748   428
+basic.6y              2104   188
+basic.9y              5572   473
+high.school           8484  1031
+illiterate              14     4
+professional.course   4648   595
+university.degree    10498  1670
+unknown               1480   251
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_31_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{ii) Lowest 3 categorical:}\label{ii-lowest-3-categorical}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{n}{plots}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{categorical\PYZus{}list}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+y           no   yes
+housing             
+no       16596  2026
+unknown    883   107
+yes      19069  2507
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_33_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+y         no  yes
+month            
+apr     2093  539
+aug     5523  655
+dec       93   89
+jul     6525  649
+jun     4759  559
+mar      270  276
+may    12883  886
+nov     3685  416
+oct      403  315
+sep      314  256
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_33_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+y           no   yes
+loan                
+no       30100  3850
+unknown    883   107
+yes       5565   683
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_33_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{iii) Highest 3 numerical:}\label{iii-highest-3-numerical}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}158}]:} \PY{n}{plots}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{numerical\PYZus{}list}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{type\PYZus{}}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/local/lib/python3.6/dist-packages/matplotlib/legend.py:1363: UserWarning: You have mixed positional and keyword arguments, some input may be discarded.
+  warnings.warn("You have mixed positional and keyword "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_35_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_35_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_35_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{iv) Lowest 3 numerical:}\label{iv-lowest-3-numerical}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}159}]:} \PY{n}{plots}\PY{p}{(}\PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{numerical\PYZus{}list}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{type\PYZus{}}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/local/lib/python3.6/dist-packages/matplotlib/legend.py:1363: UserWarning: You have mixed positional and keyword arguments, some input may be discarded.
+  warnings.warn("You have mixed positional and keyword "
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_37_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_37_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_37_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Data preprocessing}\label{data-preprocessing}
+
+    \paragraph{\texorpdfstring{\textbf{Task 1}:}{Task 1:}}\label{task-1}
+
+Normalize the range of values of numerical features. If values are all
+positive or all negative, normalize them into {[}0, 1{]} or {[}-1, 0{]},
+respectively. Otherwise, normalize them into {[}-1, 1{]}. For each
+normalized numerical feature, submit the ranges of its original and
+normalized values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}160}]:} \PY{n}{bank\PYZus{}numericals} \PY{o}{=} \PY{n}{bank}\PY{p}{[}\PY{n}{numerical\PYZus{}cols}\PY{p}{]}
+          \PY{n}{p\PYZus{}mask} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+          \PY{n}{n\PYZus{}mask} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+          \PY{n}{p\PYZus{}n\PYZus{}mask} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{o+ow}{not}\PY{p}{(}\PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{o+ow}{or} 
+                                            \PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+          \PY{n}{p\PYZus{}cols} \PY{o}{=} \PY{n}{numerical\PYZus{}cols}\PY{p}{[}\PY{n}{p\PYZus{}mask}\PY{p}{]}
+          \PY{n}{n\PYZus{}cols} \PY{o}{=} \PY{n}{numerical\PYZus{}cols}\PY{p}{[}\PY{n}{n\PYZus{}mask}\PY{p}{]}
+          \PY{n}{p\PYZus{}n\PYZus{}cols} \PY{o}{=} \PY{n}{numerical\PYZus{}cols}\PY{p}{[}\PY{n}{p\PYZus{}n\PYZus{}mask}\PY{p}{]}
+          \PY{n}{p\PYZus{}cols}\PY{p}{,} \PY{n}{n\PYZus{}cols}\PY{p}{,} \PY{n}{p\PYZus{}n\PYZus{}cols}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}160}]:} (Index(['age', 'duration', 'campaign', 'pdays', 'previous', 'cons.price.idx',
+                  'euribor3m', 'nr.employed'],
+                 dtype='object'),
+           Index(['cons.conf.idx'], dtype='object'),
+           Index(['emp.var.rate'], dtype='object'))
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}161}]:} \PY{k}{def} \PY{n+nf}{scale}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{cols}\PY{p}{,} \PY{n}{range\PYZus{}}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+              \PY{n}{min\PYZus{}max\PYZus{}scaler\PYZus{}p} \PY{o}{=} \PY{n}{MinMaxScaler}\PY{p}{(}\PY{n}{feature\PYZus{}range}\PY{o}{=}\PY{n}{range\PYZus{}}\PY{p}{)}
+              \PY{k}{return} \PY{n}{min\PYZus{}max\PYZus{}scaler\PYZus{}p}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{n}{cols}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}162}]:} \PY{n}{scaled\PYZus{}p} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{scale}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{p\PYZus{}cols}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{p\PYZus{}cols}\PY{p}{)}
+          \PY{n}{scaled\PYZus{}n} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{scale}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{n\PYZus{}cols}\PY{p}{,} \PY{n}{range\PYZus{}}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{n\PYZus{}cols}\PY{p}{)}
+          \PY{n}{scaled\PYZus{}p\PYZus{}n} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{scale}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{p\PYZus{}n\PYZus{}cols}\PY{p}{,} \PY{n}{range\PYZus{}}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{p\PYZus{}n\PYZus{}cols}\PY{p}{)}
+          \PY{n}{scaled\PYZus{}bank\PYZus{}numericals} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{scaled\PYZus{}p}\PY{p}{,} \PY{n}{scaled\PYZus{}n}\PY{p}{,} \PY{n}{scaled\PYZus{}p\PYZus{}n}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}163}]:} \PY{n}{scaled\PYZus{}bank\PYZus{}numericals}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}163}]:}         age  duration  campaign  pdays  previous  cons.price.idx  euribor3m  \textbackslash{}
+          0  0.481481  0.053070       0.0    1.0       0.0        0.698753   0.957379   
+          1  0.493827  0.030297       0.0    1.0       0.0        0.698753   0.957379   
+          2  0.246914  0.045954       0.0    1.0       0.0        0.698753   0.957379   
+          3  0.283951  0.030704       0.0    1.0       0.0        0.698753   0.957379   
+          4  0.481481  0.062424       0.0    1.0       0.0        0.698753   0.957379   
+          
+             nr.employed  cons.conf.idx  emp.var.rate  
+          0     0.859735       -0.39749         0.875  
+          1     0.859735       -0.39749         0.875  
+          2     0.859735       -0.39749         0.875  
+          3     0.859735       -0.39749         0.875  
+          4     0.859735       -0.39749         0.875  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}164}]:} \PY{n}{np}\PY{o}{.}\PY{n}{set\PYZus{}printoptions}\PY{p}{(}\PY{n}{precision}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+          \PY{n}{range\PYZus{}list} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{p}{\PYZob{}}\PY{n}{x}\PY{p}{:} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{original range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{p}{[}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} 
+                                                                 \PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{,}
+                                 \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scaled range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{n}{scaled\PYZus{}bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)}\PY{p}{,} 
+                                                  \PY{n}{scaled\PYZus{}bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{\PYZcb{}}
+                                          \PY{p}{,} \PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+          
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{range\PYZus{}list}\PY{p}{:}
+              \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{value} \PY{o+ow}{in} \PY{n}{i}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{for} \PY{n}{r\PYZus{}type}\PY{p}{,} \PY{n}{r} \PY{o+ow}{in} \PY{n}{value}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                      \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{for numerical variable }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{ the }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ is }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}
+                            \PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{key}\PY{p}{,}\PY{n}{r\PYZus{}type}\PY{p}{,} \PY{n}{r}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+for numerical variable age:
+	 the original range is [17, 98]
+
+for numerical variable age:
+	 the scaled range is [0.0, 1.0]
+
+for numerical variable duration:
+	 the original range is [0, 4918]
+
+for numerical variable duration:
+	 the scaled range is [0.0, 1.0]
+
+for numerical variable campaign:
+	 the original range is [1, 56]
+
+for numerical variable campaign:
+	 the scaled range is [0.0, 0.9999999999999999]
+
+for numerical variable pdays:
+	 the original range is [0, 999]
+
+for numerical variable pdays:
+	 the scaled range is [0.0, 1.0]
+
+for numerical variable previous:
+	 the original range is [0, 7]
+
+for numerical variable previous:
+	 the scaled range is [0.0, 1.0]
+
+for numerical variable emp.var.rate:
+	 the original range is [-3.4, 1.4]
+
+for numerical variable emp.var.rate:
+	 the scaled range is [-1.0, 1.0]
+
+for numerical variable cons.price.idx:
+	 the original range is [92.20100000000001, 94.76700000000001]
+
+for numerical variable cons.price.idx:
+	 the scaled range is [0.0, 1.0]
+
+for numerical variable cons.conf.idx:
+	 the original range is [-50.8, -26.9]
+
+for numerical variable cons.conf.idx:
+	 the scaled range is [-1.0, 0.0]
+
+for numerical variable euribor3m:
+	 the original range is [0.634, 5.045]
+
+for numerical variable euribor3m:
+	 the scaled range is [0.0, 1.0]
+
+for numerical variable nr.employed:
+	 the original range is [4963.6, 5228.1]
+
+for numerical variable nr.employed:
+	 the scaled range is [0.0, 1.0]
+
+
+    \end{Verbatim}
+
+    \paragraph{\texorpdfstring{\textbf{Task 2}:}{Task 2:}}\label{task-2}
+
+Encode categorical features using one-hot representation scheme. For
+example, assuming that there is a `state' feature with three categorical
+values, 'PA', `NY' and `NJ'. Create three new binary features, namely
+`state\_is\_PA', `state\_is\_NY' and `state\_is\_NJ' to replace `state',
+where the feature values are either 0 or 1. For each new binary feature,
+count and report the number of value 1, e.g., ``state\_is\_PA'': 15000,
+``state\_is\_NY'': 20000 and ``state\_is\_NJ'': 10000.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}165}]:} \PY{n}{categorical\PYZus{}cols} \PY{o}{=} \PY{n}{categorical\PYZus{}cols}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{contact}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}166}]:} \PY{k}{def} \PY{n+nf}{OneHot}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{var\PYZus{}list}\PY{p}{)}\PY{p}{:}
+              \PY{k}{try}\PY{p}{:}
+                  \PY{n}{one\PYZus{}hot\PYZus{}bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)} 
+                  \PY{k}{for} \PY{n}{var} \PY{o+ow}{in} \PY{n}{var\PYZus{}list}\PY{p}{:}
+                      \PY{n}{one\PYZus{}hot} \PY{o}{=} \PY{n}{LabelBinarizer}\PY{p}{(}\PY{p}{)}
+                      \PY{n}{one\PYZus{}hot\PYZus{}res} \PY{o}{=} \PY{n}{one\PYZus{}hot}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{bank}\PY{p}{[}\PY{n}{var}\PY{p}{]}\PY{p}{)}
+                      \PY{n}{col} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZus{}is\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{var}\PY{p}{)}\PY{o}{+}\PY{n}{x}\PY{p}{,} 
+                                     \PY{n}{one\PYZus{}hot}\PY{o}{.}\PY{n}{classes\PYZus{}}\PY{p}{)}\PY{p}{)}
+                      \PY{n}{one\PYZus{}hot\PYZus{}bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{one\PYZus{}hot\PYZus{}bank}\PY{p}{,} 
+                                                \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{one\PYZus{}hot\PYZus{}res}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{col}\PY{p}{)}\PY{p}{]}\PY{p}{,} 
+                                                \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{c+c1}{\PYZsh{} labelbinarizer not working for 2 classes}
+                  \PY{n}{telephone} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{bank}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{cellular} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{bank}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{telephone}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{contact} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{telephone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{1}
+                  \PY{n}{cellular}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{n}{bank}\PY{o}{.}\PY{n}{contact} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cellular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{1}
+                  \PY{n}{contact} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{telephone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{telephone}\PY{p}{,}
+                               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cellular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{cellular}\PY{p}{\PYZcb{}}\PY{p}{)}
+                  \PY{n}{contact}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{contact\PYZus{}is\PYZus{}telephone}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{contact\PYZus{}is\PYZus{}cellular}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+                  \PY{n}{one\PYZus{}hot\PYZus{}bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{one\PYZus{}hot\PYZus{}bank}\PY{p}{,} \PY{n}{contact}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{one\PYZus{}hot\PYZus{}bank}
+              \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{n}{e}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}171}]:} \PY{n}{one\PYZus{}hot\PYZus{}bank} \PY{o}{=} \PY{n}{OneHot}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{categorical\PYZus{}cols}\PY{p}{)}
+          \PY{n}{preprocessed\PYZus{}bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{one\PYZus{}hot\PYZus{}bank}\PY{p}{,} \PY{n}{scaled\PYZus{}bank\PYZus{}numericals}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          \PY{n}{preprocessed\PYZus{}bank}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{preprocessed\PYZus{}bank\PYZus{}marketing\PYZus{}data.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{preprocessed\PYZus{}bank}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}171}]:}    job\_is\_admin.  job\_is\_blue-collar  job\_is\_entrepreneur  job\_is\_housemaid  \textbackslash{}
+          0              0                   0                    0                 1   
+          1              0                   0                    0                 0   
+          2              0                   0                    0                 0   
+          3              1                   0                    0                 0   
+          4              0                   0                    0                 0   
+          
+             job\_is\_management  job\_is\_retired  job\_is\_self-employed  job\_is\_services  \textbackslash{}
+          0                  0               0                     0                0   
+          1                  0               0                     0                1   
+          2                  0               0                     0                1   
+          3                  0               0                     0                0   
+          4                  0               0                     0                1   
+          
+             job\_is\_student  job\_is\_technician      {\ldots}            age  duration  \textbackslash{}
+          0               0                  0      {\ldots}       0.481481  0.053070   
+          1               0                  0      {\ldots}       0.493827  0.030297   
+          2               0                  0      {\ldots}       0.246914  0.045954   
+          3               0                  0      {\ldots}       0.283951  0.030704   
+          4               0                  0      {\ldots}       0.481481  0.062424   
+          
+             campaign  pdays  previous  cons.price.idx  euribor3m  nr.employed  \textbackslash{}
+          0       0.0    1.0       0.0        0.698753   0.957379     0.859735   
+          1       0.0    1.0       0.0        0.698753   0.957379     0.859735   
+          2       0.0    1.0       0.0        0.698753   0.957379     0.859735   
+          3       0.0    1.0       0.0        0.698753   0.957379     0.859735   
+          4       0.0    1.0       0.0        0.698753   0.957379     0.859735   
+          
+             cons.conf.idx  emp.var.rate  
+          0       -0.39749         0.875  
+          1       -0.39749         0.875  
+          2       -0.39749         0.875  
+          3       -0.39749         0.875  
+          4       -0.39749         0.875  
+          
+          [5 rows x 63 columns]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}191}]:} \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n}{one\PYZus{}hot\PYZus{}bank}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+              \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{the number of value 1 in }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ = }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+                    \PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{col}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{one\PYZus{}hot\PYZus{}bank}\PY{p}{[}\PY{n}{one\PYZus{}hot\PYZus{}bank}\PY{p}{[}\PY{n}{col}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+the number of value 1 in job\_is\_admin. = 10422
+the number of value 1 in job\_is\_blue-collar = 9254
+the number of value 1 in job\_is\_entrepreneur = 1456
+the number of value 1 in job\_is\_housemaid = 1060
+the number of value 1 in job\_is\_management = 2924
+the number of value 1 in job\_is\_retired = 1720
+the number of value 1 in job\_is\_self-employed = 1421
+the number of value 1 in job\_is\_services = 3969
+the number of value 1 in job\_is\_student = 875
+the number of value 1 in job\_is\_technician = 6743
+the number of value 1 in job\_is\_unemployed = 1014
+the number of value 1 in job\_is\_unknown = 330
+the number of value 1 in marital\_is\_divorced = 4612
+the number of value 1 in marital\_is\_married = 24928
+the number of value 1 in marital\_is\_single = 11568
+the number of value 1 in marital\_is\_unknown = 80
+the number of value 1 in education\_is\_basic.4y = 4176
+the number of value 1 in education\_is\_basic.6y = 2292
+the number of value 1 in education\_is\_basic.9y = 6045
+the number of value 1 in education\_is\_high.school = 9515
+the number of value 1 in education\_is\_illiterate = 18
+the number of value 1 in education\_is\_professional.course = 5243
+the number of value 1 in education\_is\_university.degree = 12168
+the number of value 1 in education\_is\_unknown = 1731
+the number of value 1 in default\_is\_no = 32588
+the number of value 1 in default\_is\_unknown = 8597
+the number of value 1 in default\_is\_yes = 3
+the number of value 1 in housing\_is\_no = 18622
+the number of value 1 in housing\_is\_unknown = 990
+the number of value 1 in housing\_is\_yes = 21576
+the number of value 1 in loan\_is\_no = 33950
+the number of value 1 in loan\_is\_unknown = 990
+the number of value 1 in loan\_is\_yes = 6248
+the number of value 1 in month\_is\_apr = 2632
+the number of value 1 in month\_is\_aug = 6178
+the number of value 1 in month\_is\_dec = 182
+the number of value 1 in month\_is\_jul = 7174
+the number of value 1 in month\_is\_jun = 5318
+the number of value 1 in month\_is\_mar = 546
+the number of value 1 in month\_is\_may = 13769
+the number of value 1 in month\_is\_nov = 4101
+the number of value 1 in month\_is\_oct = 718
+the number of value 1 in month\_is\_sep = 570
+the number of value 1 in day\_of\_week\_is\_fri = 7827
+the number of value 1 in day\_of\_week\_is\_mon = 8514
+the number of value 1 in day\_of\_week\_is\_thu = 8623
+the number of value 1 in day\_of\_week\_is\_tue = 8090
+the number of value 1 in day\_of\_week\_is\_wed = 8134
+the number of value 1 in poutcome\_is\_failure = 4252
+the number of value 1 in poutcome\_is\_nonexistent = 35563
+the number of value 1 in poutcome\_is\_success = 1373
+the number of value 1 in contact\_is\_telephone = 15044
+the number of value 1 in contact\_is\_cellular = 26144
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

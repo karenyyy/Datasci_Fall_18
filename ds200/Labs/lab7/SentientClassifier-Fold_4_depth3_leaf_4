@@ -1,0 +1,20 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="great <= 0.5\nentropy = 1.55\nsamples = 810\nvalue = [314, 308, 188]"] ;
+1 [label="illegal <= 0.5\nentropy = 1.553\nsamples = 790\nvalue = [314, 288, 188]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="good <= 0.5\nentropy = 1.544\nsamples = 777\nvalue = [314, 287, 176]"] ;
+1 -> 2 ;
+3 [label="entropy = 1.546\nsamples = 766\nvalue = [314, 276, 176]"] ;
+2 -> 3 ;
+4 [label="entropy = 0.0\nsamples = 11\nvalue = [0, 11, 0]"] ;
+2 -> 4 ;
+5 [label="crime rate <= 0.5\nentropy = 0.391\nsamples = 13\nvalue = [0, 1, 12]"] ;
+1 -> 5 ;
+6 [label="entropy = 0.544\nsamples = 8\nvalue = [0, 1, 7]"] ;
+5 -> 6 ;
+7 [label="entropy = 0.0\nsamples = 5\nvalue = [0, 0, 5]"] ;
+5 -> 7 ;
+8 [label="entropy = 0.0\nsamples = 20\nvalue = [0, 20, 0]"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

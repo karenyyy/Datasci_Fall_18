@@ -1,0 +1,788 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Assignment 6}
+    
+    \author{Jiarong Ye}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in, left=1.5cm, right=1cm, top=2cm, bottom=1.5cm}
+    
+
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection*{Load the data}\label{load-the-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{from} \PY{n+nn}{datetime} \PY{k}{import} \PY{n}{datetime}
+        \PY{k+kn}{import} \PY{n+nn}{pymysql} 
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{department} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{departments.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{department}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{department\PYZus{}name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{shift} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shifts.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{shift}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{employees} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{employees.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{employees}\PY{o}{.}\PY{n}{emptype} \PY{o}{=} \PY{n}{employees}\PY{o}{.}\PY{n}{emptype}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{schedule} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{schedule.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{,}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{schedule}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{empid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shift\PYZus{}length}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+    \subsection*{Manipulate the data}\label{manipulate-the-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k}{class} \PY{n+nc}{DataSqlLoader}\PY{p}{:}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{database}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} connect to mysql local server}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{db} \PY{o}{=} \PY{n}{pymysql}\PY{o}{.}\PY{n}{Connect}\PY{p}{(}
+                    \PY{n}{host}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{localhost}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                    \PY{n}{port}\PY{o}{=}\PY{l+m+mi}{3308}\PY{p}{,} 
+                    \PY{n}{user}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{root}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                    \PY{n}{passwd}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} 
+                    \PY{n}{db}\PY{o}{=}\PY{n}{database}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{db}\PY{o}{.}\PY{n}{cursor}\PY{p}{(}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} convert the shift and schedule time to `time` format compatible in MySQL}
+            \PY{k}{def} \PY{n+nf}{convert\PYZus{}time\PYZus{}format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{time}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n}{datetime}\PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{I}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{H:}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{M:}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{S}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} convert schedule date to `date` format compatible in MySQL}
+            \PY{k}{def} \PY{n+nf}{convert\PYZus{}date\PYZus{}format}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{time}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n}{datetime}\PY{o}{.}\PY{n}{strptime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{time}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m/}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{/}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{strftime}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{Y\PYZhy{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{m\PYZhy{}}\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+            \PY{k}{def} \PY{n+nf}{creat\PYZus{}tables}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+s1}{                create table if not exists department}
+        \PY{l+s+s1}{                (}
+        \PY{l+s+s1}{                  department\PYZus{}id  int auto\PYZus{}increment}
+        \PY{l+s+s1}{                    primary key,}
+        \PY{l+s+s1}{                  department\PYZus{}name varchar(50) not null}
+        \PY{l+s+s1}{                );}
+        \PY{l+s+s1}{                }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+s1}{            create table if not exists shift}
+        \PY{l+s+s1}{            (}
+        \PY{l+s+s1}{              shift\PYZus{}id int auto\PYZus{}increment}
+        \PY{l+s+s1}{                primary key,}
+        \PY{l+s+s1}{              from\PYZus{}time   time not null,}
+        \PY{l+s+s1}{              length   int  not null}
+        \PY{l+s+s1}{            );}
+        \PY{l+s+s1}{            }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+s1}{            create table if not exists schedule}
+        \PY{l+s+s1}{            (}
+        \PY{l+s+s1}{              schedule\PYZus{}id  int auto\PYZus{}increment}
+        \PY{l+s+s1}{                primary key,}
+        \PY{l+s+s1}{              date         date        not null,}
+        \PY{l+s+s1}{              empid        varchar(10) not null,}
+        \PY{l+s+s1}{              dept         varchar(50) not null,}
+        \PY{l+s+s1}{              start\PYZus{}time   time        not null,}
+        \PY{l+s+s1}{              shift\PYZus{}length int         not null}
+        \PY{l+s+s1}{            );}
+        \PY{l+s+s1}{            }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+s1}{            create table if not exists employees}
+        \PY{l+s+s1}{            (}
+        \PY{l+s+s1}{              empid     varchar(10) not null primary key,}
+        \PY{l+s+s1}{              lastname  varchar(20) not null,}
+        \PY{l+s+s1}{              firstname varchar(20) not null,}
+        \PY{l+s+s1}{              emptype   varchar(3)  null,}
+        \PY{l+s+s1}{              cellphone varchar(20) null,}
+        \PY{l+s+s1}{              homephone varchar(20) null,}
+        \PY{l+s+s1}{              ftpt      varchar(2)  not null,}
+        \PY{l+s+s1}{              constraint employee\PYZus{}empid\PYZus{}uindex}
+        \PY{l+s+s1}{              unique (empid)}
+        \PY{l+s+s1}{            );}
+        \PY{l+s+s1}{        }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+s1}{            create table if not exists department\PYZus{}managers}
+        \PY{l+s+s1}{            (}
+        \PY{l+s+s1}{                dept\PYZus{}name varchar(20),}
+        \PY{l+s+s1}{                manager varchar(30)}
+        \PY{l+s+s1}{            );}
+        \PY{l+s+s1}{        }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{p}{)}
+            
+            \PY{k}{def} \PY{n+nf}{insert\PYZus{}into\PYZus{}tables}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{table}\PY{p}{,} \PY{n}{table\PYZus{}name}\PY{p}{)}\PY{p}{:}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{table}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{attributes} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{tuple}\PY{p}{(}\PY{n}{table}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                    \PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{insert into }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ values }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                        \PY{n}{table\PYZus{}name}\PY{p}{,} \PY{n}{attributes}\PY{p}{,} \PY{n+nb}{tuple}\PY{p}{(}\PY{n}{table}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{query} \PY{o}{=} \PY{n}{query}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(none)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                    \PY{n}{query} \PY{o}{=} \PY{n}{query}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+sa}{r}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                    \PY{c+c1}{\PYZsh{} print(query)}
+                    \PY{k}{try}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{c}\PY{o}{.}\PY{n}{execute}\PY{p}{(}\PY{n}{query}\PY{p}{)}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{db}\PY{o}{.}\PY{n}{commit}\PY{p}{(}\PY{p}{)}
+                    \PY{k}{except} \PY{n+ne}{Exception} \PY{k}{as} \PY{n}{e}\PY{p}{:}
+                        \PY{n+nb}{print}\PY{p}{(}\PY{n}{e}\PY{p}{)}
+                        
+            \PY{k}{def} \PY{n+nf}{close}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{db}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{dsl} \PY{o}{=} \PY{n}{DataSqlLoader}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cs431\PYZus{}project}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{dsl}\PY{o}{.}\PY{n}{creat\PYZus{}tables}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{schedule}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{dsl}\PY{o}{.}\PY{n}{convert\PYZus{}time\PYZus{}format}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} 
+                                           \PY{n}{schedule}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{shift}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{dsl}\PY{o}{.}\PY{n}{convert\PYZus{}time\PYZus{}format}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} 
+                                       \PY{n}{shift}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{from\PYZus{}time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         \PY{n}{schedule}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{dsl}\PY{o}{.}\PY{n}{convert\PYZus{}date\PYZus{}format}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{,} 
+                                     \PY{n}{schedule}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{dsl}\PY{o}{.}\PY{n}{insert\PYZus{}into\PYZus{}tables}\PY{p}{(}\PY{n}{department}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{department}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{dsl}\PY{o}{.}\PY{n}{insert\PYZus{}into\PYZus{}tables}\PY{p}{(}\PY{n}{shift}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{dsl}\PY{o}{.}\PY{n}{insert\PYZus{}into\PYZus{}tables}\PY{p}{(}\PY{n}{schedule}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{schedule}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{dsl}\PY{o}{.}\PY{n}{insert\PYZus{}into\PYZus{}tables}\PY{p}{(}\PY{n}{employees}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{employees}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \subsection*{SQL Query}\label{sql-query}
+    
+    \textbf{show tables}
+    
+     \begin{Verbatim}[commandchars=\\\{\}]
+    {\color{incolor}In [{\color{incolor}7}]:} \PY{n}{query} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{show tables;}\PY{l+s+s1}{\PYZsq{}}
+    \PY{n}{tables} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql}\PY{p}{(}\PY{n}{query}\PY{p}{,} \PY{n}{dsl}\PY{o}{.}\PY{n}{db}\PY{p}{)}
+    \PY{n}{tables}
+    \end{Verbatim}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+    {\color{outcolor}Out[{\color{outcolor}7}]:}   Tables\_in\_cs431\_project
+    0              department
+    1     department\_managers
+    2               employees
+    3                schedule
+    4                   shift
+    \end{Verbatim}
+   
+    
+   \textbf{describe tables}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+    {\color{incolor}In [{\color{incolor}14}]:} \PY{k}{for} \PY{n}{table} \PY{o+ow}{in} \PY{n}{tables}\PY{o}{.}\PY{n}{values}\PY{p}{:}
+    \PY{n}{query} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{describe }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{table}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+    \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql}\PY{p}{(}\PY{n}{query}\PY{p}{,} \PY{n}{dsl}\PY{o}{.}\PY{n}{db}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+    \end{Verbatim}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+    Field         Type Null  Key Default           Extra
+    0    department\_id      int(11)   NO  PRI    None  auto\_increment
+    1  department\_name  varchar(50)   NO         None                
+    
+    
+    Field         Type Null Key Default Extra
+    0  dept\_name  varchar(20)  YES        None      
+    1    manager  varchar(30)  YES        None      
+    
+    
+    Field         Type Null  Key Default Extra
+    0      empid  varchar(10)   NO  PRI    None      
+    1   lastname  varchar(20)   NO         None      
+    2  firstname  varchar(20)   NO         None      
+    3    emptype   varchar(3)  YES         None      
+    4  cellphone  varchar(20)  YES         None      
+    5  homephone  varchar(20)  YES         None      
+    6       ftpt   varchar(2)   NO         None      
+    
+    
+    Field         Type Null  Key Default           Extra
+    0   schedule\_id      int(11)   NO  PRI    None  auto\_increment
+    1          date         date   NO         None                
+    2         empid  varchar(10)   NO         None                
+    3          dept  varchar(50)   NO         None                
+    4    start\_time         time   NO         None                
+    5  shift\_length      int(11)   NO         None                
+    
+    
+    Field     Type Null  Key Default           Extra
+    0   shift\_id  int(11)   NO  PRI    None  auto\_increment
+    1  from\_time     time   NO         None                
+    2     length  int(11)   NO         None                
+    
+    
+    
+    \end{Verbatim}
+    
+    \newpage
+    
+
+    \paragraph{1. GENERATE THE FOLLOWING REPORT LISTING ALL EMPLOYEES WHO
+ARE ``OVERBOOKED'' BY BEING SCHEDULED MORE THAN ONCE IN A
+DAY}\label{generate-the-following-report-listing-all-employees-who-are-overbooked-by-being-scheduled-more-than-once-in-a-day}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{query} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{l+s+s1}{    SELECT a.empid, a.lastname,a.firstname, a.date AS Overbooked\PYZus{}Date,}
+         \PY{l+s+s1}{       date\PYZus{}format(a.start\PYZus{}time, }\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{I}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{) AS sfrom, a.dept\PYZus{}name, a.manager}
+         \PY{l+s+s1}{        FROM }
+         \PY{l+s+s1}{        (SELECT s.empid, e.lastname, e.firstname,}
+         \PY{l+s+s1}{          s.date, s.start\PYZus{}time, d.dept\PYZus{}name, d.manager}
+         \PY{l+s+s1}{        FROM employees AS e, schedule AS s, department\PYZus{}managers AS d}
+         \PY{l+s+s1}{        WHERE e.empid=s.empid}
+         \PY{l+s+s1}{        and d.dept\PYZus{}name=s.dept) AS a}
+         \PY{l+s+s1}{    INNER JOIN}
+         \PY{l+s+s1}{        (SELECT empid, date, start\PYZus{}time FROM schedule}
+         \PY{l+s+s1}{        GROUP BY empid, date}
+         \PY{l+s+s1}{          HAVING count(*) \PYZgt{}1) AS b}
+         \PY{l+s+s1}{    ON (a.empid, a.date)=(b.empid, b.date)}
+         \PY{l+s+s1}{    ORDER BY a.empid, a.date, a.start\PYZus{}time;}
+         \PY{l+s+s1}{        }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql}\PY{p}{(}\PY{n}{query}\PY{p}{,} \PY{n}{dsl}\PY{o}{.}\PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+	\toprule
+	{} &   empid &    lastname &  firstname & Overbooked\_Date & sfrom &       dept\_name &          manager \\
+	\midrule
+	0  &  853537 &    Zaragoza &      Manie &      2018-09-27 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	1  &  853537 &    Zaragoza &      Manie &      2018-09-27 &  11PM &      PEDIATRICS &     Remona Locke \\
+	2  &  853537 &    Zaragoza &      Manie &      2018-10-04 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	3  &  853537 &    Zaragoza &      Manie &      2018-10-04 &  03PM &      PEDIATRICS &     Remona Locke \\
+	4  &  853537 &    Zaragoza &      Manie &      2018-10-05 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	5  &  853537 &    Zaragoza &      Manie &      2018-10-05 &  03PM &      PEDIATRICS &     Remona Locke \\
+	6  &  854480 &       Locke &     Remona &      2018-09-29 &  07PM &       EMERGENCY &   Oralia Swallow \\
+	7  &  854480 &       Locke &     Remona &      2018-09-29 &  07PM &  INTENSIVE CARE &     Colby Witham \\
+	8  &  854480 &       Locke &     Remona &      2018-10-04 &  03PM &       EMERGENCY &   Oralia Swallow \\
+	9  &  854480 &       Locke &     Remona &      2018-10-04 &  03PM &         SURGERY &   Nadene Harwell \\
+	10 &  854480 &       Locke &     Remona &      2018-10-05 &  07AM &      CARDIOLOGY &    Marylin Mumaw \\
+	11 &  854480 &       Locke &     Remona &      2018-10-05 &  07AM &         SURGERY &   Nadene Harwell \\
+	12 &  856661 &        Rabb &    Stephan &      2018-09-24 &  11PM &  INTENSIVE CARE &     Colby Witham \\
+	13 &  856661 &        Rabb &    Stephan &      2018-09-24 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	14 &  857230 &          He &     Kimiko &      2018-10-05 &  03PM &  INTENSIVE CARE &     Colby Witham \\
+	15 &  857230 &          He &     Kimiko &      2018-10-05 &  11PM &         SURGERY &   Nadene Harwell \\
+	16 &  859272 &      Netter &     Almeda &      2018-10-03 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	17 &  859272 &      Netter &     Almeda &      2018-10-03 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	18 &  864272 &   Catanzaro &     Imelda &      2018-09-30 &  07PM &       EMERGENCY &   Oralia Swallow \\
+	19 &  864272 &   Catanzaro &     Imelda &      2018-09-30 &  07PM &        ONCOLOGY &  Junita Loranger \\
+	20 &  864272 &   Catanzaro &     Imelda &      2018-10-02 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	21 &  864272 &   Catanzaro &     Imelda &      2018-10-02 &  03PM &         SURGERY &   Nadene Harwell \\
+	22 &  864272 &   Catanzaro &     Imelda &      2018-10-02 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	23 &  864425 &      Witham &      Colby &      2018-09-24 &  03PM &        ONCOLOGY &  Junita Loranger \\
+	24 &  864425 &      Witham &      Colby &      2018-09-24 &  03PM &         SURGERY &   Nadene Harwell \\
+	25 &  864425 &      Witham &      Colby &      2018-09-25 &  03PM &      CARDIOLOGY &    Marylin Mumaw \\
+	26 &  864425 &      Witham &      Colby &      2018-09-25 &  11PM &  INTENSIVE CARE &     Colby Witham \\
+	27 &  864425 &      Witham &      Colby &      2018-10-03 &  07AM &         SURGERY &   Nadene Harwell \\
+	28 &  864425 &      Witham &      Colby &      2018-10-03 &  07AM &       MATERNITY &    Carmel Mersch \\
+	29 &  868513 &  Mcclelland &     Barton &      2018-09-29 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	30 &  868513 &  Mcclelland &     Barton &      2018-09-29 &  07PM &       EMERGENCY &   Oralia Swallow \\
+	31 &  868513 &  Mcclelland &     Barton &      2018-09-29 &  07PM &  INTENSIVE CARE &     Colby Witham \\
+	32 &  868513 &  Mcclelland &     Barton &      2018-10-05 &  03PM &       EMERGENCY &   Oralia Swallow \\
+	33 &  868513 &  Mcclelland &     Barton &      2018-10-05 &  11PM &         SURGERY &   Nadene Harwell \\
+	34 &  876713 &   Concannon &  Jeannette &      2018-10-01 &  03PM &       MATERNITY &    Carmel Mersch \\
+	35 &  876713 &   Concannon &  Jeannette &      2018-10-01 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	36 &  876713 &   Concannon &  Jeannette &      2018-10-05 &  07AM &      PEDIATRICS &     Remona Locke \\
+	37 &  876713 &   Concannon &  Jeannette &      2018-10-05 &  11PM &      PEDIATRICS &     Remona Locke \\
+	38 &  878397 &   Whitmarsh &      Mikel &      2018-09-24 &  11PM &       RADIOLOGY &   Pamella Deines \\
+	39 &  878397 &   Whitmarsh &      Mikel &      2018-09-24 &  11PM &       RADIOLOGY &   Pamella Deines \\
+	40 &  881626 &        Sisk &    Ernesto &      2018-09-28 &  07AM &       RADIOLOGY &   Pamella Deines \\
+	41 &  881626 &        Sisk &    Ernesto &      2018-09-28 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	42 &  883069 &      Deines &    Pamella &      2018-09-26 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	43 &  883069 &      Deines &    Pamella &      2018-09-26 &  11PM &         SURGERY &   Nadene Harwell \\
+	44 &  883069 &      Deines &    Pamella &      2018-09-28 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	45 &  883069 &      Deines &    Pamella &      2018-09-28 &  07AM &      PEDIATRICS &     Remona Locke \\
+	46 &  883069 &      Deines &    Pamella &      2018-09-30 &  07AM &         SURGERY &   Nadene Harwell \\
+	47 &  883069 &      Deines &    Pamella &      2018-09-30 &  07PM &       MATERNITY &    Carmel Mersch \\
+	48 &  883367 &     Clyburn &     Jeffry &      2018-09-27 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	49 &  883367 &     Clyburn &     Jeffry &      2018-09-27 &  11PM &         SURGERY &   Nadene Harwell \\
+	\bottomrule
+\end{tabular}
+
+\newpage
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+	\toprule
+	{} &   empid &    lastname & firstname & Overbooked\_Date & sfrom &       dept\_name &          manager \\
+	\midrule
+	50 &  883367 &     Clyburn &    Jeffry &      2018-10-01 &  07AM &       RADIOLOGY &   Pamella Deines \\
+	51 &  883367 &     Clyburn &    Jeffry &      2018-10-01 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	52 &  883367 &     Clyburn &    Jeffry &      2018-10-01 &  03PM &       MATERNITY &    Carmel Mersch \\
+	53 &  883367 &     Clyburn &    Jeffry &      2018-10-01 &  11PM &         SURGERY &   Nadene Harwell \\
+	54 &  886190 &        Ault &   Rosendo &      2018-09-25 &  03PM &      PEDIATRICS &     Remona Locke \\
+	55 &  886190 &        Ault &   Rosendo &      2018-09-25 &  03PM &        ONCOLOGY &  Junita Loranger \\
+	56 &  886190 &        Ault &   Rosendo &      2018-10-04 &  03PM &       EMERGENCY &   Oralia Swallow \\
+	57 &  886190 &        Ault &   Rosendo &      2018-10-04 &  11PM &       RADIOLOGY &   Pamella Deines \\
+	58 &  891046 &     Hessler &    Latina &      2018-10-05 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	59 &  891046 &     Hessler &    Latina &      2018-10-05 &  11PM &      PEDIATRICS &     Remona Locke \\
+	60 &  898057 &       Blagg &   Lorenzo &      2018-10-05 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	61 &  898057 &       Blagg &   Lorenzo &      2018-10-05 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	62 &  900486 &        Ober &  Shalanda &      2018-09-30 &  07PM &      CARDIOLOGY &    Marylin Mumaw \\
+	63 &  900486 &        Ober &  Shalanda &      2018-09-30 &  07PM &      CARDIOLOGY &    Marylin Mumaw \\
+	64 &  913891 &        Warn &   Loraine &      2018-09-27 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	65 &  913891 &        Warn &   Loraine &      2018-09-27 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	66 &  919675 &      Cermak &      Vern &      2018-09-25 &  03PM &       EMERGENCY &   Oralia Swallow \\
+	67 &  919675 &      Cermak &      Vern &      2018-09-25 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	68 &  919675 &      Cermak &      Vern &      2018-09-26 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	69 &  919675 &      Cermak &      Vern &      2018-09-26 &  11PM &      CARDIOLOGY &    Marylin Mumaw \\
+	70 &  919675 &      Cermak &      Vern &      2018-09-27 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	71 &  919675 &      Cermak &      Vern &      2018-09-27 &  03PM &      CARDIOLOGY &    Marylin Mumaw \\
+	72 &  919675 &      Cermak &      Vern &      2018-09-30 &  07AM &       MATERNITY &    Carmel Mersch \\
+	73 &  919675 &      Cermak &      Vern &      2018-09-30 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	74 &  919675 &      Cermak &      Vern &      2018-09-30 &  07PM &        ONCOLOGY &  Junita Loranger \\
+	75 &  919675 &      Cermak &      Vern &      2018-10-07 &  07PM &       EMERGENCY &   Oralia Swallow \\
+	76 &  919675 &      Cermak &      Vern &      2018-10-07 &  07PM &       EMERGENCY &   Oralia Swallow \\
+	77 &  919847 &       Gabel &     Huong &      2018-09-25 &  03PM &       MATERNITY &    Carmel Mersch \\
+	78 &  919847 &       Gabel &     Huong &      2018-09-25 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	79 &  919847 &       Gabel &     Huong &      2018-10-01 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	80 &  919847 &       Gabel &     Huong &      2018-10-01 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	81 &  919847 &       Gabel &     Huong &      2018-10-06 &  07AM &         SURGERY &   Nadene Harwell \\
+	82 &  919847 &       Gabel &     Huong &      2018-10-06 &  07AM &      CARDIOLOGY &    Marylin Mumaw \\
+	83 &  919847 &       Gabel &     Huong &      2018-10-06 &  07PM &       MATERNITY &    Carmel Mersch \\
+	84 &  921331 &      Beaver &      Viva &      2018-09-25 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	85 &  921331 &      Beaver &      Viva &      2018-09-25 &  03PM &       MATERNITY &    Carmel Mersch \\
+	86 &  921331 &      Beaver &      Viva &      2018-09-26 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	87 &  921331 &      Beaver &      Viva &      2018-09-26 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	88 &  921331 &      Beaver &      Viva &      2018-09-26 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	89 &  921331 &      Beaver &      Viva &      2018-10-07 &  07PM &       EMERGENCY &   Oralia Swallow \\
+	90 &  921331 &      Beaver &      Viva &      2018-10-07 &  07PM &      PEDIATRICS &     Remona Locke \\
+	91 &  921331 &      Beaver &      Viva &      2018-10-07 &  07PM &       MATERNITY &    Carmel Mersch \\
+	92 &  929086 &  Noonkester &       Asa &      2018-09-25 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	93 &  929086 &  Noonkester &       Asa &      2018-09-25 &  07AM &       MATERNITY &    Carmel Mersch \\
+	94 &  929086 &  Noonkester &       Asa &      2018-09-27 &  07AM &      CARDIOLOGY &    Marylin Mumaw \\
+	95 &  929086 &  Noonkester &       Asa &      2018-09-27 &  03PM &       MATERNITY &    Carmel Mersch \\
+	96 &  929086 &  Noonkester &       Asa &      2018-09-28 &  07AM &       RADIOLOGY &   Pamella Deines \\
+	97 &  929086 &  Noonkester &       Asa &      2018-09-28 &  07AM &       RADIOLOGY &   Pamella Deines \\
+	98 &  937181 &       Hauck &    Kenton &      2018-09-27 &  07AM &      PEDIATRICS &     Remona Locke \\
+	99 &  937181 &       Hauck &    Kenton &      2018-09-27 &  03PM &       MATERNITY &    Carmel Mersch \\
+	\bottomrule
+\end{tabular}
+
+
+\newpage
+
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+	\toprule
+	{} &   empid &  lastname & firstname & Overbooked\_Date & sfrom &       dept\_name &          manager \\
+	\midrule
+	100 &  937181 &     Hauck &    Kenton &      2018-10-02 &  03PM &      CARDIOLOGY &    Marylin Mumaw \\
+	101 &  937181 &     Hauck &    Kenton &      2018-10-02 &  11PM &      PEDIATRICS &     Remona Locke \\
+	102 &  939148 &   Liberto &     Delta &      2018-09-24 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	103 &  939148 &   Liberto &     Delta &      2018-09-24 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	104 &  939148 &   Liberto &     Delta &      2018-09-26 &  07AM &         SURGERY &   Nadene Harwell \\
+	105 &  939148 &   Liberto &     Delta &      2018-09-26 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	106 &  939148 &   Liberto &     Delta &      2018-10-02 &  07AM &       MATERNITY &    Carmel Mersch \\
+	107 &  939148 &   Liberto &     Delta &      2018-10-02 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	108 &  940824 &  Loranger &    Junita &      2018-09-25 &  11PM &       MATERNITY &    Carmel Mersch \\
+	109 &  940824 &  Loranger &    Junita &      2018-09-25 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	110 &  940824 &  Loranger &    Junita &      2018-10-02 &  07AM &       MATERNITY &    Carmel Mersch \\
+	111 &  940824 &  Loranger &    Junita &      2018-10-02 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	112 &  940824 &  Loranger &    Junita &      2018-10-03 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	113 &  940824 &  Loranger &    Junita &      2018-10-03 &  11PM &       MATERNITY &    Carmel Mersch \\
+	114 &  940824 &  Loranger &    Junita &      2018-10-06 &  07PM &  INTENSIVE CARE &     Colby Witham \\
+	115 &  940824 &  Loranger &    Junita &      2018-10-06 &  07PM &       MATERNITY &    Carmel Mersch \\
+	116 &  941663 &    Nalley &  Charlott &      2018-09-29 &  07AM &         SURGERY &   Nadene Harwell \\
+	117 &  941663 &    Nalley &  Charlott &      2018-09-29 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	118 &  941663 &    Nalley &  Charlott &      2018-09-29 &  07PM &       RADIOLOGY &   Pamella Deines \\
+	119 &  941663 &    Nalley &  Charlott &      2018-10-05 &  03PM &        ONCOLOGY &  Junita Loranger \\
+	120 &  941663 &    Nalley &  Charlott &      2018-10-05 &  11PM &      PEDIATRICS &     Remona Locke \\
+	121 &  943023 &     Hinze &      Mark &      2018-09-28 &  07AM &      PEDIATRICS &     Remona Locke \\
+	122 &  943023 &     Hinze &      Mark &      2018-09-28 &  03PM &        ONCOLOGY &  Junita Loranger \\
+	123 &  943023 &     Hinze &      Mark &      2018-10-05 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	124 &  943023 &     Hinze &      Mark &      2018-10-05 &  11PM &       MATERNITY &    Carmel Mersch \\
+	125 &  943023 &     Hinze &      Mark &      2018-10-07 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	126 &  943023 &     Hinze &      Mark &      2018-10-07 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	127 &  945520 &   Crigger &    Maudie &      2018-10-01 &  07AM &         SURGERY &   Nadene Harwell \\
+	128 &  945520 &   Crigger &    Maudie &      2018-10-01 &  11PM &       RADIOLOGY &   Pamella Deines \\
+	129 &  945520 &   Crigger &    Maudie &      2018-10-03 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	130 &  945520 &   Crigger &    Maudie &      2018-10-03 &  03PM &  INTENSIVE CARE &     Colby Witham \\
+	131 &  945540 &    Stager &  Roderick &      2018-10-04 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	132 &  945540 &    Stager &  Roderick &      2018-10-04 &  11PM &      CARDIOLOGY &    Marylin Mumaw \\
+	133 &  945540 &    Stager &  Roderick &      2018-10-07 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	134 &  945540 &    Stager &  Roderick &      2018-10-07 &  07PM &      PEDIATRICS &     Remona Locke \\
+	135 &  948273 &   Petties &  Rachelle &      2018-09-28 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	136 &  948273 &   Petties &  Rachelle &      2018-09-28 &  07AM &      CARDIOLOGY &    Marylin Mumaw \\
+	137 &  953807 &   Quarles &     Timmy &      2018-10-02 &  07AM &       MATERNITY &    Carmel Mersch \\
+	138 &  953807 &   Quarles &     Timmy &      2018-10-02 &  11PM &  INTENSIVE CARE &     Colby Witham \\
+	139 &  953817 &   Harwell &    Nadene &      2018-09-25 &  03PM &      PEDIATRICS &     Remona Locke \\
+	140 &  953817 &   Harwell &    Nadene &      2018-09-25 &  11PM &      CARDIOLOGY &    Marylin Mumaw \\
+	141 &  957335 &  Mullally &    Vennie &      2018-09-27 &  07AM &      PEDIATRICS &     Remona Locke \\
+	142 &  957335 &  Mullally &    Vennie &      2018-09-27 &  03PM &        ONCOLOGY &  Junita Loranger \\
+	143 &  957335 &  Mullally &    Vennie &      2018-09-29 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	144 &  957335 &  Mullally &    Vennie &      2018-09-29 &  07PM &      CARDIOLOGY &    Marylin Mumaw \\
+	145 &  957335 &  Mullally &    Vennie &      2018-10-01 &  03PM &       RADIOLOGY &   Pamella Deines \\
+	146 &  957335 &  Mullally &    Vennie &      2018-10-01 &  11PM &       RADIOLOGY &   Pamella Deines \\
+	147 &  964932 &     Harps &      Gigi &      2018-10-03 &  03PM &       MATERNITY &    Carmel Mersch \\
+	148 &  964932 &     Harps &      Gigi &      2018-10-03 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	149 &  967577 &   Swallow &    Oralia &      2018-09-24 &  07AM &         SURGERY &   Nadene Harwell \\
+	\bottomrule
+\end{tabular}
+
+\newpage
+
+\begin{tabular}{|l|l|l|l|l|l|l|l|}
+	\toprule
+	{} &   empid &  lastname & firstname & Overbooked\_Date & sfrom &       dept\_name &          manager \\
+	\midrule
+	150 &  967577 &   Swallow &    Oralia &      2018-09-24 &  03PM &       MATERNITY &    Carmel Mersch \\
+	151 &  967577 &   Swallow &    Oralia &      2018-10-03 &  07AM &       MATERNITY &    Carmel Mersch \\
+	152 &  967577 &   Swallow &    Oralia &      2018-10-03 &  11PM &         SURGERY &   Nadene Harwell \\
+	153 &  967577 &   Swallow &    Oralia &      2018-10-07 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	154 &  967577 &   Swallow &    Oralia &      2018-10-07 &  07PM &        ONCOLOGY &  Junita Loranger \\
+	155 &  971559 &     Mumaw &   Marylin &      2018-09-30 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	156 &  971559 &     Mumaw &   Marylin &      2018-09-30 &  07PM &        ONCOLOGY &  Junita Loranger \\
+	157 &  979951 &  Berryman &   Sabrina &      2018-10-04 &  03PM &       EMERGENCY &   Oralia Swallow \\
+	158 &  979951 &  Berryman &   Sabrina &      2018-10-04 &  11PM &  INTENSIVE CARE &     Colby Witham \\
+	159 &  979951 &  Berryman &   Sabrina &      2018-10-04 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	160 &  979951 &  Berryman &   Sabrina &      2018-10-06 &  07AM &      PEDIATRICS &     Remona Locke \\
+	161 &  979951 &  Berryman &   Sabrina &      2018-10-06 &  07AM &       MATERNITY &    Carmel Mersch \\
+	162 &  979951 &  Berryman &   Sabrina &      2018-10-06 &  07AM &        ONCOLOGY &  Junita Loranger \\
+	163 &  992463 &     Goode &       Rex &      2018-09-25 &  11PM &        ONCOLOGY &  Junita Loranger \\
+	164 &  992463 &     Goode &       Rex &      2018-09-25 &  11PM &         SURGERY &   Nadene Harwell \\
+	165 &  992463 &     Goode &       Rex &      2018-09-26 &  07AM &       MATERNITY &    Carmel Mersch \\
+	166 &  992463 &     Goode &       Rex &      2018-09-26 &  03PM &       MATERNITY &    Carmel Mersch \\
+	167 &  995561 &   Labarre &   Virgina &      2018-09-24 &  11PM &       EMERGENCY &   Oralia Swallow \\
+	168 &  995561 &   Labarre &   Virgina &      2018-09-24 &  11PM &         SURGERY &   Nadene Harwell \\
+	169 &  995561 &   Labarre &   Virgina &      2018-10-01 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	170 &  995561 &   Labarre &   Virgina &      2018-10-01 &  11PM &      PEDIATRICS &     Remona Locke \\
+	171 &  995636 &       Pye &    Deanna &      2018-09-30 &  07AM &       MATERNITY &    Carmel Mersch \\
+	172 &  995636 &       Pye &    Deanna &      2018-09-30 &  07AM &       EMERGENCY &   Oralia Swallow \\
+	173 &  995636 &       Pye &    Deanna &      2018-10-01 &  07AM &      CARDIOLOGY &    Marylin Mumaw \\
+	174 &  995636 &       Pye &    Deanna &      2018-10-01 &  11PM &       RADIOLOGY &   Pamella Deines \\
+	175 &  995636 &       Pye &    Deanna &      2018-10-05 &  07AM &  INTENSIVE CARE &     Colby Witham \\
+	176 &  995636 &       Pye &    Deanna &      2018-10-05 &  11PM &       MATERNITY &    Carmel Mersch \\
+	177 &  995636 &       Pye &    Deanna &      2018-10-07 &  07PM &       RADIOLOGY &   Pamella Deines \\
+	178 &  995636 &       Pye &    Deanna &      2018-10-07 &  07PM &  INTENSIVE CARE &     Colby Witham \\
+	\bottomrule
+\end{tabular}
+
+\newpage
+
+
+    \paragraph{2. GENERATE A REPORT OF ALL OF THE FULL TIME PEOPLE WHO ARE
+WORKING MORE THAN 80 HOURS, AND HOW MUCH OVERTIME THEY ARE SCHEDULED
+FOR.}\label{generate-a-report-of-all-of-the-full-time-people-who-are-working-more-than-80-hours-and-how-much-overtime-they-are-scheduled-for.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{query} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{l+s+s1}{        SELECT CONCAT(e.firstname, }\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{, e.lastname) AS fullname,}
+         \PY{l+s+s1}{               CAST(sum(s.shift\PYZus{}length)\PYZhy{}80 AS INT) AS scheduled\PYZus{}overtime}
+         \PY{l+s+s1}{        FROM schedule AS s, employees AS e}
+         \PY{l+s+s1}{        WHERE s.empid=e.empid}
+         \PY{l+s+s1}{        AND e.ftpt = }\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ft}\PY{l+s+s1}{\PYZsq{}}
+         \PY{l+s+s1}{        GROUP BY s.empid}
+         \PY{l+s+s1}{        HAVING scheduled\PYZus{}overtime \PYZgt{}0}
+         \PY{l+s+s1}{        ORDER BY scheduled\PYZus{}overtime DESC, fullname ASC;}
+         \PY{l+s+s1}{        }\PY{l+s+s1}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         
+         \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}sql}\PY{p}{(}\PY{n}{query}\PY{p}{,} \PY{n}{dsl}\PY{o}{.}\PY{n}{db}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{tabular}{|l|l|r|}
+	\toprule
+	{} &           fullname &  scheduled\_overtime \\
+	\midrule
+	0  &        Vern Cermak &                  60 \\
+	1  &         Deanna Pye &                  48 \\
+	2  &     Jeffry Clyburn &                  44 \\
+	3  &       Remona Locke &                  36 \\
+	4  &    Charlott Nalley &                  32 \\
+	5  &     Manie Zaragoza &                  32 \\
+	6  &    Junita Loranger &                  24 \\
+	7  &   Imelda Catanzaro &                  20 \\
+	8  &       Kenton Hauck &                  20 \\
+	9  &     Asa Noonkester &                  16 \\
+	10 &         Mark Hinze &                  16 \\
+	11 &      Shalanda Ober &                  16 \\
+	12 &  Barton Mcclelland &                  12 \\
+	13 &     Oralia Swallow &                   8 \\
+	14 &    Virgina Labarre &                   8 \\
+	15 &      Marylin Mumaw &                   4 \\
+	\bottomrule
+\end{tabular}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

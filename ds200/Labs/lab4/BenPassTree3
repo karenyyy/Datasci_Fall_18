@@ -1,0 +1,28 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="AirYards <= 20.5\nentropy = 0.803\nsamples = 49\nvalue = [12, 37]"] ;
+1 [label="ydstogo <= 4.0\nentropy = 0.65\nsamples = 42\nvalue = [7, 35]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="AirYards <= 7.5\nentropy = 0.991\nsamples = 9\nvalue = [4, 5]"] ;
+1 -> 2 ;
+3 [label="entropy = 0.863\nsamples = 7\nvalue = [2, 5]"] ;
+2 -> 3 ;
+4 [label="entropy = 0.0\nsamples = 2\nvalue = [2, 0]"] ;
+2 -> 4 ;
+5 [label="AirYards <= 6.5\nentropy = 0.439\nsamples = 33\nvalue = [3, 30]"] ;
+1 -> 5 ;
+6 [label="entropy = 0.0\nsamples = 18\nvalue = [0, 18]"] ;
+5 -> 6 ;
+7 [label="entropy = 0.722\nsamples = 15\nvalue = [3, 12]"] ;
+5 -> 7 ;
+8 [label="AirYards <= 24.0\nentropy = 0.863\nsamples = 7\nvalue = [5, 2]"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="entropy = 0.0\nsamples = 2\nvalue = [2, 0]"] ;
+8 -> 9 ;
+10 [label="down <= 1.5\nentropy = 0.971\nsamples = 5\nvalue = [3, 2]"] ;
+8 -> 10 ;
+11 [label="entropy = 0.918\nsamples = 3\nvalue = [2, 1]"] ;
+10 -> 11 ;
+12 [label="entropy = 1.0\nsamples = 2\nvalue = [1, 1]"] ;
+10 -> 12 ;
+}

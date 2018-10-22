@@ -1,0 +1,53 @@
+---
+title: "lab2"
+author: "karen"
+date: "August 29, 2018"
+output: pdf_document
+---
+
+
+```{r}
+treatments.not.random=c(rep("A",3),rep("B",3))
+plot.ID=1:length(treatments.not.random)
+treatments.random=sample(treatments.not.random)
+data.frame(plot.ID,treatments.not.random,treatments.random)
+```
+
+
+```{r}
+## resulting randomized treatment
+treatments.not.random=c(rep("A",2),rep("B",2),rep("C",2),rep("D",2))
+plot.ID=1:length(treatments.not.random)
+treatments.random=sample(treatments.not.random)
+CRD=data.frame(plot.ID,treatment=treatments.random)
+CRD
+```
+
+
+```{r}
+N = 100 ## The number of RVs to generate
+mn = 0 ## The mean
+sd = 1 ## The standard deviation
+X=rnorm(N,mean=mn,sd=sd)
+X
+```
+
+
+```{r}
+y=rnorm(n=50,mean=65,sd=sqrt(5))
+hist(y,main="Histogram of 50 N(65,5) Random Variables")
+```
+
+
+```{r}
+x=rnorm(500,mean=13,sd=1)
+y=rnorm(500,mean=-1,sd=sqrt(2))
+z=x+y
+alldata=data.frame(x,y,z)
+head(alldata)
+```
+
+```{r}
+hist(z,main="Histogram of Z")
+```
+

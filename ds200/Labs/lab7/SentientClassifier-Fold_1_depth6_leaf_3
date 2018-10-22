@@ -1,0 +1,36 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="great <= 0.5\nentropy = 1.55\nsamples = 809\nvalue = [313, 308, 188]"] ;
+1 [label="good <= 0.5\nentropy = 1.553\nsamples = 789\nvalue = [313, 288, 188]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="illegal <= 0.5\nentropy = 1.554\nsamples = 775\nvalue = [313, 274, 188]"] ;
+1 -> 2 ;
+3 [label="deep <= 0.5\nentropy = 1.548\nsamples = 764\nvalue = [313, 273, 178]"] ;
+2 -> 3 ;
+4 [label="crazy <= 0.5\nentropy = 1.552\nsamples = 751\nvalue = [300, 273, 178]"] ;
+3 -> 4 ;
+5 [label="sick <= 0.5\nentropy = 1.545\nsamples = 741\nvalue = [300, 272, 169]"] ;
+4 -> 5 ;
+6 [label="entropy = 1.539\nsamples = 734\nvalue = [300, 272, 162]"] ;
+5 -> 6 ;
+7 [label="entropy = 0.0\nsamples = 7\nvalue = [0, 0, 7]"] ;
+5 -> 7 ;
+8 [label="waters <= 0.5\nentropy = 0.469\nsamples = 10\nvalue = [0, 1, 9]"] ;
+4 -> 8 ;
+9 [label="entropy = 0.0\nsamples = 7\nvalue = [0, 0, 7]"] ;
+8 -> 9 ;
+10 [label="entropy = 0.918\nsamples = 3\nvalue = [0, 1, 2]"] ;
+8 -> 10 ;
+11 [label="entropy = 0.0\nsamples = 13\nvalue = [13, 0, 0]"] ;
+3 -> 11 ;
+12 [label="illegal aliens <= 0.5\nentropy = 0.439\nsamples = 11\nvalue = [0, 1, 10]"] ;
+2 -> 12 ;
+13 [label="entropy = 0.544\nsamples = 8\nvalue = [0, 1, 7]"] ;
+12 -> 13 ;
+14 [label="entropy = 0.0\nsamples = 3\nvalue = [0, 0, 3]"] ;
+12 -> 14 ;
+15 [label="entropy = 0.0\nsamples = 14\nvalue = [0, 14, 0]"] ;
+1 -> 15 ;
+16 [label="entropy = 0.0\nsamples = 20\nvalue = [0, 20, 0]"] ;
+0 -> 16 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

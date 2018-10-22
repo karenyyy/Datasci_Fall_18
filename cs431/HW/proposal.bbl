@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{Loureno2015ChoosingTR}
+Jo{\~a}o~Ricardo Lourenço, Bruno Cabral, Paulo Carreiro, Marco Vieira, and
+  Jorge Bernardino.
+\newblock Choosing the right nosql database for the job: a quality attribute
+  evaluation.
+\newblock {\em Journal of Big Data}, 2:1--26, 2015.
+
+\bibitem{DBLP:journals/corr/MoniruzzamanH13}
+A.~B.~M. Moniruzzaman and Syed~Akhter Hossain.
+\newblock Nosql database: New era of databases for big data analytics -
+  classification, characteristics and comparison.
+\newblock {\em CoRR}, abs/1307.0191, 2013.
+
+\bibitem{DBLP:journals/corr/Sharma15b}
+Sugam Sharma.
+\newblock An extended classification and comparison of nosql big data models.
+\newblock {\em CoRR}, abs/1509.08035, 2015.
+
+\bibitem{Strl2015SchemalessND}
+Uta St{\"o}rl, Thomas Hauf, Meike Klettke, and Stefanie Scherzinger.
+\newblock Schemaless nosql data stores - object-nosql mappers to the rescue?
+\newblock In {\em BTW}, 2015.
+
+\bibitem{Truica2015PerformanceEF}
+Ciprian-Octavian Truica, Florin Radulescu, Alexandru Boicea, and Ion Bucur.
+\newblock Performance evaluation for crud operations in asynchronously
+  replicated document oriented database.
+\newblock {\em 2015 20th International Conference on Control Systems and
+  Computer Science}, pages 191--196, 2015.
+
+\bibitem{DBLP:journals/corr/abs-1804-00465}
+Xi~Zheng.
+\newblock Database as a service - current issues and its future.
+\newblock {\em CoRR}, abs/1804.00465, 2018.
+
+\end{thebibliography}

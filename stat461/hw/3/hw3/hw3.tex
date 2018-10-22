@@ -1,0 +1,621 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Assignment 3}
+    
+    \author{Jiarong Ye}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection*{Q1}\label{q1}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Use R to randomly assign 10 experimental units to each of three
+  treatments (1, 2, and 3). Then simulate responses for the 30
+  experimental units satisfying the one-way ANOVA model:
+\end{enumerate}
+
+\[Y_{it} = \mu + \tau_i + \epsilon_{it}, i=1,2,...,v, t=1,2,,..., r_i\]
+
+\[\epsilon_{it} \sim N(0, \sigma^2)\]
+
+with \(\mu=4.7, \sigma^2=4\), and treatment effects
+\(\tau_1 = -3, \tau_2 = 5, \tau_3=-2\). Your solution should include
+your R code and a plot of the simulated values.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} treatments.not.random\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{1\PYZdq{}}\PY{p}{,}\PY{l+m}{10}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{2\PYZdq{}}\PY{p}{,}\PY{l+m}{10}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{3\PYZdq{}}\PY{p}{,} \PY{l+m}{10}\PY{p}{)}\PY{p}{)}
+         treatment\PY{o}{=}\PY{k+kp}{sample}\PY{p}{(}treatments.not.random\PY{p}{)}
+         experiment\PYZus{}unit \PY{o}{=} \PY{l+m}{1}\PY{o}{:}\PY{k+kp}{length}\PY{p}{(}treatment\PY{p}{)}
+         table\PY{o}{=}\PY{k+kt}{data.frame}\PY{p}{(}experiment\PYZus{}unit\PY{p}{,} treatment\PY{p}{,}row.names\PY{o}{=}\PY{k+kc}{NULL}\PY{p}{)}
+         \PY{k+kp}{table}
+\end{Verbatim}
+
+    \begin{tabular}{r|ll}
+ experiment\_unit & treatment\\
+\hline
+	  1 & 1 \\
+	  2 & 3 \\
+	  3 & 2 \\
+	  4 & 2 \\
+	  5 & 2 \\
+	  6 & 3 \\
+	  7 & 3 \\
+	  8 & 1 \\
+	  9 & 1 \\
+	 10 & 1 \\
+	 11 & 2 \\
+	 12 & 1 \\
+	 13 & 3 \\
+	 14 & 3 \\
+	 15 & 2 \\
+	 16 & 2 \\
+	 17 & 3 \\
+	 18 & 2 \\
+	 19 & 3 \\
+	 20 & 2 \\
+	 21 & 1 \\
+	 22 & 3 \\
+	 23 & 3 \\
+	 24 & 1 \\
+	 25 & 2 \\
+	 26 & 1 \\
+	 27 & 3 \\
+	 28 & 1 \\
+	 29 & 1 \\
+	 30 & 2 \\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} mu\PY{o}{=}\PY{l+m}{4.7}
+         tau\PYZus{}1\PY{o}{=}\PY{l+m}{\PYZhy{}3}
+         tau\PYZus{}2\PY{o}{=}\PY{l+m}{5}
+         tau\PYZus{}3\PY{o}{=}\PY{l+m}{\PYZhy{}2}
+         var\PY{o}{=}\PY{l+m}{4}
+         
+         means\PYZus{}q1\PY{o}{=}\PY{k+kp}{rep}\PY{p}{(}\PY{k+kc}{NA}\PY{p}{,}\PY{k+kp}{length}\PY{p}{(}treatment\PY{p}{)}\PY{p}{)}
+         means\PYZus{}q1\PY{p}{[}treatment\PY{o}{==}\PY{l+m}{1}\PY{p}{]} \PY{o}{=} mu\PY{o}{+}tau\PYZus{}1
+         means\PYZus{}q1\PY{p}{[}treatment\PY{o}{==}\PY{l+m}{2}\PY{p}{]} \PY{o}{=} mu\PY{o}{+}tau\PYZus{}2
+         means\PYZus{}q1\PY{p}{[}treatment\PY{o}{==}\PY{l+m}{3}\PY{p}{]} \PY{o}{=} mu\PY{o}{+}tau\PYZus{}3
+         
+         y\PYZus{}simulate\PYZus{}q1 \PY{o}{=} means\PYZus{}q1\PY{o}{+}rnorm\PY{p}{(}n \PY{o}{=} \PY{k+kp}{length}\PY{p}{(}means\PYZus{}q1\PY{p}{)}\PY{p}{,} mean \PY{o}{=} \PY{l+m}{0}\PY{p}{,} sd \PY{o}{=} \PY{k+kp}{sqrt}\PY{p}{(}var\PY{p}{)}\PY{p}{)}
+         sim\PYZus{}data \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}experiment\PYZus{}unit\PY{p}{,} treatment\PY{p}{,} y\PYZus{}simulate\PYZus{}q1\PY{p}{)}
+         sim\PYZus{}data
+\end{Verbatim}
+
+    \begin{tabular}{r|lll}
+ experiment\_unit & treatment & y\_simulate\_q1\\
+\hline
+	  1         & 1          & -1.6184361\\
+	  2         & 3          &  5.8802735\\
+	  3         & 2          &  6.3770675\\
+	  4         & 2          & 14.3735955\\
+	  5         & 2          &  8.4595723\\
+	  6         & 3          &  3.8001343\\
+	  7         & 3          &  1.0086134\\
+	  8         & 1          &  0.3531091\\
+	  9         & 1          &  1.0026467\\
+	 10         & 1          &  2.3112544\\
+	 11         & 2          & 10.4067991\\
+	 12         & 1          &  3.3594491\\
+	 13         & 3          &  4.4810127\\
+	 14         & 3          &  0.9192064\\
+	 15         & 2          & 12.2877769\\
+	 16         & 2          &  6.5982482\\
+	 17         & 3          &  0.2219408\\
+	 18         & 2          & 14.4265322\\
+	 19         & 3          &  2.1988443\\
+	 20         & 2          &  8.8380465\\
+	 21         & 1          &  5.7932315\\
+	 22         & 3          &  1.3083453\\
+	 23         & 3          &  3.1476776\\
+	 24         & 1          & -0.3273547\\
+	 25         & 2          &  8.9700277\\
+	 26         & 1          & -0.9235407\\
+	 27         & 3          &  0.8706975\\
+	 28         & 1          &  2.6829802\\
+	 29         & 1          &  2.7401941\\
+	 30         & 2          &  9.1540193\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k+kn}{library}\PY{p}{(}ggplot2\PY{p}{)}
+         p1\PY{o}{\PYZlt{}\PYZhy{}}ggplot\PY{p}{(}sim\PYZus{}data\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}treatment\PY{p}{,} y\PY{o}{=}y\PYZus{}simulate\PYZus{}q1\PY{p}{,} color\PY{o}{=}treatment\PY{p}{)}\PY{p}{)} \PY{o}{+}
+           geom\PYZus{}boxplot\PY{p}{(}\PY{p}{)} \PY{o}{+}
+           ylab\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{simulated y\PYZsq{}}\PY{p}{)} \PY{o}{+} 
+           ggtitle\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Boxplots of simulated responses\PYZsq{}}\PY{p}{)} \PY{o}{+}
+           theme\PY{p}{(}plot.title \PY{o}{=} element\PYZus{}text\PY{p}{(}hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{)} 
+         p1
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Q2}\label{q2}
+
+    Consider the situation in Problem 1. The experimenter wants to consider
+a reduced model where \(\tau 1 = \tau 2 = \tau 3 = 0\). Simulate
+responses for the 30 experimental units satisfying this reduced model.
+Compare boxplots of simulated responses under this reduced model with
+boxplots of simulated responses under the full model described in
+Problem 1 (where there are differences in the treatment effects).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} tau\PYZus{}1\PY{o}{=}\PY{l+m}{0}
+         tau\PYZus{}2\PY{o}{=}\PY{l+m}{0}
+         tau\PYZus{}3\PY{o}{=}\PY{l+m}{0}
+         
+         means\PYZus{}q2\PY{o}{=}\PY{k+kp}{rep}\PY{p}{(}\PY{k+kc}{NA}\PY{p}{,}\PY{k+kp}{length}\PY{p}{(}treatment\PY{p}{)}\PY{p}{)}
+         means\PYZus{}q2\PY{p}{[}treatment\PY{o}{==}\PY{l+m}{1}\PY{p}{]} \PY{o}{=} mu\PY{o}{+}tau\PYZus{}1
+         means\PYZus{}q2\PY{p}{[}treatment\PY{o}{==}\PY{l+m}{2}\PY{p}{]} \PY{o}{=} mu\PY{o}{+}tau\PYZus{}2
+         means\PYZus{}q2\PY{p}{[}treatment\PY{o}{==}\PY{l+m}{3}\PY{p}{]} \PY{o}{=} mu\PY{o}{+}tau\PYZus{}3
+         
+         y\PYZus{}simulate\PYZus{}q2 \PY{o}{=} means\PYZus{}q2\PY{o}{+}rnorm\PY{p}{(}n \PY{o}{=} \PY{k+kp}{length}\PY{p}{(}means\PYZus{}q2\PY{p}{)}\PY{p}{,} mean \PY{o}{=} \PY{l+m}{0}\PY{p}{,} sd \PY{o}{=} \PY{k+kp}{sqrt}\PY{p}{(}var\PY{p}{)}\PY{p}{)}
+         sim\PYZus{}data \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}experiment\PYZus{}unit\PY{p}{,} treatment\PY{p}{,} y\PYZus{}simulate\PYZus{}q2\PY{p}{)}
+         sim\PYZus{}data
+\end{Verbatim}
+
+    \begin{tabular}{r|lll}
+ experiment\_unit & treatment & y\_simulate\_q2\\
+\hline
+	  1         & 1          &  4.5871138\\
+	  2         & 3          &  8.9409421\\
+	  3         & 2          &  5.4448399\\
+	  4         & 2          & -0.2890012\\
+	  5         & 2          &  9.4563168\\
+	  6         & 3          &  5.6918686\\
+	  7         & 3          & -8.2416622\\
+	  8         & 1          &  7.3036280\\
+	  9         & 1          &  8.7815548\\
+	 10         & 1          &  5.0297383\\
+	 11         & 2          & -0.2905075\\
+	 12         & 1          &  8.4399276\\
+	 13         & 3          &  3.1789920\\
+	 14         & 3          &  2.0923404\\
+	 15         & 2          &  5.4524241\\
+	 16         & 2          &  9.3299666\\
+	 17         & 3          &  1.6604748\\
+	 18         & 2          &  7.1431085\\
+	 19         & 3          &  4.3337423\\
+	 20         & 2          &  7.0824088\\
+	 21         & 1          &  3.3082532\\
+	 22         & 3          &  3.0837190\\
+	 23         & 3          &  9.4843263\\
+	 24         & 1          &  7.7620453\\
+	 25         & 2          &  2.4644266\\
+	 26         & 1          &  2.0500897\\
+	 27         & 3          &  8.6995005\\
+	 28         & 1          &  9.1221858\\
+	 29         & 1          &  9.4040856\\
+	 30         & 2          &  7.8276827\\
+\end{tabular}
+
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} p2\PY{o}{\PYZlt{}\PYZhy{}}ggplot\PY{p}{(}sim\PYZus{}data\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}treatment\PY{p}{,} y\PY{o}{=}y\PYZus{}simulate\PYZus{}q2\PY{p}{,} color\PY{o}{=}treatment\PY{p}{)}\PY{p}{)} \PY{o}{+}
+           geom\PYZus{}boxplot\PY{p}{(}\PY{p}{)} \PY{o}{+}
+           ylab\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{simulated y\PYZsq{}}\PY{p}{)} \PY{o}{+} 
+           ggtitle\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Boxplots of simulated responses\PYZsq{}}\PY{p}{)} \PY{o}{+}
+           theme\PY{p}{(}plot.title \PY{o}{=} element\PYZus{}text\PY{p}{(}hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{)} 
+         p2
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.5\linewidth}{0.5\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}50}]:} \PY{k+kn}{library}\PY{p}{(}gridExtra\PY{p}{)}
+         grid.arrange\PY{p}{(}p1\PY{p}{,} p2\PY{p}{,} nrow \PY{o}{=} \PY{l+m}{2}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    As we can see from the two boxplots above, it's apparent that the means
+of three treatments of the reduced model are more similar to each other,
+since:
+
+\[Y_{1.} = \mu + \tau_1 + \epsilon = \mu + \epsilon_{1.}\]
+\[Y_{2.} = \mu + \tau_2 + \epsilon = \mu + \epsilon_{2.}\]
+\[Y_{3.} = \mu + \tau_3 + \epsilon = \mu + \epsilon_{3.}\]
+
+Other than the normally distributed noise, the mean \(\mu\) of all three
+treatments are basically the same.
+
+    \subsubsection*{Q3}\label{q3}
+
+    3.Now explore what happens to data simulated from the model in Problem 1
+when the error variance increases. Try multiple values for \(\sigma^2\)
+and find a value of \(\sigma^2\) for which you cannot see any noticable
+difference in the boxplots of response values from the three treatments.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} vars \PY{o}{=} \PY{l+m}{1}\PY{o}{:}\PY{l+m}{12}
+         boxplots \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kt}{list}\PY{p}{(}\PY{p}{)}
+         \PY{k+kr}{for} \PY{p}{(}var \PY{k+kr}{in} vars\PY{p}{)}\PY{p}{\PYZob{}}
+             y\PYZus{}simulate \PY{o}{=} means\PYZus{}q1\PY{o}{+}rnorm\PY{p}{(}n \PY{o}{=} \PY{k+kp}{length}\PY{p}{(}means\PYZus{}q1\PY{p}{)}\PY{p}{,} mean \PY{o}{=} \PY{l+m}{0}\PY{p}{,} sd \PY{o}{=} \PY{k+kp}{sqrt}\PY{p}{(}var\PY{p}{)}\PY{p}{)}
+             sim\PYZus{}data \PY{o}{=} \PY{k+kt}{data.frame}\PY{p}{(}experiment\PYZus{}unit\PY{p}{,} treatment\PY{p}{,} y\PYZus{}simulate\PY{p}{)}
+             p\PY{o}{\PYZlt{}\PYZhy{}}ggplot\PY{p}{(}sim\PYZus{}data\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}treatment\PY{p}{,} y\PY{o}{=}y\PYZus{}simulate\PY{p}{,} color\PY{o}{=}treatment\PY{p}{)}\PY{p}{)} \PY{o}{+}
+                       geom\PYZus{}boxplot\PY{p}{(}\PY{p}{)} \PY{o}{+}
+                       ylab\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{simulated y\PYZsq{}}\PY{p}{)} \PY{o}{+} 
+                       ggtitle\PY{p}{(}\PY{k+kp}{paste}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZca{}2=\PYZsq{}}\PY{p}{,} var\PY{p}{)}\PY{p}{)} \PY{o}{+}
+                       theme\PY{p}{(}plot.title \PY{o}{=} element\PYZus{}text\PY{p}{(}hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{)}
+             boxplots\PY{p}{[[}var\PY{p}{]]} \PY{o}{\PYZlt{}\PYZhy{}} p
+             \PY{p}{\PYZcb{}}
+         grid.arrange\PY{p}{(}grobs \PY{o}{=} boxplots\PY{p}{,} nrow\PY{o}{=}\PY{l+m}{4}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_13_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    from the boxplots above we could see that when \(\sigma^2 \ge 10\), the
+boxplots of response values from the three treatments seems similar
+compared to each other.
+
+    \subsubsection*{Q4}\label{q4}
+
+    Under the model in Problem 1, what is the distribution of \(Y_{23}\) ,
+the response from the 3rd experimental unit to receive treatment 2?
+
+\[Y_{23} = \mu + \tau_2 + \epsilon_{23} = 4.7 + 5 + \epsilon_{23} = 9.7 + \epsilon_{23}\]
+
+\[\epsilon_{23} \sim N(0, 4)\]
+
+\[\therefore Y_{23} \sim N(9.7, 4)\]
+
+    \subsubsection*{Q5}\label{q5}
+
+    Under the model in Problem 1, what is the distribution of
+
+\[\bar Y_2 = \frac{1}{r_2} \sum^{r_2}_{t=1} Y_{2t}\]
+
+    \begin{center}\rule{1.1\linewidth}{\linethickness}\end{center}
+
+Since
+
+\[Y_{2t} = \mu + \tau_2 + \epsilon_{2t} = 4.7 + 5 + \epsilon_{2t} = 9.7 + \epsilon_{2t}\]
+
+\[\epsilon_{2t} \sim N(0, 4)\]
+
+\[\therefore Y_{2t} \sim N(9.7, 4)\]
+
+\[\bar Y_2 = \frac{1}{10} \sum^{10}_{t=1} Y_{2t} \sim N(9.7\cdot 10 \cdot \frac{1}{10}, 4 \cdot 10 \cdot (\frac{1}{10})^2)\]
+
+\[\therefore \bar Y_2 \sim N(9.7, 0.4)\]
+
+    \subsubsection*{Q6}\label{q6}
+    
+    Under the model in Problem 1, what is the distribution of the difference between an experimental unit
+    receiving treatment 1 and an experimental unit receiving treatment 2\\
+
+    Since
+
+\[Y_{1t} = \mu + \tau_1 + \epsilon_{1t} = 4.7 - 3 + \epsilon_{1t} = 1.7 + \epsilon_{1t}\]
+
+\[\epsilon_{1t} \sim N(0, 4)\]
+
+\[\therefore Y_{1t} \sim N(1.7, 4)\]
+
+\[Y_{2t} = \mu + \tau_2 + \epsilon_{2t} = 4.7 + 5 + \epsilon_{2t} = 9.7 + \epsilon_{2t}\]
+
+\[\epsilon_{2t} \sim N(0, 4)\]
+
+\[\therefore Y_{2t} \sim N(9.7, 4)\]
+
+Hence
+
+\[E \left [Y_{1t} - Y_{2t} \right ] = E \left [ Y_{1t} \right ] - E \left [ Y_{2t} \right ] = 1.7 - 9.7 = -8\]
+
+\[Var \left (Y_{1t} - Y_{2t} \right ) = Var \left (Y_{1t} \right ) + Var \left (Y_{2t} \right ) = 4+4 = 8\]
+
+\[\therefore Y_{1t} - Y_{2t} \sim N(-8, 8)\]
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
