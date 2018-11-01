@@ -1,0 +1,16 @@
+table.center {
+    margin-left:auto;
+    margin-right:auto;
+}
+form.post_form {
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+form {
+    display: inline-block;
+}
+
+input.check_button {
+    margin-left: 300px;
+}

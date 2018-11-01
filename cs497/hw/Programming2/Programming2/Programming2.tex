@@ -1,0 +1,3392 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{float}
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Programming Assignment 2}
+    \author{Jiarong Ye}
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in, left=1cm, right=0.1cm}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection*{Import Packages}\label{import-packages}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}175}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{MinMaxScaler}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{confusion\PYZus{}matrix}\PY{p}{,} \PY{n}{precision\PYZus{}score}\PY{p}{,} \PY{n}{recall\PYZus{}score}\PY{p}{,} \PY{n}{f1\PYZus{}score}\PY{p}{,}
+          									 \PY{n}{accuracy\PYZus{}score}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{StratifiedKFold}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{tree} \PY{k}{import} \PY{n}{DecisionTreeClassifier}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{neural\PYZus{}network} \PY{k}{import} \PY{n}{MLPClassifier}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{utils} \PY{k}{import} \PY{n}{resample}
+          \PY{k+kn}{import} \PY{n+nn}{pickle}
+\end{Verbatim}
+
+    \subsection*{Prepare the Data}\label{prepare-the-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}176}]:} \PY{n}{bank} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bank\PYZhy{}additional\PYZhy{}full.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{bank}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}176}]:} (41188, 21)
+\end{Verbatim}
+            
+    \subsection*{Classification Experiment}\label{classification-experiment}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}208}]:} \PY{n}{SEED} \PY{o}{=} \PY{l+m+mi}{1234}
+          
+          \PY{k}{class} \PY{n+nc}{BankDataProcessPipeline}\PY{p}{(}\PY{n+nb}{object}\PY{p}{)}\PY{p}{:}
+              \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{df}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normalize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{seed} \PY{o}{=} \PY{n}{SEED}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{option} \PY{o}{=} \PY{n}{option}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{classifier} \PY{o}{=} \PY{n}{classifier}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df} \PY{o}{=} \PY{n}{df}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{l+m+mi}{20}\PY{p}{]}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df}\PY{o}{.}\PY{n}{y} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{no}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df}\PY{o}{.}\PY{n}{y} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df}\PY{o}{.}\PY{n}{y}\PY{o}{.}\PY{n}{replace}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{yes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{df}\PY{o}{.}\PY{n}{y}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{categorical\PYZus{}cols} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{o}{.}\PY{n}{dtypes}\PY{o}{==}\PY{n+nb}{object}\PY{p}{]}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{o}{.}\PY{n}{dtypes}\PY{o}{!=}\PY{n+nb}{object}\PY{p}{]}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{integrate\PYZus{}cat\PYZus{}nume}\PY{p}{(}\PY{p}{)}
+          
+              \PY{k}{def} \PY{n+nf}{custom\PYZus{}split}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{train\PYZus{}index}\PY{p}{,} \PY{n}{test\PYZus{}index}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{return} \PY{n}{X}\PY{o}{.}\PY{n}{take}\PY{p}{(}\PY{n}{train\PYZus{}index}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,} \PYZbs{}
+                         \PY{n}{X}\PY{o}{.}\PY{n}{take}\PY{p}{(}\PY{n}{test\PYZus{}index}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,} \PYZbs{}
+                         \PY{n}{y}\PY{o}{.}\PY{n}{take}\PY{p}{(}\PY{n}{train\PYZus{}index}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}\PY{p}{,} \PYZbs{}
+                         \PY{n}{y}\PY{o}{.}\PY{n}{take}\PY{p}{(}\PY{n}{test\PYZus{}index}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+              
+              \PY{k}{def} \PY{n+nf}{feature\PYZus{}select}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{pickle\PYZus{}path}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{with} \PY{n+nb}{open}\PY{p}{(}\PY{n}{pickle\PYZus{}path}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{f}\PY{p}{:}
+                      \PY{n}{data} \PY{o}{=} \PY{n}{pickle}\PY{o}{.}\PY{n}{load}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+                  \PY{n}{feature\PYZus{}selected\PYZus{}X} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} 
+                                          \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical\PYZus{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in}
+                                           \PY{n+nb}{range}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{categorical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                                       \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} 
+                                          \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical\PYZus{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in}
+                                           \PY{n+nb}{range}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{numerical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{feature\PYZus{}selected\PYZus{}X}
+                  
+              
+              \PY{k}{def} \PY{n+nf}{scale}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{cols}\PY{p}{,} \PY{n}{range\PYZus{}}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{min\PYZus{}max\PYZus{}scaler\PYZus{}p} \PY{o}{=} \PY{n}{MinMaxScaler}\PY{p}{(}\PY{n}{feature\PYZus{}range}\PY{o}{=}\PY{n}{range\PYZus{}}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{min\PYZus{}max\PYZus{}scaler\PYZus{}p}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{cols}\PY{p}{]}\PY{p}{)}
+              
+              \PY{k}{def} \PY{n+nf}{one\PYZus{}hot\PYZus{}categorical}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{one\PYZus{}hot\PYZus{}encoded\PYZus{}cat} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{)}
+                  \PY{k}{for} \PY{n}{col} \PY{o+ow}{in} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{categorical\PYZus{}cols}\PY{p}{:}
+                       \PY{n}{one\PYZus{}hot\PYZus{}encoded\PYZus{}cat} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{one\PYZus{}hot\PYZus{}encoded\PYZus{}cat}\PY{p}{,}
+                        \PY{n}{pd}\PY{o}{.}\PY{n}{get\PYZus{}dummies}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n}{col}\PY{p}{]} \PY{p}{,}\PY{n}{prefix}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZus{}is}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{col}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{one\PYZus{}hot\PYZus{}encoded\PYZus{}cat}
+                  
+              \PY{k}{def} \PY{n+nf}{normalize\PYZus{}numerical}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{c+c1}{\PYZsh{} normalize numerical}
+                  \PY{n}{bank\PYZus{}numericals} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{]}
+                  \PY{n}{p\PYZus{}mask} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{n\PYZus{}mask} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{p\PYZus{}n\PYZus{}mask} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{o+ow}{not}\PY{p}{(}\PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)} \PY{o+ow}{or} 
+                                                    \PY{n+nb}{all}\PY{p}{(}\PY{n}{bank\PYZus{}numericals}\PY{p}{[}\PY{n}{x}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{p\PYZus{}cols} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{[}\PY{n}{p\PYZus{}mask}\PY{p}{]}
+                  \PY{n}{n\PYZus{}cols} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{[}\PY{n}{n\PYZus{}mask}\PY{p}{]}
+                  \PY{n}{p\PYZus{}n\PYZus{}cols} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{[}\PY{n}{p\PYZus{}n\PYZus{}mask}\PY{p}{]}
+                  \PY{n}{scaled\PYZus{}p} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{p\PYZus{}cols}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{p\PYZus{}cols}\PY{p}{)}
+                  \PY{n}{scaled\PYZus{}n} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{n\PYZus{}cols}\PY{p}{,} \PY{n}{range\PYZus{}}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{n\PYZus{}cols}\PY{p}{)}
+                  \PY{n}{scaled\PYZus{}p\PYZus{}n} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{p\PYZus{}n\PYZus{}cols}\PY{p}{,} \PY{n}{range\PYZus{}}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{p\PYZus{}n\PYZus{}cols}\PY{p}{)}
+                  \PY{n}{scaled\PYZus{}bank\PYZus{}numericals} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{scaled\PYZus{}p}\PY{p}{,} \PY{n}{scaled\PYZus{}n}\PY{p}{,} \PY{n}{scaled\PYZus{}p\PYZus{}n}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{scaled\PYZus{}bank\PYZus{}numericals}
+              
+              \PY{k}{def} \PY{n+nf}{integrate\PYZus{}cat\PYZus{}nume}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{if} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{option} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{normalize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{one\PYZus{}hot\PYZus{}categorical}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{normalize\PYZus{}numerical}\PY{p}{(}\PY{p}{)}\PY{p}{]}\PY{p}{,} 
+                      	\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{one\PYZus{}hot\PYZus{}categorical}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{numerical\PYZus{}cols}\PY{p}{]}\PY{p}{]}\PY{p}{,}
+                       	\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  
+              \PY{k}{def} \PY{n+nf}{check\PYZus{}imbalance}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{no\PYZus{}cnt} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  \PY{n}{yes\PYZus{}cnt} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y}\PY{p}{[}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{There are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data entries labeled as yes, }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data entries labeled as no.}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}
+                  	\PY{n}{format}\PY{p}{(}\PY{n}{yes\PYZus{}cnt}\PY{p}{,} \PY{n}{no\PYZus{}cnt}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+                  
+              \PY{k}{def} \PY{n+nf}{fit}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}\PY{p}{:}
+                  \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{classifier}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+          
+              \PY{k}{def} \PY{n+nf}{predict}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{return} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{classifier}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+              
+              \PY{k}{def} \PY{n+nf}{plot\PYZus{}cm}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{cm}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Confusion matrix}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{plt}\PY{o}{.}\PY{n}{cm}\PY{o}{.}\PY{n}{Blues}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{cm}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{cmap}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+          
+              \PY{k}{def} \PY{n+nf}{eval\PYZus{}results}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{accuracy\PYZus{}s} \PY{o}{=} \PY{n}{accuracy\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{)}
+                  \PY{n}{precision\PYZus{}s} \PY{o}{=} \PY{n}{precision\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{)}
+                  \PY{n}{recall\PYZus{}s} \PY{o}{=} \PY{n}{recall\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{)}
+                  \PY{n}{f1\PYZus{}s} \PY{o}{=} \PY{n}{f1\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{)}
+                  \PY{n}{cm} \PY{o}{=} \PY{n}{confusion\PYZus{}matrix}\PY{p}{(}\PY{n}{y\PYZus{}test}\PY{p}{,} \PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{)}  
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy Score:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{accuracy\PYZus{}s}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Precision Score:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{precision\PYZus{}s}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Recall Score:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{recall\PYZus{}s}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{f1 Score:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{f1\PYZus{}s}\PY{p}{)}
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{confusion\PYZus{}matrix is: }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cm}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{accuracy\PYZus{}s}\PY{p}{,} \PY{n}{precision\PYZus{}s}\PY{p}{,} \PY{n}{recall\PYZus{}s}\PY{p}{,} \PY{n}{f1\PYZus{}s}\PY{p}{,} \PY{n}{cm}
+              
+              \PY{k}{def} \PY{n+nf}{resample}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{fold}\PY{p}{,} \PY{n}{option}\PY{p}{,} \PY{n}{downratio}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{upratio}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{tmp\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n}{no\PYZus{}idx} \PY{o}{=} \PY{n}{tmp\PYZus{}df}\PY{p}{[}\PY{n}{tmp\PYZus{}df}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{index}
+                  \PY{n}{yes\PYZus{}idx} \PY{o}{=} \PY{n}{tmp\PYZus{}df}\PY{p}{[}\PY{n}{tmp\PYZus{}df}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{index}
+                  \PY{n}{df\PYZus{}majority} \PY{o}{=} \PY{n}{tmp\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{no\PYZus{}idx}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+                  \PY{n}{df\PYZus{}minority} \PY{o}{=} \PY{n}{tmp\PYZus{}df}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{n}{yes\PYZus{}idx}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+                  \PY{n}{majority\PYZus{}cnt} \PY{o}{=} \PY{n}{df\PYZus{}majority}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  \PY{n}{minority\PYZus{}cnt} \PY{o}{=} \PY{n}{df\PYZus{}minority}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  \PY{k}{if} \PY{n}{option} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                      \PY{n}{df\PYZus{}majority\PYZus{}downsampled} \PY{o}{=} \PY{n}{resample}\PY{p}{(}\PY{n}{df\PYZus{}majority}\PY{p}{,} 
+                                                           \PY{n}{replace}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}    
+                                                           \PY{n}{n\PYZus{}samples}\PY{o}{=}\PY{n}{minority\PYZus{}cnt}\PY{o}{*}\PY{n}{downratio}\PY{p}{,}     
+                                                           \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{seed}\PY{p}{)}
+                      \PY{n}{df\PYZus{}downsampled} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{df\PYZus{}majority\PYZus{}downsampled}\PY{p}{,} \PY{n}{df\PYZus{}minority}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+                      \PY{k}{if} \PY{n}{fold} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{After downsampling, there are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data entries labeled as yes.}\PY{l+s+se}{\PYZbs{}n}
+                          \PY{l+s+s1}{ There are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data entries labeled as no.}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                          \PY{n+nb}{len}\PY{p}{(}\PY{n}{df\PYZus{}downsampled}\PY{p}{[}\PY{n}{df\PYZus{}downsampled}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                          \PY{n+nb}{len}\PY{p}{(}\PY{n}{df\PYZus{}downsampled}\PY{p}{[}\PY{n}{df\PYZus{}downsampled}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                          
+                          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+                          \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}downsampled}\PY{p}{)}
+                          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+                      \PY{k}{return} \PY{n}{df\PYZus{}downsampled}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}downsampled}\PY{o}{.}\PY{n}{y}
+                  \PY{k}{elif} \PY{n}{option} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                      \PY{n}{df\PYZus{}minority\PYZus{}upsampled} \PY{o}{=} \PY{n}{resample}\PY{p}{(}\PY{n}{df\PYZus{}minority}\PY{p}{,} 
+                                                           \PY{n}{replace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,}    
+                                                           \PY{n}{n\PYZus{}samples}\PY{o}{=}\PY{n+nb}{int}\PY{p}{(}\PY{n}{majority\PYZus{}cnt}\PY{o}{*}\PY{n}{upratio}\PY{p}{)}\PY{p}{,}     
+                                                           \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{seed}\PY{p}{)}
+                      \PY{n}{df\PYZus{}upsampled} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{df\PYZus{}minority\PYZus{}upsampled}\PY{p}{,} \PY{n}{df\PYZus{}majority}\PY{p}{]}\PY{p}{)}
+                      \PY{k}{if} \PY{n}{fold} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{After upsampling, there are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data entries labeled as yes.}\PY{l+s+se}{\PYZbs{}n}
+                          \PY{l+s+s1}{ There are }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ data entries labeled as no.}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+                          \PY{n+nb}{len}\PY{p}{(}\PY{n}{df\PYZus{}upsampled}\PY{p}{[}\PY{n}{df\PYZus{}upsampled}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                          \PY{n+nb}{len}\PY{p}{(}\PY{n}{df\PYZus{}upsampled}\PY{p}{[}\PY{n}{df\PYZus{}upsampled}\PY{o}{.}\PY{n}{y}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                          
+                          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+                          \PY{n}{sns}\PY{o}{.}\PY{n}{countplot}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{data}\PY{o}{=}\PY{n}{df\PYZus{}upsampled}\PY{p}{)}
+                          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+                      \PY{k}{return} \PY{n}{df\PYZus{}upsampled}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}upsampled}\PY{o}{.}\PY{n}{y}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{k}{return} \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}
+          
+              
+              \PY{k}{def} \PY{n+nf}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{fold}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{noresample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{downratio}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{upratio}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,}
+              			 \PY{n}{feature\PYZus{}engineered}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{topK}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{f} \PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{n}{accuracy} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                  \PY{n}{precision} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+                  \PY{n}{recall}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+                  \PY{n}{f1}\PY{o}{=}\PY{p}{[}\PY{p}{]}
+                  
+                  \PY{k}{if} \PY{n}{feature\PYZus{}engineered}\PY{p}{:}
+                      \PY{n}{X} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{feature\PYZus{}select}\PY{p}{(}\PY{n}{pickle\PYZus{}path}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{feature\PYZus{}selection/feature\PYZus{}k=}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{.pkl}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}
+                      									\PY{p}{(}\PY{n}{topK}\PY{p}{)}\PY{p}{)} 
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{X} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{X}
+                  \PY{n}{y} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{y}
+                  \PY{n}{skf} \PY{o}{=} \PY{n}{StratifiedKFold}\PY{p}{(}\PY{n}{n\PYZus{}splits}\PY{o}{=}\PY{n}{fold}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{shuffle}\PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+          
+                  \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The shape of training set is: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                  \PY{k}{for} \PY{n}{train\PYZus{}index}\PY{p}{,} \PY{n}{test\PYZus{}index} \PY{o+ow}{in} \PY{n}{skf}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{custom\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{train\PYZus{}index}\PY{p}{,}
+                      							 \PY{n}{test\PYZus{}index}\PY{p}{)}
+                      \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{resample}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{,}
+                      		 \PY{n}{fold}\PY{o}{=}\PY{n}{f}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{n}{option}\PY{p}{,} \PY{n}{downratio}\PY{o}{=}\PY{n}{downratio}\PY{p}{,} \PY{n}{upratio}\PY{o}{=}\PY{n}{upratio}\PY{p}{)}
+                      
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+                      \PY{n}{predicted\PYZus{}y\PYZus{}test} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+                      \PY{n}{accuracy\PYZus{}s}\PY{p}{,} \PY{n}{precision\PYZus{}s}\PY{p}{,} \PY{n}{recall\PYZus{}s}\PY{p}{,} \PY{n}{f1\PYZus{}s}\PY{p}{,} \PY{n}{cm} \PY{o}{=} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{eval\PYZus{}results}\PY{p}{(}\PY{n}{predicted\PYZus{}y\PYZus{}test}\PY{p}{,}
+                      								 \PY{n}{y\PYZus{}test}\PY{p}{)}
+                      
+                      \PY{n}{accuracy}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{accuracy\PYZus{}s}\PY{p}{)}
+                      \PY{n}{precision}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{precision\PYZus{}s}\PY{p}{)}
+                      \PY{n}{recall}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{recall\PYZus{}s}\PY{p}{)}
+                      \PY{n}{f1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{f1\PYZus{}s}\PY{p}{)}
+                      \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{plot\PYZus{}cm}\PY{p}{(}\PY{n}{cm}\PY{p}{)}
+                      \PY{n}{f} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+          
+                  \PY{n}{metrics\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}
+                      \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{accuracy}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{precision}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{precision}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{recall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{recall}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{f1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{f1}\PY{p}{\PYZcb{}}
+                  \PY{p}{)}
+                  \PY{n}{metrics\PYZus{}df}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{)}
+                  \PY{k}{return} \PY{n}{metrics\PYZus{}df}
+\end{Verbatim}
+
+    \section*{Task 1}\label{task-1}
+
+In this task, you will train a logistic regression classifier on Bank
+Marketing Dataset to predict whether a client will subscribe a term
+deposit.
+
+\begin{itemize}
+\item
+  There are 10 numerical features and 10 categorical features. Please
+  train Logistic Regression Model 1 based on normalized numerical
+  features and one-hot encoded categorical features, and train Logistic
+  Regression Model 2 based on unnormalized numerical feature and one-hot
+  encoded categorical feature.
+\item
+  Please use 5-Fold cross-validation for experiments. (See textbook and
+  https://en.wikipedia.org/wiki/Cross-validation\_(statistics)) Please
+  summarize the definitions and mathematical formulae of confusion
+  matrix, precision metric, recall metric, f-measure metric, and
+  accuracy metric. Please compare the performance of Logistic Regression
+  Model 1 and Logistic Regression Model 2 in terms of these four
+  metrics.
+\end{itemize}
+
+    \[\text{ A confusion matrix is a table used to describe the performance of a classifier }\]
+
+\begin{figure}[H]
+\centering
+\includegraphics{1.png}
+\caption{}
+\end{figure}
+
+\[precision = \frac{TP}{TP+FP}\]
+
+\[recall = \frac{TP}{TP+FN}\]
+
+\[F \: meaure (F_1 \: score) = \frac{2}{\frac{1}{precision} + \frac{1}{recall}} = \frac{2 TP}{2 TP + FP + FN}\]
+
+\[accuracy = \frac{TP + TN}{TP+TN+FP+FN}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}209}]:} \PY{n}{classifier} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{n}{SEED}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lbfgs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \subsubsection*{Logistic Regression Model 1 : normalized numerical
+features and one-hot encoded categorical
+features}\label{logistic-regression-model-1-normalized-numerical-features-and-one-hot-encoded-categorical-features}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}211}]:} \PY{n}{bdpp\PYZus{}logistic} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{p}{)}
+          \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+Accuracy Score: 0.9037387715464918
+Precision Score: 0.623400365630713
+Recall Score: 0.36745689655172414
+f1 Score: 0.4623728813559322
+confusion\_matrix is: 
+ [[7104  206]
+ [ 587  341]] 
+
+
+    \end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_10_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9109007040543822
+Precision Score: 0.677007299270073
+Recall Score: 0.39978448275862066
+f1 Score: 0.502710027100271
+confusion\_matrix is: 
+ [[7133  177]
+ [ 557  371]] 
+
+
+    \end{Verbatim}
+
+    
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_10_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9102937606215101
+Precision Score: 0.68
+Recall Score: 0.38469827586206895
+f1 Score: 0.49139710942876796
+confusion\_matrix is: 
+ [[7142  168]
+ [ 571  357]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_10_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9101614665533568
+Precision Score: 0.6690647482014388
+Recall Score: 0.40086206896551724
+f1 Score: 0.5013477088948787
+confusion\_matrix is: 
+ [[7125  184]
+ [ 556  372]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_10_15.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9147747966492655
+Precision Score: 0.7092592592592593
+Recall Score: 0.41271551724137934
+f1 Score: 0.5217983651226158
+confusion\_matrix is: 
+ [[7152  157]
+ [ 545  383]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_10_19.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}211}]:}    accuracy  precision    recall        f1
+          0  0.903739   0.623400  0.367457  0.462373
+          1  0.910901   0.677007  0.399784  0.502710
+          2  0.910294   0.680000  0.384698  0.491397
+          3  0.910161   0.669065  0.400862  0.501348
+          4  0.914775   0.709259  0.412716  0.521798
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_10_21.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Logistic Regression Model 2 : unnormalized numerical
+features and one-hot encoded categorical
+features}\label{logistic-regression-model-2-unnormalized-numerical-features-and-one-hot-encoded-categorical-features}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}212}]:} \PY{n}{bdpp\PYZus{}logistic} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{unnormalize}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9020393299344501
+Precision Score: 0.6126629422718808
+Recall Score: 0.3545258620689655
+f1 Score: 0.4491467576791809
+confusion\_matrix is: 
+ [[7102  208]
+ [ 599  329]] 
+
+
+    \end{Verbatim}
+
+ 
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_12_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9088370963826171
+Precision Score: 0.656084656084656
+Recall Score: 0.40086206896551724
+f1 Score: 0.4976588628762542
+confusion\_matrix is: 
+ [[7115  195]
+ [ 556  372]] 
+
+
+    \end{Verbatim}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_12_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9115076474872542
+Precision Score: 0.6819012797074955
+Recall Score: 0.4019396551724138
+f1 Score: 0.5057627118644068
+confusion\_matrix is: 
+ [[7136  174]
+ [ 555  373]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_12_12.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9087046254704383
+Precision Score: 0.6577060931899642
+Recall Score: 0.3954741379310345
+f1 Score: 0.49394347240915215
+confusion\_matrix is: 
+ [[7118  191]
+ [ 561  367]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_12_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9151390069199952
+Precision Score: 0.699825479930192
+Recall Score: 0.43211206896551724
+f1 Score: 0.5343104596935376
+confusion\_matrix is: 
+ [[7137  172]
+ [ 527  401]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_12_20.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}212}]:}    accuracy  precision    recall        f1
+          0  0.902039   0.612663  0.354526  0.449147
+          1  0.908837   0.656085  0.400862  0.497659
+          2  0.911508   0.681901  0.401940  0.505763
+          3  0.908705   0.657706  0.395474  0.493943
+          4  0.915139   0.699825  0.432112  0.534310
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_12_22.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Comparing the performance of Logistic Regression Model 1 and 2 with
+5-fold cross validation, the results are actually quite similar, model 1
+(normalized) is sightly better.
+
+    \section*{Task 2}\label{task-2}
+
+Imbalanced Issue
+
+Note that data imbalance exists in this dataset.
+
+\begin{itemize}
+\item
+  Please explain why we want to avoid imbalance issue in training
+  classifiers?
+\item
+  Briefly summarize at least 3 methods deal with data imbalance issue.
+\item
+  Generate new datasets by either downsampling or upsampling and repeat
+  the steps in Task 1 to compare the performance of generated datasets
+  with the original dataset.
+\item
+  Note that you only need to perform sampling algorithms on training
+  set. Please explain why.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}213}]:} \PY{n}{bdpp\PYZus{}logistic} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{p}{)}
+\end{Verbatim}
+
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}214}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{check\PYZus{}imbalance}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+There are 4640 data entries labeled as yes, 36548 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_16_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Please explain why we want to avoid imbalance issue in
+  training classifiers}
+\end{itemize}
+
+For instance, choose one fold from Logistic Regression Model 1,
+
+\begin{itemize}
+\item
+  Accuracy Score: 0.9037387715464918
+\item
+  Precision Score: 0.623400365630713
+\item
+  Recall Score: 0.36745689655172414
+\item
+  f1 Score: 0.4623728813559322
+\item
+  confusion\_matrix is:
+\end{itemize}
+
+\begin{tabular}{|l|l|l|}
+	\toprule
+	{} & No & Yes \\
+	\midrule
+	No &  7104 &     206  \\
+	Yes &  587 &    341 \\
+	\bottomrule
+\end{tabular}
+
+\noindent
+Here we can see from the confusion matrix that the
+\texttt{False\ Negative}=587, and \texttt{False\ Positive}=206, which
+means 206 \textbf{no} classes are classified as \textbf{yes}, and 584
+\textbf{yes} classes are classified as \textbf{no}. Thus the FN value is
+too high.\\
+
+\noindent And since the proportion of \textbf{no} classes(\textbf{36548/41188}) is
+way larger than that of \textbf{yes} classes(\textbf{4640/41188}), so in
+the testing dataset, \textbf{no} classes takes up the majority, TN value
+being too high causes the accuracy score to be misleading and inflated:
+
+\[accuracy = \frac{TP+TN}{TP+TN+FN+FP} = \frac{7104+341}{7104+341+206+587} = 90.4\%\]
+
+Thus we should avoid imbalanced data to prevent the FP and FN value
+being too high and the inflation of acurracy score.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Briefly summarize at least 3 methods deal with data imbalance
+  issue}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    collect more data for training
+  \item
+    downsample the majority class in the training data
+  \item
+    upsample the minority class in the training data
+  \end{itemize}
+\item
+  \textbf{Note that you only need to perform sampling algorithms on
+  training set. Please explain why}
+\end{itemize}
+
+Because only the training set is used to feed into the predictive model
+for pattern learning, as long as the classifier is trained as optimal
+after applying the resampling strategy, whether there exists the
+imbalance issue in the testing set would not affect the prediction
+result.
+
+    \subsubsection*{Downsampling}\label{downsampling}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}215}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After downsampling, there are 3712 data entries labeled as yes.
+ There are 3712 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8561544064093226
+Precision Score: 0.4303523035230352
+Recall Score: 0.8556034482758621
+f1 Score: 0.572664983772088
+confusion\_matrix is: 
+ [[6259 1051]
+ [ 134  794]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8580966253945133
+Precision Score: 0.4340448823207444
+Recall Score: 0.8545258620689655
+f1 Score: 0.5756805807622505
+confusion\_matrix is: 
+ [[6276 1034]
+ [ 135  793]] 
+
+
+    \end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8648943918426802
+Precision Score: 0.4489795918367347
+Recall Score: 0.8771551724137931
+f1 Score: 0.5939438161255016
+confusion\_matrix is: 
+ [[6311  999]
+ [ 114  814]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8566225567561006
+Precision Score: 0.4312873438348723
+Recall Score: 0.8556034482758621
+f1 Score: 0.5734922354640665
+confusion\_matrix is: 
+ [[6262 1047]
+ [ 134  794]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8606288697341266
+Precision Score: 0.4403470715835141
+Recall Score: 0.875
+f1 Score: 0.5858585858585859
+confusion\_matrix is: 
+ [[6277 1032]
+ [ 116  812]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}215}]:}    accuracy  precision    recall        f1
+          0  0.856154   0.430352  0.855603  0.572665
+          1  0.858097   0.434045  0.854526  0.575681
+          2  0.864894   0.448980  0.877155  0.593944
+          3  0.856623   0.431287  0.855603  0.573492
+          4  0.860629   0.440347  0.875000  0.585859
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_19_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}216}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{downratio}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After downsampling, there are 3712 data entries labeled as yes.
+ There are 7424 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8869871327992231
+Precision Score: 0.4988929889298893
+Recall Score: 0.728448275862069
+f1 Score: 0.5922032413491021
+confusion\_matrix is: 
+ [[6631  679]
+ [ 252  676]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8917212915756252
+Precision Score: 0.5134128166915052
+Recall Score: 0.7424568965517241
+f1 Score: 0.6070484581497797
+confusion\_matrix is: 
+ [[6657  653]
+ [ 239  689]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8977907259043457
+Precision Score: 0.532724505327245
+Recall Score: 0.7543103448275862
+f1 Score: 0.6244424620874219
+confusion\_matrix is: 
+ [[6696  614]
+ [ 228  700]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8945004249119826
+Precision Score: 0.5221971407072987
+Recall Score: 0.7478448275862069
+f1 Score: 0.614975631369074
+confusion\_matrix is: 
+ [[6674  635]
+ [ 234  694]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8902513050868035
+Precision Score: 0.5086455331412104
+Recall Score: 0.7607758620689655
+f1 Score: 0.6096718480138169
+confusion\_matrix is: 
+ [[6627  682]
+ [ 222  706]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}216}]:}    accuracy  precision    recall        f1
+          0  0.886987   0.498893  0.728448  0.592203
+          1  0.891721   0.513413  0.742457  0.607048
+          2  0.897791   0.532725  0.754310  0.624442
+          3  0.894500   0.522197  0.747845  0.614976
+          4  0.890251   0.508646  0.760776  0.609672
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_20_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}217}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{downratio}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After downsampling, there are 3712 data entries labeled as yes.
+ There are 11136 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8986404467103666
+Precision Score: 0.5432558139534883
+Recall Score: 0.6293103448275862
+f1 Score: 0.5831253120319521
+confusion\_matrix is: 
+ [[6819  491]
+ [ 344  584]] 
+
+
+    \end{Verbatim}
+
+    
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9038601602330663
+Precision Score: 0.5641509433962264
+Recall Score: 0.6443965517241379
+f1 Score: 0.6016096579476861
+confusion\_matrix is: 
+ [[6848  462]
+ [ 330  598]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9085943190094683
+Precision Score: 0.5820056232427366
+Recall Score: 0.6691810344827587
+f1 Score: 0.6225563909774436
+confusion\_matrix is: 
+ [[6864  446]
+ [ 307  621]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9050625227631419
+Precision Score: 0.5682242990654206
+Recall Score: 0.6551724137931034
+f1 Score: 0.6086086086086087
+confusion\_matrix is: 
+ [[6847  462]
+ [ 320  608]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9054267330338716
+Precision Score: 0.5672990063233966
+Recall Score: 0.6767241379310345
+f1 Score: 0.6171990171990173
+confusion\_matrix is: 
+ [[6830  479]
+ [ 300  628]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}217}]:}    accuracy  precision    recall        f1
+          0  0.898640   0.543256  0.629310  0.583125
+          1  0.903860   0.564151  0.644397  0.601610
+          2  0.908594   0.582006  0.669181  0.622556
+          3  0.905063   0.568224  0.655172  0.608609
+          4  0.905427   0.567299  0.676724  0.617199
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_21_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Upsampling}\label{upsampling}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}219}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 29238 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8537266326778344
+Precision Score: 0.427372836916623
+Recall Score: 0.8782327586206896
+f1 Score: 0.5749559082892416
+confusion\_matrix is: 
+ [[6218 1092]
+ [ 113  815]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8572469045884924
+Precision Score: 0.4337606837606838
+Recall Score: 0.875
+f1 Score: 0.58
+confusion\_matrix is: 
+ [[6250 1060]
+ [ 116  812]] 
+
+
+    \end{Verbatim}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8644088370963826
+Precision Score: 0.4483888585472419
+Recall Score: 0.884698275862069
+f1 Score: 0.5951431678144254
+confusion\_matrix is: 
+ [[6300 1010]
+ [ 107  821]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8601432560398203
+Precision Score: 0.4393939393939394
+Recall Score: 0.875
+f1 Score: 0.585014409221902
+confusion\_matrix is: 
+ [[6273 1036]
+ [ 116  812]] 
+
+
+    \end{Verbatim}
+
+ 
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8628141313585043
+Precision Score: 0.4452871072589382
+Recall Score: 0.8857758620689655
+f1 Score: 0.5926459985580389
+confusion\_matrix is: 
+ [[6285 1024]
+ [ 106  822]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}219}]:}    accuracy  precision    recall        f1
+          0  0.853727   0.427373  0.878233  0.574956
+          1  0.857247   0.433761  0.875000  0.580000
+          2  0.864409   0.448389  0.884698  0.595143
+          3  0.860143   0.439394  0.875000  0.585014
+          4  0.862814   0.445287  0.885776  0.592646
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_23_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}220}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{upratio}\PY{o}{=}\PY{l+m+mf}{0.7}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 20466 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8710852148579752
+Precision Score: 0.4598802395209581
+Recall Score: 0.8275862068965517
+f1 Score: 0.5912240184757506
+confusion\_matrix is: 
+ [[6408  902]
+ [ 160  768]] 
+
+
+    \end{Verbatim}
+
+ 
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8742413207089099
+Precision Score: 0.4667487684729064
+Recall Score: 0.8168103448275862
+f1 Score: 0.5940438871473355
+confusion\_matrix is: 
+ [[6444  866]
+ [ 170  758]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8807963097839281
+Precision Score: 0.48318804483188044
+Recall Score: 0.8362068965517241
+f1 Score: 0.6124704025256511
+confusion\_matrix is: 
+ [[6480  830]
+ [ 152  776]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8784751729998787
+Precision Score: 0.4770872567482737
+Recall Score: 0.8189655172413793
+f1 Score: 0.6029353431178104
+confusion\_matrix is: 
+ [[6476  833]
+ [ 168  760]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.879446400388491
+Precision Score: 0.47995064774830354
+Recall Score: 0.8383620689655172
+f1 Score: 0.6104354648881914
+confusion\_matrix is: 
+ [[6466  843]
+ [ 150  778]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}220}]:}    accuracy  precision    recall        f1
+          0  0.871085   0.459880  0.827586  0.591224
+          1  0.874241   0.466749  0.816810  0.594044
+          2  0.880796   0.483188  0.836207  0.612470
+          3  0.878475   0.477087  0.818966  0.602935
+          4  0.879446   0.479951  0.838362  0.610435
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_24_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}221}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{upratio}\PY{o}{=}\PY{l+m+mf}{0.5}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 14619 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8874726875455208
+Precision Score: 0.5003573981415297
+Recall Score: 0.7543103448275862
+f1 Score: 0.6016330038676407
+confusion\_matrix is: 
+ [[6611  699]
+ [ 228  700]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8885651857246905
+Precision Score: 0.5035971223021583
+Recall Score: 0.7543103448275862
+f1 Score: 0.6039689387402932
+confusion\_matrix is: 
+ [[6620  690]
+ [ 228  700]] 
+
+
+    \end{Verbatim}
+
+   
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8979121145909201
+Precision Score: 0.5325355272999253
+Recall Score: 0.7672413793103449
+f1 Score: 0.6286975717439295
+confusion\_matrix is: 
+ [[6685  625]
+ [ 216  712]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8959572659949011
+Precision Score: 0.5267924528301887
+Recall Score: 0.7521551724137931
+f1 Score: 0.619618286728806
+confusion\_matrix is: 
+ [[6682  627]
+ [ 230  698]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8931649872526405
+Precision Score: 0.5172661870503598
+Recall Score: 0.7747844827586207
+f1 Score: 0.6203623813632442
+confusion\_matrix is: 
+ [[6638  671]
+ [ 209  719]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}221}]:}    accuracy  precision    recall        f1
+          0  0.887473   0.500357  0.754310  0.601633
+          1  0.888565   0.503597  0.754310  0.603969
+          2  0.897912   0.532536  0.767241  0.628698
+          3  0.895957   0.526792  0.752155  0.619618
+          4  0.893165   0.517266  0.774784  0.620362
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_25_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}222}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{upratio}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 8771 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.902282107307599
+Precision Score: 0.5602350636630754
+Recall Score: 0.6163793103448276
+f1 Score: 0.5869676757311442
+confusion\_matrix is: 
+ [[6861  449]
+ [ 356  572]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9059237679048313
+Precision Score: 0.5752212389380531
+Recall Score: 0.6303879310344828
+f1 Score: 0.6015424164524421
+confusion\_matrix is: 
+ [[6878  432]
+ [ 343  585]] 
+
+
+    \end{Verbatim}
+
+ 
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9110220927409566
+Precision Score: 0.5972083748753739
+Recall Score: 0.6454741379310345
+f1 Score: 0.6204039357845677
+confusion\_matrix is: 
+ [[6906  404]
+ [ 329  599]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.906640767269637
+Precision Score: 0.578790882061447
+Recall Score: 0.6293103448275862
+f1 Score: 0.6029943211151265
+confusion\_matrix is: 
+ [[6884  425]
+ [ 344  584]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9111326939419692
+Precision Score: 0.5951456310679611
+Recall Score: 0.6605603448275862
+f1 Score: 0.6261491317671093
+confusion\_matrix is: 
+ [[6892  417]
+ [ 315  613]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}222}]:}    accuracy  precision    recall        f1
+          0  0.902282   0.560235  0.616379  0.586968
+          1  0.905924   0.575221  0.630388  0.601542
+          2  0.911022   0.597208  0.645474  0.620404
+          3  0.906641   0.578791  0.629310  0.602994
+          4  0.911133   0.595146  0.660560  0.626149
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_26_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    After re-sampling, the FN value is reduced, however the FP value gets
+higher. All in all, the f1 score is improved, thus the performance is
+better because f1 score considers  both FN and FP value.
+
+    \section*{Task 3}\label{task-3}
+
+Feature Selection
+
+\begin{itemize}
+\tightlist
+\item
+  Please summary the reason why we perform feature selection?
+\item
+  Please perform feature selection based on the correlation results in
+  Assignment 1 (using chi-square for categorical data and mutual
+  information for numerical data).
+\item
+  Generate partial datasets by only using top k (k =1, 3, 5) most
+  correlated categorical features and numerical features for model
+  training (i.e., k categorical features + k numerical features). Follow
+  the setup in Task 1 to compare the performance of partial datasets
+  with the original dataset.
+\end{itemize}
+
+    \begin{itemize}
+\tightlist
+\item
+  \textbf{Please summary the reason why we perform feature selection}
+\end{itemize}
+
+Because the feature set has high dimensionality, hence choosing the most
+important features from the original set is necessary to prevent
+overfitting with too many features and reduce the time complexity of the
+training phase.
+
+    \subsubsection*{Top K = 1}\label{top-k-1}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}223}]:} \PY{n}{bdpp\PYZus{}logistic} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{p}{)}
+          \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{feature\PYZus{}engineered}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{topK}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 4) 
+
+Accuracy Score: 0.8883224083515416
+Precision Score: 0.5178571428571429
+Recall Score: 0.125
+f1 Score: 0.2013888888888889
+confusion\_matrix is: 
+ [[7202  108]
+ [ 812  116]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_31_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8936635105608157
+Precision Score: 0.604
+Recall Score: 0.1627155172413793
+f1 Score: 0.2563667232597623
+confusion\_matrix is: 
+ [[7211   99]
+ [ 777  151]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_31_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8945132313668366
+Precision Score: 0.6334841628959276
+Recall Score: 0.15086206896551724
+f1 Score: 0.24369016536118362
+confusion\_matrix is: 
+ [[7229   81]
+ [ 788  140]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_31_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8951074420298653
+Precision Score: 0.6454545454545455
+Recall Score: 0.15301724137931033
+f1 Score: 0.24738675958188155
+confusion\_matrix is: 
+ [[7231   78]
+ [ 786  142]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_31_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8935291975233701
+Precision Score: 0.6049382716049383
+Recall Score: 0.1584051724137931
+f1 Score: 0.25106746370623395
+confusion\_matrix is: 
+ [[7213   96]
+ [ 781  147]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_31_14.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}223}]:}    accuracy  precision    recall        f1
+          0  0.888322   0.517857  0.125000  0.201389
+          1  0.893664   0.604000  0.162716  0.256367
+          2  0.894513   0.633484  0.150862  0.243690
+          3  0.895107   0.645455  0.153017  0.247387
+          4  0.893529   0.604938  0.158405  0.251067
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_31_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Top K = 3}\label{top-k-3}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}224}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{feature\PYZus{}engineered}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{topK}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 16) 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8949987861131342
+Precision Score: 0.584
+Recall Score: 0.23599137931034483
+f1 Score: 0.33614735226400616
+confusion\_matrix is: 
+ [[7154  156]
+ [ 709  219]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_33_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9002184996358339
+Precision Score: 0.6417112299465241
+Recall Score: 0.25862068965517243
+f1 Score: 0.3686635944700461
+confusion\_matrix is: 
+ [[7176  134]
+ [ 688  240]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_33_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9004612770089827
+Precision Score: 0.6560693641618497
+Recall Score: 0.24461206896551724
+f1 Score: 0.3563579277864992
+confusion\_matrix is: 
+ [[7191  119]
+ [ 701  227]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_33_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9015418234794221
+Precision Score: 0.6481012658227848
+Recall Score: 0.27586206896551724
+f1 Score: 0.3869992441421013
+confusion\_matrix is: 
+ [[7170  139]
+ [ 672  256]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_33_12.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9022702440208814
+Precision Score: 0.660574412532637
+Recall Score: 0.27262931034482757
+f1 Score: 0.38596491228070173
+confusion\_matrix is: 
+ [[7179  130]
+ [ 675  253]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_33_15.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}224}]:}    accuracy  precision    recall        f1
+          0  0.894999   0.584000  0.235991  0.336147
+          1  0.900218   0.641711  0.258621  0.368664
+          2  0.900461   0.656069  0.244612  0.356358
+          3  0.901542   0.648101  0.275862  0.386999
+          4  0.902270   0.660574  0.272629  0.385965
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_33_17.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Top K = 5}\label{top-k-5}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}225}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{feature\PYZus{}engineered}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{topK}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 33) 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9031318281136198
+Precision Score: 0.626953125
+Recall Score: 0.3459051724137931
+f1 Score: 0.4458333333333333
+confusion\_matrix is: 
+ [[7119  191]
+ [ 607  321]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_35_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9098082058752124
+Precision Score: 0.6789168278529981
+Recall Score: 0.37823275862068967
+f1 Score: 0.4858131487889274
+confusion\_matrix is: 
+ [[7144  166]
+ [ 577  351]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_35_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9106579266812334
+Precision Score: 0.6951219512195121
+Recall Score: 0.36853448275862066
+f1 Score: 0.48169014084507034
+confusion\_matrix is: 
+ [[7160  150]
+ [ 586  342]] 
+
+
+    \end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_35_12.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.909554449435474
+Precision Score: 0.6742857142857143
+Recall Score: 0.38146551724137934
+f1 Score: 0.4872677219545767
+confusion\_matrix is: 
+ [[7138  171]
+ [ 574  354]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_35_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.913317955566347
+Precision Score: 0.7131474103585658
+Recall Score: 0.3857758620689655
+f1 Score: 0.5006993006993007
+confusion\_matrix is: 
+ [[7165  144]
+ [ 570  358]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_35_20.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}225}]:}    accuracy  precision    recall        f1
+          0  0.903132   0.626953  0.345905  0.445833
+          1  0.909808   0.678917  0.378233  0.485813
+          2  0.910658   0.695122  0.368534  0.481690
+          3  0.909554   0.674286  0.381466  0.487268
+          4  0.913318   0.713147  0.385776  0.500699
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_35_22.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    when top K = 5, the performance metrics is quite similar to the original
+dataset; if top K is smaller than 5, the performance is not as good.
+
+    \section*{Task 4}\label{task-4}
+
+Model Comparison
+
+In addition to logistic regression classification, Decision tree and
+Multilayer perceptron neural network are also widely used for
+classification. Please follow the setup in Task 1 to compare the
+performance of these two models with Logistic Regression Model on both
+balanced and imbalanced datasets.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}233}]:} \PY{n}{lr} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{n}{random\PYZus{}state}\PY{o}{=}\PY{n}{SEED}\PY{p}{,} \PY{n}{solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lbfgs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{dt} \PY{o}{=} \PY{n}{DecisionTreeClassifier}\PY{p}{(}\PY{n}{criterion} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{entropy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                      \PY{n}{random\PYZus{}state} \PY{o}{=} \PY{n}{SEED}\PY{p}{)}
+          \PY{n}{mlp} \PY{o}{=} \PY{n}{MLPClassifier}\PY{p}{(}\PY{n}{random\PYZus{}state} \PY{o}{=} \PY{n}{SEED}\PY{p}{)}
+\end{Verbatim}
+
+    \subsubsection*{Unbalanced Dataset}\label{unbalanced-dataset}
+
+    \paragraph{LogisticRegression}\label{logisticregression}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}228}]:} \PY{n}{bdpp\PYZus{}logistic} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{n}{lr}\PY{p}{)}
+          \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+Accuracy Score: 0.9037387715464918
+Precision Score: 0.623400365630713
+Recall Score: 0.36745689655172414
+f1 Score: 0.4623728813559322
+confusion\_matrix is: 
+ [[7104  206]
+ [ 587  341]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_41_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9109007040543822
+Precision Score: 0.677007299270073
+Recall Score: 0.39978448275862066
+f1 Score: 0.502710027100271
+confusion\_matrix is: 
+ [[7133  177]
+ [ 557  371]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_41_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9102937606215101
+Precision Score: 0.68
+Recall Score: 0.38469827586206895
+f1 Score: 0.49139710942876796
+confusion\_matrix is: 
+ [[7142  168]
+ [ 571  357]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_41_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9101614665533568
+Precision Score: 0.6690647482014388
+Recall Score: 0.40086206896551724
+f1 Score: 0.5013477088948787
+confusion\_matrix is: 
+ [[7125  184]
+ [ 556  372]] 
+
+
+    \end{Verbatim}
+
+ 
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_41_14.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+  
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9147747966492655
+Precision Score: 0.7092592592592593
+Recall Score: 0.41271551724137934
+f1 Score: 0.5217983651226158
+confusion\_matrix is: 
+ [[7152  157]
+ [ 545  383]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_41_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}228}]:}    accuracy  precision    recall        f1
+          0  0.903739   0.623400  0.367457  0.462373
+          1  0.910901   0.677007  0.399784  0.502710
+          2  0.910294   0.680000  0.384698  0.491397
+          3  0.910161   0.669065  0.400862  0.501348
+          4  0.914775   0.709259  0.412716  0.521798
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_41_20.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{DecisionTree}\label{decisiontree}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}229}]:} \PY{n}{bdpp\PYZus{}dt} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{n}{dt}\PY{p}{)}
+          \PY{n}{bdpp\PYZus{}dt}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+Accuracy Score: 0.8827385287691187
+Precision Score: 0.47925764192139736
+Recall Score: 0.4730603448275862
+f1 Score: 0.4761388286334056
+confusion\_matrix is: 
+ [[6833  477]
+ [ 489  439]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8907501820830298
+Precision Score: 0.5157657657657657
+Recall Score: 0.49353448275862066
+f1 Score: 0.5044052863436123
+confusion\_matrix is: 
+ [[6880  430]
+ [ 470  458]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8906287933964554
+Precision Score: 0.5134328358208955
+Recall Score: 0.5560344827586207
+f1 Score: 0.5338851526125195
+confusion\_matrix is: 
+ [[6821  489]
+ [ 412  516]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8879446400388491
+Precision Score: 0.5026511134676565
+Recall Score: 0.5107758620689655
+f1 Score: 0.5066809192944949
+confusion\_matrix is: 
+ [[6840  469]
+ [ 454  474]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_8.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8921937598640282
+Precision Score: 0.5224719101123596
+Recall Score: 0.5010775862068966
+f1 Score: 0.5115511551155116
+confusion\_matrix is: 
+ [[6884  425]
+ [ 463  465]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}229}]:}    accuracy  precision    recall        f1
+          0  0.882739   0.479258  0.473060  0.476139
+          1  0.890750   0.515766  0.493534  0.504405
+          2  0.890629   0.513433  0.556034  0.533885
+          3  0.887945   0.502651  0.510776  0.506681
+          4  0.892194   0.522472  0.501078  0.511551
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_43_12.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{MultilayerPerceptron}\label{multilayerperceptron}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}234}]:} \PY{n}{bdpp\PYZus{}mlp} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{n}{mlp}\PY{p}{)}
+          \PY{n}{bdpp\PYZus{}mlp}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+Accuracy Score: 0.8986404467103666
+Precision Score: 0.5551601423487544
+Recall Score: 0.5043103448275862
+f1 Score: 0.528514963297572
+confusion\_matrix is: 
+ [[6935  375]
+ [ 460  468]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_45_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9037387715464918
+Precision Score: 0.5884665792922673
+Recall Score: 0.4838362068965517
+f1 Score: 0.5310467179183914
+confusion\_matrix is: 
+ [[6996  314]
+ [ 479  449]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_45_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9036173828599174
+Precision Score: 0.5907859078590786
+Recall Score: 0.4698275862068966
+f1 Score: 0.5234093637454982
+confusion\_matrix is: 
+ [[7008  302]
+ [ 492  436]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_45_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9042126987981061
+Precision Score: 0.5783540022547914
+Recall Score: 0.552801724137931
+f1 Score: 0.565289256198347
+confusion\_matrix is: 
+ [[6935  374]
+ [ 415  513]] 
+
+
+    \end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_45_14.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.9045769090688357
+Precision Score: 0.5801354401805869
+Recall Score: 0.5538793103448276
+f1 Score: 0.5667034178610805
+confusion\_matrix is: 
+ [[6937  372]
+ [ 414  514]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_45_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}234}]:}    accuracy  precision    recall        f1
+          0  0.898640   0.555160  0.504310  0.528515
+          1  0.903739   0.588467  0.483836  0.531047
+          2  0.903617   0.590786  0.469828  0.523409
+          3  0.904213   0.578354  0.552802  0.565289
+          4  0.904577   0.580135  0.553879  0.566703
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_45_20.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    The performances of Logistic Regression and Decision Tree are similar,
+and the performance of MLP appears to be the best because it outputs the
+highest f1 score.
+
+    \subsubsection*{Balanced Dataset}\label{balanced-dataset}
+
+    \paragraph{LogisticRegression}\label{logisticregression}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}235}]:} \PY{n}{bdpp\PYZus{}logistic} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{n}{lr}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/local/lib/python3.6/dist-packages/sklearn/preprocessing/data.py:323: DataConversionWarning: Data with input dtype int64, float64 were all converted to float64 by MinMaxScaler.
+  return self.partial\_fit(X, y)
+
+    \end{Verbatim}
+
+    \subparagraph{Downsample}\label{downsample}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}236}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After downsampling, there are 3712 data entries labeled as yes.
+ There are 3712 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8561544064093226
+Precision Score: 0.4303523035230352
+Recall Score: 0.8556034482758621
+f1 Score: 0.572664983772088
+confusion\_matrix is: 
+ [[6259 1051]
+ [ 134  794]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8580966253945133
+Precision Score: 0.4340448823207444
+Recall Score: 0.8545258620689655
+f1 Score: 0.5756805807622505
+confusion\_matrix is: 
+ [[6276 1034]
+ [ 135  793]] 
+
+
+    \end{Verbatim}
+
+    
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8648943918426802
+Precision Score: 0.4489795918367347
+Recall Score: 0.8771551724137931
+f1 Score: 0.5939438161255016
+confusion\_matrix is: 
+ [[6311  999]
+ [ 114  814]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8566225567561006
+Precision Score: 0.4312873438348723
+Recall Score: 0.8556034482758621
+f1 Score: 0.5734922354640665
+confusion\_matrix is: 
+ [[6262 1047]
+ [ 134  794]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8606288697341266
+Precision Score: 0.4403470715835141
+Recall Score: 0.875
+f1 Score: 0.5858585858585859
+confusion\_matrix is: 
+ [[6277 1032]
+ [ 116  812]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}236}]:}    accuracy  precision    recall        f1
+          0  0.856154   0.430352  0.855603  0.572665
+          1  0.858097   0.434045  0.854526  0.575681
+          2  0.864894   0.448980  0.877155  0.593944
+          3  0.856623   0.431287  0.855603  0.573492
+          4  0.860629   0.440347  0.875000  0.585859
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_51_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{Upsample}\label{upsample}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}237}]:} \PY{n}{bdpp\PYZus{}logistic}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 29238 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8537266326778344
+Precision Score: 0.427372836916623
+Recall Score: 0.8782327586206896
+f1 Score: 0.5749559082892416
+confusion\_matrix is: 
+ [[6218 1092]
+ [ 113  815]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8572469045884924
+Precision Score: 0.4337606837606838
+Recall Score: 0.875
+f1 Score: 0.58
+confusion\_matrix is: 
+ [[6250 1060]
+ [ 116  812]] 
+
+
+    \end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8644088370963826
+Precision Score: 0.4483888585472419
+Recall Score: 0.884698275862069
+f1 Score: 0.5951431678144254
+confusion\_matrix is: 
+ [[6300 1010]
+ [ 107  821]] 
+
+
+    \end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8601432560398203
+Precision Score: 0.4393939393939394
+Recall Score: 0.875
+f1 Score: 0.585014409221902
+confusion\_matrix is: 
+ [[6273 1036]
+ [ 116  812]] 
+
+
+    \end{Verbatim}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8628141313585043
+Precision Score: 0.4452871072589382
+Recall Score: 0.8857758620689655
+f1 Score: 0.5926459985580389
+confusion\_matrix is: 
+ [[6285 1024]
+ [ 106  822]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}237}]:}    accuracy  precision    recall        f1
+          0  0.853727   0.427373  0.878233  0.574956
+          1  0.857247   0.433761  0.875000  0.580000
+          2  0.864409   0.448389  0.884698  0.595143
+          3  0.860143   0.439394  0.875000  0.585014
+          4  0.862814   0.445287  0.885776  0.592646
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_53_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{DecisionTree}\label{decisiontree}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}238}]:} \PY{n}{bdpp\PYZus{}dt} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{n}{dt}\PY{p}{)}
+\end{Verbatim}
+
+    
+
+    \subparagraph{Downsample}\label{downsample}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}239}]:} \PY{n}{bdpp\PYZus{}dt}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After downsampling, there are 3712 data entries labeled as yes.
+ There are 3712 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8327263899004613
+Precision Score: 0.3859026369168357
+Recall Score: 0.8200431034482759
+f1 Score: 0.5248275862068964
+confusion\_matrix is: 
+ [[6099 1211]
+ [ 167  761]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8415877640203933
+Precision Score: 0.4014636696288552
+Recall Score: 0.8275862068965517
+f1 Score: 0.5406546990496305
+confusion\_matrix is: 
+ [[6165 1145]
+ [ 160  768]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8449866472444768
+Precision Score: 0.40887728459530026
+Recall Score: 0.84375
+f1 Score: 0.5508265916285614
+confusion\_matrix is: 
+ [[6178 1132]
+ [ 145  783]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8344057302415928
+Precision Score: 0.3896761133603239
+Recall Score: 0.8297413793103449
+f1 Score: 0.5303030303030304
+confusion\_matrix is: 
+ [[6103 1206]
+ [ 158  770]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8464246691756707
+Precision Score: 0.41117554032683185
+Recall Score: 0.8405172413793104
+f1 Score: 0.552212389380531
+confusion\_matrix is: 
+ [[6192 1117]
+ [ 148  780]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}239}]:}    accuracy  precision    recall        f1
+          0  0.832726   0.385903  0.820043  0.524828
+          1  0.841588   0.401464  0.827586  0.540655
+          2  0.844987   0.408877  0.843750  0.550827
+          3  0.834406   0.389676  0.829741  0.530303
+          4  0.846425   0.411176  0.840517  0.552212
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_57_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{Upsample}\label{upsample}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}240}]:} \PY{n}{bdpp\PYZus{}dt}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 29238 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8897790725904345
+Precision Score: 0.5112359550561798
+Recall Score: 0.49030172413793105
+f1 Score: 0.5005500550055006
+confusion\_matrix is: 
+ [[6875  435]
+ [ 473  455]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8895362952172857
+Precision Score: 0.5097402597402597
+Recall Score: 0.5075431034482759
+f1 Score: 0.5086393088552916
+confusion\_matrix is: 
+ [[6857  453]
+ [ 457  471]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_5.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8939062879339645
+Precision Score: 0.5277207392197125
+Recall Score: 0.5538793103448276
+f1 Score: 0.5404837013669822
+confusion\_matrix is: 
+ [[6850  460]
+ [ 414  514]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8904941119339566
+Precision Score: 0.5142543859649122
+Recall Score: 0.5053879310344828
+f1 Score: 0.5097826086956523
+confusion\_matrix is: 
+ [[6866  443]
+ [ 459  469]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_9.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8926793735583344
+Precision Score: 0.5247747747747747
+Recall Score: 0.5021551724137931
+f1 Score: 0.513215859030837
+confusion\_matrix is: 
+ [[6887  422]
+ [ 462  466]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_11.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}240}]:}    accuracy  precision    recall        f1
+          0  0.889779   0.511236  0.490302  0.500550
+          1  0.889536   0.509740  0.507543  0.508639
+          2  0.893906   0.527721  0.553879  0.540484
+          3  0.890494   0.514254  0.505388  0.509783
+          4  0.892679   0.524775  0.502155  0.513216
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_59_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{MultilayerPerceptron}\label{multilayerperceptron}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}241}]:} \PY{n}{bdpp\PYZus{}mlp} \PY{o}{=} \PY{n}{BankDataProcessPipeline}\PY{p}{(}\PY{n}{df}\PY{o}{=}\PY{n}{bank}\PY{p}{,} \PY{n}{classifier}\PY{o}{=}\PY{n}{mlp}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subparagraph{Downsample}\label{downsample}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}242}]:} \PY{n}{bdpp\PYZus{}mlp}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{downsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After downsampling, there are 3712 data entries labeled as yes.
+ There are 3712 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8567613498421947
+Precision Score: 0.43061674008810574
+Recall Score: 0.8426724137931034
+f1 Score: 0.5699708454810496
+confusion\_matrix is: 
+ [[6276 1034]
+ [ 146  782]] 
+
+
+    \end{Verbatim}
+
+
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8696285506190823
+Precision Score: 0.45602409638554214
+Recall Score: 0.8157327586206896
+f1 Score: 0.5850077279752705
+confusion\_matrix is: 
+ [[6407  903]
+ [ 171  757]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8766690944403982
+Precision Score: 0.4732685297691373
+Recall Score: 0.8394396551724138
+f1 Score: 0.6052836052836053
+confusion\_matrix is: 
+ [[6443  867]
+ [ 149  779]] 
+
+
+    \end{Verbatim}
+
+    
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+   
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8595362389219376
+Precision Score: 0.4357823892316321
+Recall Score: 0.8372844827586207
+f1 Score: 0.5732202139431944
+confusion\_matrix is: 
+ [[6303 1006]
+ [ 151  777]] 
+
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8635425518999635
+Precision Score: 0.44633077765607887
+Recall Score: 0.8782327586206896
+f1 Score: 0.5918663761801017
+confusion\_matrix is: 
+ [[6298 1011]
+ [ 113  815]] 
+
+
+    \end{Verbatim}
+
+    
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}242}]:}    accuracy  precision    recall        f1
+          0  0.856761   0.430617  0.842672  0.569971
+          1  0.869629   0.456024  0.815733  0.585008
+          2  0.876669   0.473269  0.839440  0.605284
+          3  0.859536   0.435782  0.837284  0.573220
+          4  0.863543   0.446331  0.878233  0.591866
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_63_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subparagraph{Upsample}\label{upsample}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}243}]:} \PY{n}{bdpp\PYZus{}mlp}\PY{o}{.}\PY{n}{k\PYZus{}fold\PYZus{}cross\PYZus{}val}\PY{p}{(}\PY{n}{fold}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{option}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upsample}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The shape of training set is:  (41188, 63) 
+
+After upsampling, there are 29238 data entries labeled as yes.
+ There are 29238 data entries labeled as no.
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.878975479485312
+Precision Score: 0.4753395282344532
+Recall Score: 0.7165948275862069
+f1 Score: 0.5715513536742587
+confusion\_matrix is: 
+ [[6576  734]
+ [ 263  665]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_4.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8844379703811605
+Precision Score: 0.49129172714078373
+Recall Score: 0.7295258620689655
+f1 Score: 0.5871639202081526
+confusion\_matrix is: 
+ [[6609  701]
+ [ 251  677]] 
+
+
+    \end{Verbatim}
+
+  
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_7.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8822529740228211
+Precision Score: 0.4857336956521739
+Recall Score: 0.7704741379310345
+f1 Score: 0.5958333333333333
+confusion\_matrix is: 
+ [[6553  757]
+ [ 213  715]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_10.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.866092023795071
+Precision Score: 0.44680851063829785
+Recall Score: 0.7920258620689655
+f1 Score: 0.5713175281772249
+confusion\_matrix is: 
+ [[6399  910]
+ [ 193  735]] 
+
+
+    \end{Verbatim}
+
+   
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_13.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Accuracy Score: 0.8856379749908947
+Precision Score: 0.4948071216617211
+Recall Score: 0.71875
+f1 Score: 0.5861159929701231
+confusion\_matrix is: 
+ [[6628  681]
+ [ 261  667]] 
+
+
+    \end{Verbatim}
+
+ 
+
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}243}]:}    accuracy  precision    recall        f1
+          0  0.878975   0.475340  0.716595  0.571551
+          1  0.884438   0.491292  0.729526  0.587164
+          2  0.882253   0.485734  0.770474  0.595833
+          3  0.866092   0.446809  0.792026  0.571318
+          4  0.885638   0.494807  0.718750  0.586116
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.3\linewidth}{0.3\paperheight}}{output_65_18.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    After re-sampling, the performances of Logistic Regression and MLP are
+similar, and the performance of Decision Tree appears to be the worst
+among the three because it outputs the lowest f1 score.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

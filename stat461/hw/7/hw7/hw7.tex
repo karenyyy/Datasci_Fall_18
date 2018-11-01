@@ -1,0 +1,963 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Assignment 7}
+    \author{Jiarong Ye}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    Your homework will consider an experiment on battery life for different
+types and brands of battery. Two brands (a name brand and a generic
+brand) of two types (Alkaline and ``Heavy Duty'') of batteries were
+tested to see how long they could run continuously. This results in four
+categories,
+
+\begin{itemize}
+\tightlist
+\item
+  AlkName is for name-brand alkaline batteries,
+\item
+  AlkGen is for generic alkaline batteries,
+\item
+  HDName is for heavy duty name-brand batteries,
+\item
+  HDGen is for generic heavy duty batteries.
+\end{itemize}
+
+Four batteries of each type were tested and the times to battery failure
+are recorded as below. Use the code below to read in the data:
+
+    \subsubsection*{Read Data}\label{read-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} type\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkGen\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkGen\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkGen\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{AlkGen\PYZdq{}}\PY{p}{,}
+        \PY{l+s}{\PYZdq{}}\PY{l+s}{HDName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDName\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDGen\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDGen\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDGen\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{HDGen\PYZdq{}}\PY{p}{)}
+        life\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{100.668}\PY{p}{,} \PY{l+m}{77.734}\PY{p}{,}\PY{l+m}{79.210}\PY{p}{,}\PY{l+m}{95.063}\PY{p}{,}\PY{l+m}{206.880}\PY{p}{,}\PY{l+m}{153.347}\PY{p}{,}\PY{l+m}{165.980}\PY{p}{,}\PY{l+m}{196.000}\PY{p}{,}
+        \PY{l+m}{14.951}\PY{p}{,}\PY{l+m}{18.063}\PY{p}{,}\PY{l+m}{11.111}\PY{p}{,}\PY{l+m}{12.840}\PY{p}{,}\PY{l+m}{15.340}\PY{p}{,}\PY{l+m}{22.090}\PY{p}{,}\PY{l+m}{15.734}\PY{p}{,} \PY{l+m}{14.440}\PY{p}{)}
+        batt\PY{o}{=}\PY{k+kt}{data.frame}\PY{p}{(}type\PY{o}{=}type\PY{p}{,} life\PY{o}{=}life\PY{p}{)}
+        batt
+\end{Verbatim}
+
+    \begin{tabular}{r|ll}
+ type & life\\
+\hline
+	 AlkName & 100.668\\
+	 AlkName &  77.734\\
+	 AlkName &  79.210\\
+	 AlkName &  95.063\\
+	 AlkGen  & 206.880\\
+	 AlkGen  & 153.347\\
+	 AlkGen  & 165.980\\
+	 AlkGen  & 196.000\\
+	 HDName  &  14.951\\
+	 HDName  &  18.063\\
+	 HDName  &  11.111\\
+	 HDName  &  12.840\\
+	 HDGen   &  15.340\\
+	 HDGen   &  22.090\\
+	 HDGen   &  15.734\\
+	 HDGen   &  14.440\\
+\end{tabular}
+
+
+    
+    \subsubsection*{Q1}\label{q1}
+
+Plot the data
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k+kn}{library}\PY{p}{(}ggplot2\PY{p}{)}
+        ggplot\PY{p}{(}batt\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}type\PY{p}{,} y\PY{o}{=}life\PY{p}{,} color\PY{o}{=}type\PY{p}{)}\PY{p}{)} \PY{o}{+}
+                geom\PYZus{}boxplot\PY{p}{(}\PY{p}{)} \PY{o}{+}
+                ylab\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{life\PYZsq{}}\PY{p}{)} \PY{o}{+}
+                ggtitle\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Boxplots of battery life of different battery types\PYZsq{}}\PY{p}{)} \PY{o}{+}
+                theme\PY{p}{(}plot.title \PY{o}{=} element\PYZus{}text\PY{p}{(}hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_4_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Q2}\label{q2}
+
+For the battery data, do the following:
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \tightlist
+  \item
+    Write out the one-way ANOVA model for this data.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    Show residual plots for this model. Are the residuals approximately
+    normal? Justify your answer.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{(\alph{enumi})}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    Is the assumption of constant error variance among treatments
+    justified? Explain your answer.
+  \end{enumerate}
+\end{itemize}
+
+    \paragraph{(a)}\label{a}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{library}\PY{p}{(}knitr\PY{p}{)}
+        \PY{k+kn}{library}\PY{p}{(}lsmeans\PY{p}{)}
+        aov.batt \PY{o}{=} aov\PY{p}{(}life\PY{o}{\PYZti{}}type\PY{p}{,} data \PY{o}{=} batt\PY{p}{)}
+        kable\PY{p}{(}anova\PY{p}{(}aov.batt\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|          | Df|    Sum Sq|    Mean Sq| F value| Pr(>F)|
+|:---------|--:|---------:|----------:|-------:|------:|
+|type      |  3| 73526.811| 24508.9369| 125.643|      0|
+|Residuals | 12|  2340.817|   195.0681|      NA|     NA|
+    \end{verbatim}
+
+    
+    \paragraph{(b)}\label{b}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+        plot\PY{p}{(}aov.batt\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the QQ-plot above we could conclude that since not all the points
+fall on the dotted line, thus the residuals are not normal, it also
+appears to be heavy tailed.
+
+    \paragraph{(c)}\label{c}
+
+    From the Residual vs. Fitted plot we can see that for each vertical line
+of points representing a different treatment, the spread on the points
+does not appear to be equal. It presents a trumpet pattern, indicating
+that these 3 treatments do not have the same variance, the 3rd treatment
+has vastly larger spread than the others. So the assumption of constant
+variance is violated.
+
+    \subsubsection*{Q3}\label{q3}
+
+Now consider using the square-root of the battery life as a response
+variable. Repeat (a)-(c) above for this transformation.
+
+    \paragraph{(a)}\label{a}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} batt\PY{o}{\PYZdl{}}sqrt\PYZus{}life \PY{o}{=} \PY{k+kp}{sqrt}\PY{p}{(}batt\PY{o}{\PYZdl{}}life\PY{p}{)}
+         aov.batt \PY{o}{=} aov\PY{p}{(}sqrt\PYZus{}life\PY{o}{\PYZti{}}type\PY{p}{,} data \PY{o}{=} batt\PY{p}{)}
+         kable\PY{p}{(}anova\PY{p}{(}aov.batt\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|          | Df|     Sum Sq|    Mean Sq|  F value| Pr(>F)|
+|:---------|--:|----------:|----------:|--------:|------:|
+|type      |  3| 255.835800| 85.2785998| 217.5284|      0|
+|Residuals | 12|   4.704412|  0.3920344|       NA|     NA|
+    \end{verbatim}
+
+    
+    \paragraph{(b)}\label{b}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         plot\PY{p}{(}aov.batt\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_17_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the QQ-plot above we could conclude that although most of  the points
+fall on the dotted line, except for a few on the top right and lower left of the plot, thus the residuals are not  normal.
+
+    \paragraph{(c)}\label{c}
+
+    From the Residual vs. Fitted plot we can see that for each vertical line
+of points representing a different treatment, the spread on the points
+seems more evenly distributed around the horizontal baseline than the
+result before transformation, but the 3rd treatment still appears to be more spread-out than the other two, indicating that these 3 treatments do not have
+the same variance. So the assumption of constant variance is still
+violated.
+
+    \subsubsection*{Q4}\label{q4}
+
+Now consider using the log of the battery life as a response variable.
+Repeat (a)-(c) above for this transformation.
+
+    \paragraph{(a)}\label{a}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} batt\PY{o}{\PYZdl{}}log\PYZus{}life \PY{o}{=} \PY{k+kp}{log}\PY{p}{(}batt\PY{o}{\PYZdl{}}life\PY{p}{)}
+         aov.batt \PY{o}{=} aov\PY{p}{(}log\PYZus{}life\PY{o}{\PYZti{}}type\PY{p}{,} data \PY{o}{=} batt\PY{p}{)}
+         kable\PY{p}{(}anova\PY{p}{(}aov.batt\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|          | Df|     Sum Sq|   Mean Sq|  F value| Pr(>F)|
+|:---------|--:|----------:|---------:|--------:|------:|
+|type      |  3| 18.8002838| 6.2667613| 215.1637|      0|
+|Residuals | 12|  0.3495066| 0.0291256|       NA|     NA|
+    \end{verbatim}
+
+    
+    \paragraph{(b)}\label{b}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         plot\PY{p}{(}aov.batt\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the QQ-plot above we could conclude that basically all the points
+fall on the dotted line, thus the residuals are approximately normal.
+
+    \paragraph{(c)}\label{c}
+
+    From the Residual vs. Fitted plot we can see that for each vertical line
+of points representing a different treatment, the spread on the points appears to be approximately equal, indicating
+that these 3 treatments have the same variance. So the assumption of
+constant variance is not violated.
+
+    \subsubsection*{Q5}\label{q5}
+
+Now consider using the square of the battery life as a response
+variable. Repeat (a)-(c) above for this transformation.
+
+    \paragraph{(a)}\label{a}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} batt\PY{o}{\PYZdl{}}square\PYZus{}life \PY{o}{=} batt\PY{o}{\PYZdl{}}life\PY{o}{\PYZca{}}\PY{l+m}{2}
+         aov.batt \PY{o}{=} aov\PY{p}{(}square\PYZus{}life\PY{o}{\PYZti{}}type\PY{p}{,} data \PY{o}{=} batt\PY{p}{)}
+         kable\PY{p}{(}anova\PY{p}{(}aov.batt\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|          | Df|     Sum Sq|   Mean Sq|  F value| Pr(>F)|
+|:---------|--:|----------:|---------:|--------:|------:|
+|type      |  3| 2905095650| 968365217| 45.13527|  8e-07|
+|Residuals | 12|  257456832|  21454736|       NA|     NA|
+    \end{verbatim}
+
+    
+    \paragraph{(b)}\label{b}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         plot\PY{p}{(}aov.batt\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_33_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the QQ-plot above we could conclude that since not all the points
+fall on the dotted line, thus the residuals are not normal, it also
+appears to be VERY heavy tailed.
+
+    \paragraph{(c)}\label{c}
+
+    From the Residual vs. Fitted plot we can see that for each vertical line
+of points representing a different treatment, the spread on the points
+does not appear to be equal. It presents a trumpet pattern, indicating
+that these 3 treatments do not have the same variance, the 3rd treatment
+has vastly larger spread than the others. So the assumption of constant
+variance is violated.
+
+    \subsubsection*{Q6}\label{q6}
+
+Which of the four models you have fit has residuals that best satisfy
+the assumptions of the ANOVA model? Explain your choice.\\
+
+\noindent    \textbf{The log transformation appears to be the best for
+satisfying the normality and constant variance assumptions of residuals}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} batt\PY{o}{\PYZdl{}}log\PYZus{}life \PY{o}{=} \PY{k+kp}{log}\PY{p}{(}batt\PY{o}{\PYZdl{}}life\PY{p}{)}
+         aov.batt \PY{o}{=} aov\PY{p}{(}log\PYZus{}life\PY{o}{\PYZti{}}type\PY{p}{,} data \PY{o}{=} batt\PY{p}{)}
+         kable\PY{p}{(}anova\PY{p}{(}aov.batt\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+         par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         plot\PY{p}{(}aov.batt\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+   
+   
+   |          | Df|     Sum Sq|   Mean Sq|  F value| Pr(>F)|
+   |:---------|--:|----------:|---------:|--------:|------:|
+   |type      |  3| 18.8002838| 6.2667613| 215.1637|      0|
+   |Residuals | 12|  0.3495066| 0.0291256|       NA|     NA|
+   \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\item
+  From the QQ-plot above we could conclude that basically all the points
+  fall on the dotted line, thus the residuals are approximately normal
+\item
+  From the Residual vs. Fitted plot we can see that for each vertical
+  line of points representing a different treatment, the spread on the
+  points seems more evenly distributed around the horizontal baseline
+  than the result before transformation, indicating that these 3
+  treatments have the same variance. So the assumption of constant
+  variance is not violated.
+\end{itemize}
+
+    \subsubsection*{Q7}\label{q7}
+
+For the model you chose in question 6 above, are there any significant
+pairwise differences in mean lifetime of different battery types? If so,
+state which are different, and provide p-values, test statistics, and
+null hypotheses for the hypothesis tests used.\\\
+
+    Denote log battery life as \(l\),
+
+\begin{itemize}
+\tightlist
+\item
+  Null hypothesis:
+\end{itemize}
+
+\[\text{For } Y_{it}=\mu +\tau_i+\epsilon_{it},  \text{where } i=AlkGen,AlkName,HDGen,HDName\]
+
+\[H_0: \tau _i= 0 \text{ for } i=AlkGen,AlkName,HDGen,HDName\]
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}48}]:} aov.batt \PY{o}{=} aov\PY{p}{(}log\PYZus{}life\PY{o}{\PYZti{}}type\PY{p}{,} data \PY{o}{=} batt\PY{p}{)}
+lsm.batt\PY{o}{=}lsmeans\PY{p}{(}aov.batt\PY{p}{,} \PY{o}{\PYZti{}} type\PY{p}{)}
+\PY{k+kp}{summary}\PY{p}{(}contrast\PY{p}{(}lsm.batt\PY{p}{,} method\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{pairwise\PYZdq{}}\PY{p}{,} adjust\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{tukey\PYZdq{}}\PY{p}{)}\PY{p}{,}
+infer\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{n+nb+bp}{T}\PY{p}{,}\PY{n+nb+bp}{T}\PY{p}{)}\PY{p}{,} level\PY{o}{=}\PY{l+m}{0.95}\PY{p}{,} side\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{two\PYZhy{}sided\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+\begin{tabular}{r|llllllll}
+	contrast & estimate & SE & df & lower.CL & upper.CL & t.ratio & p.value\\
+	\hline
+	AlkGen - AlkName & 0.7157653        & 0.1206763        & 12               &  0.3574892       & 1.0740414        &  5.931281        & 3.480708e-04    \\
+	AlkGen - HDGen   & 2.3758523        & 0.1206763        & 12               &  2.0175762       & 2.7341284        & 19.687807        & 1.011516e-09    \\
+	AlkGen - HDName  & 2.5489199        & 0.1206763        & 12               &  2.1906438       & 2.9071960        & 21.121954        & 4.272094e-10    \\
+	AlkName - HDGen  & 1.6600870        & 0.1206763        & 12               &  1.3018109       & 2.0183631        & 13.756526        & 5.448802e-08    \\
+	AlkName - HDName & 1.8331546        & 0.1206763        & 12               &  1.4748785       & 2.1914307        & 15.190672        & 1.761964e-08    \\
+	HDGen - HDName   & 0.1730675        & 0.1206763        & 12               & -0.1852085       & 0.5313436        &  1.434147        & 5.034253e-01    \\
+\end{tabular}
+
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}49}]:} AlkGen\PYZus{}AlkName\PYZus{}pv \PY{o}{=} \PY{l+m}{3.480708e\PYZhy{}04}
+AlkGen\PYZus{}HDGen\PYZus{}pv \PY{o}{=} \PY{l+m}{1.011516e\PYZhy{}09}
+AlkGen\PYZus{}HDName\PYZus{}pv \PY{o}{=} \PY{l+m}{4.272094e\PYZhy{}10}
+AlkName\PYZus{}HDGen\PYZus{}pv \PY{o}{=} \PY{l+m}{5.448802e\PYZhy{}08}
+AlkName\PYZus{}HDName\PYZus{}pv \PY{o}{=} \PY{l+m}{1.761964e\PYZhy{}08}
+HDGen\PYZus{}HDName\PYZus{}pv \PY{o}{=} \PY{l+m}{5.034253e\PYZhy{}01}
+
+AlkGen\PYZus{}AlkName\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+AlkGen\PYZus{}HDGen\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+AlkGen\PYZus{}HDName\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+AlkName\PYZus{}HDGen\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+AlkName\PYZus{}HDName\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+HDGen\PYZus{}HDName\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+\end{Verbatim}
+
+TRUE
+
+
+TRUE
+
+
+TRUE
+
+
+TRUE
+
+
+TRUE
+
+
+FALSE
+
+    
+    We can interpret the results of these tests with the following
+statements:
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    The battery life of AlkGen is significantly longer than the battery
+    life of AlkName;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    The battery life of AlkGen is significantly longer than the battery
+    life of HDGen;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    The battery life of AlkGen is significantly longer than the battery
+    life of HDName;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{3}
+  \tightlist
+  \item
+    The battery life of AlkName is significantly longer than the battery
+    life of HDGen;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{4}
+  \tightlist
+  \item
+    The battery life of AlkName is significantly longer than the battery
+    life of HDName;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    The battery life of HDGen is not significantly different from the
+    battery life of HDName;
+  \end{enumerate}
+\end{itemize}
+
+which we could validate with the boxplot:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} ggplot\PY{p}{(}batt\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}type\PY{p}{,} y\PY{o}{=}life\PY{p}{,} color\PY{o}{=}type\PY{p}{)}\PY{p}{)} \PY{o}{+}
+                 geom\PYZus{}boxplot\PY{p}{(}\PY{p}{)} \PY{o}{+}
+                 ylab\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{life\PYZsq{}}\PY{p}{)} \PY{o}{+}
+                 ggtitle\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Boxplots of battery life of different battery types\PYZsq{}}\PY{p}{)} \PY{o}{+}
+                 theme\PY{p}{(}plot.title \PY{o}{=} element\PYZus{}text\PY{p}{(}hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_46_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection*{Q8}\label{q8}
+
+Hot Dogs A study was conducted to compare the calories and sodium in hot
+dogs made with different types of meat, and plot calories as a response variable with the type of meat on the
+x-axis. Your plot could be either a boxplot or a plot with one dot for
+each hot dog.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} hotdog\PY{o}{=}read.table\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{hotdogs.txt\PYZdq{}}\PY{p}{,}header\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)}
+         ggplot\PY{p}{(}hotdog\PY{p}{,} aes\PY{p}{(}x\PY{o}{=}Type\PY{p}{,} y\PY{o}{=}Calories\PY{p}{,} color\PY{o}{=}Type\PY{p}{)}\PY{p}{)} \PY{o}{+}
+         geom\PYZus{}boxplot\PY{p}{(}\PY{p}{)} \PY{o}{+}
+         ylab\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{calories\PYZsq{}}\PY{p}{)} \PY{o}{+}
+         ggtitle\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Boxplots of calories of different protein types\PYZsq{}}\PY{p}{)} \PY{o}{+}
+         theme\PY{p}{(}plot.title \PY{o}{=} element\PYZus{}text\PY{p}{(}hjust \PY{o}{=} \PY{l+m}{0.5}\PY{p}{)}\PY{p}{)} \PY{o}{+}
+         ylim\PY{p}{(}\PY{k+kp}{min}\PY{p}{(}hotdog\PY{o}{\PYZdl{}}Calories\PY{p}{)}\PY{l+m}{\PYZhy{}0.05}\PY{p}{,} \PY{k+kp}{max}\PY{p}{(}hotdog\PY{o}{\PYZdl{}}Calories\PY{p}{)}\PY{l+m}{+0.05}\PY{p}{)}
+\end{Verbatim}
+
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_48_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+\noindent    Answer the following question: ``Are there differences in the average
+calories of hot dogs made with different kinds of meat?''. To answer
+this question, write down a statistical model (clearly state the
+response variable, treatment levels, number of replicates, . . . ),
+express the above question as a testable null hypothesis, and report the
+p-value of the test statistic under the null hypothesis. Conduct an
+analysis of pairwise differences if it helps you clarify where there are
+differences in mean calories. Your answer should include all R code
+used, and the important R output. If you need to transform the response
+variable, do so, but you do NOT need to provide details of the
+transformations that you tried, but did not ultimately select. Only
+report the best transformation, and only show residual plots, ANOVA
+tables, and any other results for this transformation.
+
+    \paragraph{Model and Null Hypothesis}\label{model-and-null-hypothesis}
+
+    \[Y_{it}=\mu +\tau_i+\epsilon_{it},  \text{where } i=beef,pork,chicken\]
+
+\[\epsilon \stackrel{iid}{\sim} N(0, \sigma^2)\]
+
+and the number of replicates:
+
+\[t_{beef}= 20,t_{pork}= 17,t_{chicken}=17\]
+
+we need to test:
+
+\[H_0: \tau _i= 0 \text{ for } i=beef,pork,chicken\]
+
+    \paragraph{Check Whether Transformation is
+Needed}\label{check-whether-transformation-is-needed}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+	aov.hotdog \PY{o}{=}aov\PY{p}{(}Calories\PY{o}{\PYZti{}}Type\PY{p}{,} data\PY{o}{=}hotdog\PY{p}{)}
+         plot\PY{p}{(}aov.hotdog\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.7\paperheight}}{output_53_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{itemize}
+\item
+  From the QQ-plot above we could conclude that basically all the points
+  fall on the dotted line, thus the residuals are approximately normal
+\item
+  From the Residual vs. Fitted plot we can see that for each vertical
+  line of points representing a different treatment, the spread on the
+  points seems evenly distributed around the horizontal baseline,
+  indicating that these 3 treatments have the same variance. So the
+  assumption of constant variance is not violated.
+\end{itemize}
+
+\textbf{Therefore no transformation needed.}
+
+    \paragraph{ANOVA}\label{anova}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:}kable\PY{p}{(}anova\PY{p}{(}aov.hotdog\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+        \PY{l+m}{3.9e\PYZhy{}06} \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|          | Df|   Sum Sq|  Mean Sq|  F value|  Pr(>F)|
+|:---------|--:|--------:|--------:|--------:|-------:|
+|Type      |  2| 17692.20| 8846.098| 16.07399| 3.9e-06|
+|Residuals | 51| 28067.14|  550.336|       NA|      NA|
+    \end{verbatim}
+
+    
+    TRUE
+
+    
+    so with an F-test from ANOVA table, we can see that since p-value =
+3.862e-06\( \textless{} 0.5\), hence with statistical significance at
+the 0.05 level, we could conclude that there is difference in calories
+of different hotdogs.
+
+    \paragraph{Pairwise Difference}\label{pairwise-difference}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}47}]:} lsm.hotdog\PY{o}{=}lsmeans\PY{p}{(}aov.hotdog\PY{p}{,} \PY{o}{\PYZti{}}Type\PY{p}{)}
+         \PY{k+kp}{summary}\PY{p}{(}contrast\PY{p}{(}lsm.hotdog\PY{p}{,} method\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{pairwise\PYZdq{}}\PY{p}{,} 
+                          adjust\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{tukey\PYZdq{}}\PY{p}{)}\PY{p}{,}infer\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{n+nb+bp}{T}\PY{p}{,}\PY{n+nb+bp}{T}\PY{p}{)}\PY{p}{,} 
+                          level\PY{o}{=}\PY{l+m}{0.95}\PY{p}{,} side\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{two\PYZhy{}sided\PYZdq{}}\PY{p}{)}
+         
+         Beef\PYZus{}Chicken\PYZus{}pv \PY{o}{=} \PY{l+m}{2.767694e\PYZhy{}05}
+         Beef\PYZus{}Pork\PYZus{}pv \PY{o}{=} \PY{l+m}{9.688129e\PYZhy{}01}
+         Chicken\PYZus{}Pork\PYZus{}pv \PY{o}{=} \PY{l+m}{2.390087e\PYZhy{}05}
+         
+         Beef\PYZus{}Chicken\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+         Beef\PYZus{}Pork\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+         Chicken\PYZus{}Pork\PYZus{}pv \PY{o}{\PYZlt{}} \PY{l+m}{0.5}
+\end{Verbatim}
+
+    \begin{tabular}{r|llllllll}
+ contrast & estimate & SE & df & lower.CL & upper.CL & t.ratio & p.value\\
+\hline
+	 Beef - Chicken &  38.085294     & 7.738831       & 51             &  19.40391      &  56.76667      &  4.9213237     & 2.767694e-05  \\
+	 Beef - Pork    &  -1.855882     & 7.738831       & 51             & -20.53726      &  16.82550      & -0.2398143     & 9.688129e-01  \\
+	 Chicken - Pork & -39.941176     & 8.046454       & 51             & -59.36515      & -20.51720      & -4.9638236     & 2.390087e-05  \\
+\end{tabular}
+
+
+    
+    TRUE
+
+    
+    FALSE
+
+    
+    TRUE
+
+    
+    We can interpret the results of these tests with the following
+statements:
+
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    The calories of beef is not significantly different from the
+    calories of pork;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{1}
+  \tightlist
+  \item
+    The calories of beef is significantly more than the calories of
+    chicken;
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \setcounter{enumi}{2}
+  \tightlist
+  \item
+    The calories of chicken is significantly less than the calories of
+    pork;
+  \end{enumerate}
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
