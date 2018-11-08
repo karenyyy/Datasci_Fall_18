@@ -2,194 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c54d390a-3f2d-42f3-9c58-ba7ee67e1b9b" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cs497/hw/Programming2/programming2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fa18.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fa18.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/ACM.bst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW1.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW1.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW1.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW1.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW1.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/HW3.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/ROOM_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/ROOM_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/affiliation_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/affiliation_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/appointment_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/appointment_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/department_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/department_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/employee_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/employee_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw7/.ipynb_checkpoints/hw7-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw7/.ipynb_checkpoints/hw7-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw7/hw7.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw7/hw7.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw7/hw7.log" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw7/hw7.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw7/hw7.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw7/hw7.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw7/hw7.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw7/hw7.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9/.zip" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9/.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedule.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedule.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedulehelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedulehelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/patient_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/patient_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.bbl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.blg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/proposal.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/references.bib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/shift_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/shift_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/HW/table.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/dataSources/b48515e7-b89d-4626-a83e-95a12051d74b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/dataSources/b48515e7-b89d-4626-a83e-95a12051d74b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Alexxxx.ehKILA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Alexxxx.ehKILA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Karen.ZbNOBA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Karen.ZbNOBA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/alexxx.nrmnqw.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/alexxx.nrmnqw.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.zip" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/hvhjh.2MPwBQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/hvhjh.2MPwBQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/karenyyy.tMelPg.meta" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/karenyyy.tMelPg.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/album-mysql.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/assets/bw.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/assets/footer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/assets/header.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/assets/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/assets/main.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/assets/plain.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/crud.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/css/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/crud/CRUD/test.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/helper/schedulehelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/helper/schedulehelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/js/functions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/db_credentials.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/initialize.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/query_functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/shared/staff_footer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/shared/staff_header.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/private/validation_functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/pages/delete.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/pages/edit.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/pages/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/pages/new.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/pages/show.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/subjects/delete.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/subjects/edit.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/subjects/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/subjects/new.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/staff/subjects/show.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/schedule/public/stylesheets/staff.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/tasks/dept_record.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/tasks/dept_record.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/tasks/request_day_off.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/tasks/request_day_off.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/tasks/salary_report.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/tasks/salary_report.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/tests/tests.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/tests/tests.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/dept_sche_display.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/dept_sche_display.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/main.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/navbar.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/navbar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/request_day_off_display.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/request_day_off_display.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/salary_report_display.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/salary_report_display.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/schedule_display.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/schedule_display.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project/view/test.php" beforeDir="false" afterPath="$PROJECT_DIR$/cs431/src/project/view/test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs431/src/project7" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/Homework2-Fall18.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/Homework2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/Homework3-Fall18.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/Homework4-Fall18-v2.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/Programming1-Fall18.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/Programming2-Fall18.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/bank-additional-full.csv" beforeDir="false" afterPath="$PROJECT_DIR$/cs497/hw/Programming2/bank-additional-full.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw1.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw1.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw1.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw3.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/hw4.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_23_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_27_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/output_30_9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_31_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_31_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_31_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_33_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_33_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_33_5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_35_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_35_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_35_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_37_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_37_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_37_3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/output_6_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/programming_1.aux" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/programming_1.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/programming_1.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/programming_1.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/programming_1.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1 (2)/programming_1.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cs497/hw/programming_1.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds200/Labs/lab5/.ipynb_checkpoints/lab5-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ds200/Labs/lab5/.ipynb_checkpoints/lab5-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds200/Labs/lab5/lab5.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ds200/Labs/lab5/lab5.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds220/hw2/.ipynb_checkpoints/hw2-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ds220/hw2/.ipynb_checkpoints/hw2-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds220/hw2/hw2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ds220/hw2/hw2.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds220/hw3/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/ds220/hw3/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds220/hw3/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/ds220/hw3/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ds220/hw3/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/ds220/hw3/3.png" afterDir="false" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/HW/hw10/project" afterPath="$PROJECT_DIR$/cs431/HW/hw10/project" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9/.zip" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9/.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.zip" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedule.php" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedule.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedulehelper.php" afterPath="$PROJECT_DIR$/cs431/HW/hw9/project9/schedulehelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.local.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Alexxxx.ehKILA.meta" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Alexxxx.ehKILA.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Karen.ZbNOBA.meta" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/Karen.ZbNOBA.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/alexxx.nrmnqw.meta" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/alexxx.nrmnqw.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.meta" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/cs431_project._NbHdQ.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/hvhjh.2MPwBQ.meta" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/hvhjh.2MPwBQ.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/karenyyy.tMelPg.meta" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712/storage_v2/_src_/schema/karenyyy.tMelPg.meta" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/jsLibraryMappings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/misc.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/.idea/vcs.xml" afterPath="$PROJECT_DIR$/cs431/src/project/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/helper/schedulehelper.php" afterPath="$PROJECT_DIR$/cs431/src/project/helper/schedulehelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/index.php" afterPath="$PROJECT_DIR$/cs431/src/project/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/js/functions.js" afterPath="$PROJECT_DIR$/cs431/src/project/js/functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/tasks/dept_record.php" afterPath="$PROJECT_DIR$/cs431/src/project/tasks/dept_record.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/tasks/request_day_off.php" afterPath="$PROJECT_DIR$/cs431/src/project/tasks/request_day_off.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/tasks/salary_report.php" afterPath="$PROJECT_DIR$/cs431/src/project/tasks/salary_report.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/tests/tests.php" afterPath="$PROJECT_DIR$/cs431/src/project/tests/tests.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/dept_sche_display.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/dept_sche_display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/main.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/navbar.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/navbar.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/request_day_off_display.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/request_day_off_display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/salary_report_display.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/salary_report_display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/schedule_display.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/schedule_display.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cs431/src/project/view/test.php" afterPath="$PROJECT_DIR$/cs431/src/project/view/test.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -236,11 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file leaf-file-name="programming2.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cs497/hw/Programming2/programming2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3153">
-              <caret line="229" column="24" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
+            <state relative-caret-position="18">
+              <caret line="291" column="7" lean-forward="false" selection-start-line="291" selection-start-column="7" selection-end-line="291" selection-end-column="7" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -292,11 +141,22 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -361,9 +221,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.programming2">
+  <component name="RunManager">
     <configuration name="doc2vec" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="fa18" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -374,18 +233,14 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <module name="fa18" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ds310/lec1_files/doc2vec.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
     <configuration name="programming2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="fa18" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -396,25 +251,26 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <module name="fa18" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cs497/hw/Programming2/programming2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Python.doc2vec" />
-      <item itemvalue="Python.programming2" />
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.doc2vec" />
+      <item index="1" class="java.lang.String" itemvalue="Python.programming2" />
     </list>
     <recent_temporary>
-      <list>
-        <item itemvalue="Python.programming2" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.programming2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.doc2vec" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -430,33 +286,30 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-3" y="31" width="1926" height="1052" extended-state="6" />
+    <frame x="44" y="120" width="1926" height="1052" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14696486" />
-      <window_info active="true" id="Structure" order="1" visible="true" weight="0.20394036" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.11135135" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="right" id="SciView" weight="0.2428115" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="JSON Viewer" order="3" weight="0.32960597" />
-      <window_info anchor="right" id="Data View" order="4" />
-      <window_info anchor="right" id="Database" order="5" weight="0.32960597" />
-      <window_info anchor="right" id="JSON Utils" order="6" />
-      <window_info anchor="right" id="JWT" order="7" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="JWT" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="JSON Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="JSON Utils" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,13 +318,27 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cs497/hw/Programming2/programming2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ds310/lec1_files/doc2vec.py" />
     <entry file="file://$PROJECT_DIR$/ds310/lec1_files/text_helpers.py" />
     <entry file="file://$PROJECT_DIR$/cs497/hw/Programming2/programming2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3153">
-          <caret line="229" column="24" selection-start-line="229" selection-start-column="24" selection-end-line="229" selection-end-column="24" />
+        <state relative-caret-position="18">
+          <caret line="291" column="7" lean-forward="false" selection-start-line="291" selection-start-column="7" selection-end-line="291" selection-end-column="7" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
