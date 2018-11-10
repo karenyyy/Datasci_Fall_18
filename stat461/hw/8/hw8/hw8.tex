@@ -1,0 +1,887 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Assignment 8}
+    
+    \author{Jiarong Ye}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection*{Q1}\label{q1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Greenhouse. Consider an experiment to study the effect of three types
+  of fertilizer (F1, F2, and F3) on the growth of two species of plant
+  (SppA and SppB). The data are as follows:
+\end{enumerate}
+
+    \subsubsection*{input data}\label{input-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}100}]:} Fert\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{control\PYZdq{}}\PY{p}{,} \PY{l+m}{12}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{f1\PYZdq{}}\PY{p}{,} \PY{l+m}{12}\PY{p}{)}\PY{p}{,}
+          \PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{f2\PYZdq{}}\PY{p}{,} \PY{l+m}{12}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{f3\PYZdq{}}\PY{p}{,} \PY{l+m}{12}\PY{p}{)}\PY{p}{)}
+          Species\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{SppA\PYZdq{}}\PY{p}{,} \PY{l+m}{6}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{SppB\PYZdq{}}\PY{p}{,} \PY{l+m}{6}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{l+m}{4}\PY{p}{)}\PY{p}{)}
+          Height\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{21.0}\PY{p}{,} \PY{l+m}{19.5}\PY{p}{,} \PY{l+m}{22.5}\PY{p}{,} \PY{l+m}{21.5}\PY{p}{,} \PY{l+m}{20.5}\PY{p}{,} \PY{l+m}{21.0}\PY{p}{,}
+          \PY{l+m}{23.7}\PY{p}{,} \PY{l+m}{23.8}\PY{p}{,} \PY{l+m}{23.8}\PY{p}{,} \PY{l+m}{23.7}\PY{p}{,} \PY{l+m}{22.8}\PY{p}{,} \PY{l+m}{24.4}\PY{p}{,}
+          \PY{l+m}{32.0}\PY{p}{,} \PY{l+m}{30.5}\PY{p}{,} \PY{l+m}{25.0}\PY{p}{,} \PY{l+m}{27.5}\PY{p}{,} \PY{l+m}{28.0}\PY{p}{,} \PY{l+m}{28.6}\PY{p}{,}
+          \PY{l+m}{30.1}\PY{p}{,} \PY{l+m}{28.9}\PY{p}{,} \PY{l+m}{30.9}\PY{p}{,} \PY{l+m}{34.4}\PY{p}{,} \PY{l+m}{32.7}\PY{p}{,} \PY{l+m}{32.7}\PY{p}{,}
+          \PY{l+m}{22.5}\PY{p}{,} \PY{l+m}{26.0}\PY{p}{,} \PY{l+m}{28.0}\PY{p}{,} \PY{l+m}{27.0}\PY{p}{,} \PY{l+m}{26.5}\PY{p}{,} \PY{l+m}{25.2}\PY{p}{,}
+          \PY{l+m}{30.6}\PY{p}{,} \PY{l+m}{31.1}\PY{p}{,} \PY{l+m}{28.1}\PY{p}{,} \PY{l+m}{34.9}\PY{p}{,} \PY{l+m}{30.1}\PY{p}{,} \PY{l+m}{25.5}\PY{p}{,}
+          \PY{l+m}{28.0}\PY{p}{,} \PY{l+m}{27.5}\PY{p}{,} \PY{l+m}{31.0}\PY{p}{,} \PY{l+m}{29.5}\PY{p}{,} \PY{l+m}{30.0}\PY{p}{,} \PY{l+m}{29.2}\PY{p}{,}
+          \PY{l+m}{36.1}\PY{p}{,} \PY{l+m}{36.6}\PY{p}{,} \PY{l+m}{38.7}\PY{p}{,} \PY{l+m}{37.1}\PY{p}{,} \PY{l+m}{36.8}\PY{p}{,} \PY{l+m}{37.1}\PY{p}{)}
+          df\PY{o}{=}\PY{k+kt}{data.frame}\PY{p}{(}Fert\PY{o}{=}Fert\PY{p}{,} Species\PY{o}{=}Species\PY{p}{,} Height\PY{o}{=}Height\PY{p}{)}
+          df
+\end{Verbatim}
+
+    \begin{tabular}{|r|l|l|l|}
+ Fert & Species & Height\\
+\hline
+	 control & SppA    & 21.0   \\
+	 control & SppA    & 19.5   \\
+	 control & SppA    & 22.5   \\
+	 control & SppA    & 21.5   \\
+	 control & SppA    & 20.5   \\
+	 control & SppA    & 21.0   \\
+	 control & SppB    & 23.7   \\
+	 control & SppB    & 23.8   \\
+	 control & SppB    & 23.8   \\
+	 control & SppB    & 23.7   \\
+	 control & SppB    & 22.8   \\
+	 control & SppB    & 24.4   \\
+	 f1      & SppA    & 32.0   \\
+	 f1      & SppA    & 30.5   \\
+	 f1      & SppA    & 25.0   \\
+	 f1      & SppA    & 27.5   \\
+	 f1      & SppA    & 28.0   \\
+	 f1      & SppA    & 28.6   \\
+	 f1      & SppB    & 30.1   \\
+	 f1      & SppB    & 28.9   \\
+	 f1      & SppB    & 30.9   \\
+	 f1      & SppB    & 34.4   \\
+	 f1      & SppB    & 32.7   \\
+	 f1      & SppB    & 32.7   \\
+	 f2      & SppA    & 22.5   \\
+	 f2      & SppA    & 26.0   \\
+	 f2      & SppA    & 28.0   \\
+	 f2      & SppA    & 27.0   \\
+	 f2      & SppA    & 26.5   \\
+	 f2      & SppA    & 25.2   \\
+	 f2      & SppB    & 30.6   \\
+	 f2      & SppB    & 31.1   \\
+	 f2      & SppB    & 28.1   \\
+	 f2      & SppB    & 34.9   \\
+	 f2      & SppB    & 30.1   \\
+	 f2      & SppB    & 25.5   \\
+	 f3      & SppA    & 28.0   \\
+	 f3      & SppA    & 27.5   \\
+	 f3      & SppA    & 31.0   \\
+	 f3      & SppA    & 29.5   \\
+	 f3      & SppA    & 30.0   \\
+	 f3      & SppA    & 29.2   \\
+	 f3      & SppB    & 36.1   \\
+	 f3      & SppB    & 36.6   \\
+	 f3      & SppB    & 38.7   \\
+	 f3      & SppB    & 37.1   \\
+	 f3      & SppB    & 36.8   \\
+	 f3      & SppB    & 37.1   \\
+\end{tabular}
+
+
+    
+    \subsubsection*{(a)}\label{a}
+
+Write out the 2-way complete model for this experiment.
+
+\[Y_{ijt} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij} + \epsilon_{ijt}, \: \epsilon_{ijt}
+\stackrel{iid}{\sim} N(0, \sigma^2)\]
+
+\[i = control, f_1, f_2, f_3\] \[j = SppA, SppB\]
+\[t = 1, 2, 3, 4, 5, 6\]
+
+    \subsubsection*{(b)}\label{b}
+
+Fit the model using R and examine the residuals. Transform the response
+if needed to address any problems with normality or constant error
+variance. If you transform the response, clearly show the residuals from
+the un-transformed response, and your best transformation, and describe
+why you chose the transformation you did.
+
+    \paragraph{Null hypothesis:}\label{null-hypothesis}
+
+\[H_0 : (\alpha \beta)_{ij} = 0 \: for \: all \: i, j\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}101}]:} \PY{k+kn}{library}\PY{p}{(}car\PY{p}{)}
+          modelAB\PY{o}{=}aov\PY{p}{(}Height\PY{o}{\PYZti{}}Fert\PY{o}{+}Species\PY{o}{+}Fert\PY{o}{:}Species\PY{p}{,} data\PY{o}{=}df\PY{p}{)}
+          anova\PY{p}{(}modelAB\PY{p}{)}
+          Anova\PY{p}{(}modelAB\PY{p}{,}type\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{III\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+\[\]
+
+    \begin{tabular}{|r|l|l|l|l|l|}
+  & Df & Sum Sq & Mean Sq & F value & Pr(>F)\\
+\hline
+	Fert &  3           & 745.43750    & 248.47917    & 73.098232    & 2.765659e-16\\
+	Species &  1           & 236.74083    & 236.74083    & 69.645020    & 2.706508e-10\\
+	Fert:Species &  3           &  50.58417    &  16.86139    &  4.960326    & 5.080577e-03\\
+	Residuals & 40           & 135.97000    &   3.39925    &        NA    &           NA\\
+\end{tabular}
+
+\[\]
+\[\]
+
+    
+    \begin{tabular}{|r|l|l|l|l|}
+  & Sum Sq & Df & F value & Pr(>F)\\
+\hline
+	(Intercept) & 2646.00000   &  1           & 778.407002   & 7.768919e-28\\
+	Fert &  251.44000   &  3           &  24.656419   & 3.373242e-09\\
+	Species &   21.87000   &  1           &   6.433772   & 1.520353e-02\\
+	Fert:Species &   50.58417   &  3           &   4.960326   & 5.080577e-03\\
+	Residuals &  135.97000   & 40           &         NA   &           NA\\
+\end{tabular}
+
+\[\]
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}98}]:} p\PYZus{}fert\PYZus{}species \PY{o}{=} \PY{l+m}{5.080577e\PYZhy{}03}
+         p\PYZus{}fert\PYZus{}species \PY{o}{\PYZlt{}} \PY{l+m}{0.05}
+\end{Verbatim}
+
+    TRUE
+
+\[\]
+    
+    Since the p value of \texttt{Fert:Species} are smaller than 0.05, hence
+we are able to reject the null hypothesis at significance level of
+\(\alpha = 0.05\), assume that interaction effects are not zero.
+
+    \subsubsection*{check whether transformation is
+needed}\label{check-whether-transformation-is-needed}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}102}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+          plot\PY{p}{(}modelAB\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the Residual vs. Fitted plot we can see that for each vertical line
+of points representing a different treatment, the spread on the points
+does not appear to be equal. These 3 treatments do not have the same
+variance, the 2nd treatment has slightly larger spread than the others.
+So the assumption of constant variance is violated.
+
+From the QQ-plot above we could conclude that since not all the points
+fall on the dotted line, thus the residuals are not normal, it also
+appears to be slightly heavy tailed.
+
+    \subsubsection*{try transformation}\label{try-transformation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kn}{library}\PY{p}{(}knitr\PY{p}{)}
+         \PY{k+kn}{library}\PY{p}{(}lsmeans\PY{p}{)}
+\end{Verbatim}
+
+    \paragraph{square root}\label{square-root}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}103}]:} df\PY{o}{\PYZdl{}}sqrt\PYZus{}Height \PY{o}{=} \PY{k+kp}{sqrt}\PY{p}{(}df\PY{o}{\PYZdl{}}Height\PY{p}{)}
+          model\PYZus{}sqrt\PYZus{}AB\PY{o}{=}aov\PY{p}{(}sqrt\PYZus{}Height\PY{o}{\PYZti{}}Fert\PY{o}{+}Species\PY{o}{+}Fert\PY{o}{:}Species\PY{p}{,} data\PY{o}{=}df\PY{p}{)}
+          kable\PY{p}{(}anova\PY{p}{(}model\PYZus{}sqrt\PYZus{}AB\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+          par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+          plot\PY{p}{(}model\PYZus{}sqrt\PYZus{}AB\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|             | Df|    Sum Sq|   Mean Sq|   F value|    Pr(>F)|
+|:------------|--:|---------:|---------:|---------:|---------:|
+|Fert         |  3| 6.7501422| 2.2500474| 75.993806| 0.0000000|
+|Species      |  1| 2.0196976| 2.0196976| 68.213898| 0.0000000|
+|Fert:Species |  3| 0.3273222| 0.1091074|  3.685028| 0.0196204|
+|Residuals    | 40| 1.1843320| 0.0296083|        NA|        NA|
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{log}\label{log}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}104}]:} df\PY{o}{\PYZdl{}}log\PYZus{}Height \PY{o}{=} \PY{k+kp}{log}\PY{p}{(}df\PY{o}{\PYZdl{}}Height\PY{p}{)}
+          model\PYZus{}log\PYZus{}AB\PY{o}{=}aov\PY{p}{(}log\PYZus{}Height\PY{o}{\PYZti{}}Fert\PY{o}{+}Species\PY{o}{+}Fert\PY{o}{:}Species\PY{p}{,} data\PY{o}{=}df\PY{p}{)}
+          kable\PY{p}{(}anova\PY{p}{(}model\PYZus{}log\PYZus{}AB\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+          par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+          plot\PY{p}{(}model\PYZus{}log\PYZus{}AB\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|             | Df|    Sum Sq|   Mean Sq|   F value|    Pr(>F)|
+|:------------|--:|---------:|---------:|---------:|---------:|
+|Fert         |  3| 0.9902483| 0.3300828| 78.813105| 0.0000000|
+|Species      |  1| 0.2791987| 0.2791987| 66.663622| 0.0000000|
+|Fert:Species |  3| 0.0331922| 0.0110641|  2.641739| 0.0624076|
+|Residuals    | 40| 0.1675268| 0.0041882|        NA|        NA|
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{square}\label{square}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}105}]:} df\PY{o}{\PYZdl{}}square\PYZus{}Height \PY{o}{=} df\PY{o}{\PYZdl{}}Height\PY{o}{\PYZca{}}\PY{l+m}{2}
+          model\PYZus{}square\PYZus{}AB\PY{o}{=}aov\PY{p}{(}square\PYZus{}Height\PY{o}{\PYZti{}}Fert\PY{o}{+}Species\PY{o}{+}Fert\PY{o}{:}Species\PY{p}{,} data\PY{o}{=}df\PY{p}{)}
+          kable\PY{p}{(}anova\PY{p}{(}model\PYZus{}square\PYZus{}AB\PY{p}{)}\PY{p}{,} format\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{markdown\PYZsq{}}\PY{p}{)}
+          par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+          plot\PY{p}{(}model\PYZus{}square\PYZus{}AB\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+
+
+|             | Df|    Sum Sq|   Mean Sq|  F value|    Pr(>F)|
+|:------------|--:|---------:|---------:|--------:|---------:|
+|Fert         |  3| 2362176.0| 787392.01| 67.49736| 0.0000000|
+|Species      |  1|  842503.9| 842503.91| 72.22170| 0.0000000|
+|Fert:Species |  3|  282582.2|  94194.08|  8.07457| 0.0002528|
+|Residuals    | 40|  466620.9|  11665.52|       NA|        NA|
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    However, it seems that after transformation, the residual vs. fitted
+value plot and the QQ plot still remains as similar to the original
+version without incurring much changes. Hence we could leave the Height
+parameter untransformed.
+
+    \subsubsection*{(c)}\label{c}
+
+Describe the effect of species and fertilizer on mean height. This
+description should use the results of hypothesis tests and p-values as
+described in class. Discuss any relevant interaction effects, main
+effects and pairwise differences between treatment means. Provide a plot
+that shows the means for all combinations of factor levels. Provide R
+code and output that supports your results.
+
+    Since we reject the null hypothesis and find a significant interaction
+effect between Fert and Species, so instead of looking at the levels of
+Factor Fert and Factor Species independently, we proceed directly to
+looking for significant differences between all possible combinations of
+treatments.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{k+kn}{library}\PY{p}{(}multcompView\PY{p}{)}
+         modelAB\PY{o}{=}aov\PY{p}{(}Height\PY{o}{\PYZti{}}Fert\PY{o}{+}Species\PY{o}{+}Fert\PY{o}{:}Species\PY{p}{,} data\PY{o}{=}df\PY{p}{)}
+         lsminter\PY{o}{=}lsmeans\PY{p}{(}modelAB\PY{p}{,} \PY{o}{\PYZti{}} Fert\PY{o}{:}Species\PY{p}{)}
+         contrast\PY{p}{(}lsminter\PY{p}{,}method\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{pairwise\PYZdq{}}\PY{p}{)}
+         contrast\PYZus{}inter \PY{o}{=} cld\PY{p}{(}lsminter\PY{p}{,} alpha\PY{o}{=}\PY{l+m}{0.05}\PY{p}{)}
+         contrast\PYZus{}inter
+         plot\PY{p}{(}contrast\PYZus{}inter\PY{p}{)}
+\end{Verbatim}
+
+\[\]
+
+    
+    \begin{verbatim}
+ contrast                      estimate       SE df t.ratio p.value
+ control,SppA - f1,SppA       -7.600000 1.064464 40  -7.140  <.0001
+ control,SppA - f2,SppA       -4.866667 1.064464 40  -4.572  0.0011
+ control,SppA - f3,SppA       -8.200000 1.064464 40  -7.703  <.0001
+ control,SppA - control,SppB  -2.700000 1.064464 40  -2.536  0.2101
+ control,SppA - f1,SppB      -10.616667 1.064464 40  -9.974  <.0001
+ control,SppA - f2,SppB       -9.050000 1.064464 40  -8.502  <.0001
+ control,SppA - f3,SppB      -16.066667 1.064464 40 -15.094  <.0001
+ f1,SppA - f2,SppA             2.733333 1.064464 40   2.568  0.1979
+ f1,SppA - f3,SppA            -0.600000 1.064464 40  -0.564  0.9991
+ f1,SppA - control,SppB        4.900000 1.064464 40   4.603  0.0010
+ f1,SppA - f1,SppB            -3.016667 1.064464 40  -2.834  0.1150
+ f1,SppA - f2,SppB            -1.450000 1.064464 40  -1.362  0.8685
+ f1,SppA - f3,SppB            -8.466667 1.064464 40  -7.954  <.0001
+ f2,SppA - f3,SppA            -3.333333 1.064464 40  -3.131  0.0585
+ f2,SppA - control,SppB        2.166667 1.064464 40   2.035  0.4722
+ f2,SppA - f1,SppB            -5.750000 1.064464 40  -5.402  0.0001
+ f2,SppA - f2,SppB            -4.183333 1.064464 40  -3.930  0.0072
+ f2,SppA - f3,SppB           -11.200000 1.064464 40 -10.522  <.0001
+ f3,SppA - control,SppB        5.500000 1.064464 40   5.167  0.0002
+ f3,SppA - f1,SppB            -2.416667 1.064464 40  -2.270  0.3345
+ f3,SppA - f2,SppB            -0.850000 1.064464 40  -0.799  0.9922
+ f3,SppA - f3,SppB            -7.866667 1.064464 40  -7.390  <.0001
+ control,SppB - f1,SppB       -7.916667 1.064464 40  -7.437  <.0001
+ control,SppB - f2,SppB       -6.350000 1.064464 40  -5.965  <.0001
+ control,SppB - f3,SppB      -13.366667 1.064464 40 -12.557  <.0001
+ f1,SppB - f2,SppB             1.566667 1.064464 40   1.472  0.8174
+ f1,SppB - f3,SppB            -5.450000 1.064464 40  -5.120  0.0002
+ f2,SppB - f3,SppB            -7.016667 1.064464 40  -6.592  <.0001
+
+P value adjustment: tukey method for comparing a family of 8 estimates 
+    \end{verbatim}
+
+\[\]
+    
+    \begin{tabular}{|r|l|l|l|l|l|l|l|l|}
+  & Fert & Species & lsmean & SE & df & lower.CL & upper.CL & .group\\
+\hline
+	1 & control   & SppA      & 21.00000  & 0.7526896 & 40        & 19.47876  & 22.52124  &  1       \\
+	5 & control   & SppB      & 23.70000  & 0.7526896 & 40        & 22.17876  & 25.22124  &  12      \\
+	3 & f2        & SppA      & 25.86667  & 0.7526896 & 40        & 24.34542  & 27.38791  &   23     \\
+	2 & f1        & SppA      & 28.60000  & 0.7526896 & 40        & 27.07876  & 30.12124  &    34    \\
+	4 & f3        & SppA      & 29.20000  & 0.7526896 & 40        & 27.67876  & 30.72124  &    34    \\
+	7 & f2        & SppB      & 30.05000  & 0.7526896 & 40        & 28.52876  & 31.57124  &     4    \\
+	6 & f1        & SppB      & 31.61667  & 0.7526896 & 40        & 30.09542  & 33.13791  &     4    \\
+	8 & f3        & SppB      & 37.06667  & 0.7526896 & 40        & 35.54542  & 38.58791  &      5   \\
+\end{tabular}
+
+
+    
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.9\paperheight}}{output_23_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We could interpret the results of this analysis as follows: 
+    \begin{itemize}
+    	\item control-SppA has significantly lower mean than f1-SppA , f3-SppA,
+    	f1-SppB, f2-SppB, and f3-SppB.
+    	\item control-SppB has significantly lower
+    	mean than f1-SppB, f2-SppB, and f3-SppB.
+    	\item f2-SppA has significantly
+    	lower mean than f1-SppB, f2-SppB, and f3-SppB.
+    	\item f1-SppA has
+    	significantly lower mean than f3-SppB.
+    	\item f3-SppA has significantly lower
+    	mean than f3-SppB.
+    	\item  f2-SppB has significantly lower mean than f3-SppB.
+    	\item  f1-SppB has significantly lower mean than f3-SppB.
+    	\item  No other
+    	comparisons are significantly different than zero.
+    \end{itemize}
+    
+    \[\]
+       
+
+    \subsection*{Q2}\label{q2}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Consider the following data, the result of a 2-factor factorial
+  experiment with 5 replications for each combination of Factor A and
+  Factor B. Treatment combinations were assigned at random to the 20
+  experimental units.
+\end{enumerate}
+
+    \subsubsection*{input data}\label{input-data}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} A\PY{o}{=}\PY{k+kp}{as.factor}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{10}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+m}{2}\PY{p}{,} \PY{l+m}{10}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         B\PY{o}{=}\PY{k+kp}{as.factor}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{k+kt}{c}\PY{p}{(}\PY{k+kp}{rep}\PY{p}{(}\PY{l+m}{1}\PY{p}{,} \PY{l+m}{5}\PY{p}{)}\PY{p}{,} \PY{k+kp}{rep}\PY{p}{(}\PY{l+m}{2}\PY{p}{,} \PY{l+m}{5}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         resp\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{12.9}\PY{p}{,} \PY{l+m}{11.3}\PY{p}{,} \PY{l+m}{11.7}\PY{p}{,} \PY{l+m}{12.1}\PY{p}{,} \PY{l+m}{12.3}\PY{p}{,}
+         \PY{l+m}{13.7}\PY{p}{,} \PY{l+m}{12.8}\PY{p}{,} \PY{l+m}{13.6}\PY{p}{,} \PY{l+m}{13.1}\PY{p}{,} \PY{l+m}{13.5}\PY{p}{,}
+         \PY{l+m}{14.2}\PY{p}{,} \PY{l+m}{14.5}\PY{p}{,} \PY{l+m}{13.9}\PY{p}{,} \PY{l+m}{13.6}\PY{p}{,} \PY{l+m}{14.4}\PY{p}{,}
+         \PY{l+m}{13.5}\PY{p}{,} \PY{l+m}{13.1}\PY{p}{,} \PY{l+m}{13.3}\PY{p}{,} \PY{l+m}{13.1}\PY{p}{,} \PY{l+m}{13.4}\PY{p}{)}
+         df\PY{o}{=}\PY{k+kt}{data.frame}\PY{p}{(}A\PY{o}{=}A\PY{p}{,} B\PY{o}{=}B\PY{p}{,} resp\PY{o}{=}resp\PY{p}{)}
+         df
+\end{Verbatim}
+
+    \begin{tabular}{|r|l|l|l|}
+ A & B & resp\\
+\hline
+	 1    & 1    & 12.9\\
+	 1    & 1    & 11.3\\
+	 1    & 1    & 11.7\\
+	 1    & 1    & 12.1\\
+	 1    & 1    & 12.3\\
+	 1    & 2    & 13.7\\
+	 1    & 2    & 12.8\\
+	 1    & 2    & 13.6\\
+	 1    & 2    & 13.1\\
+	 1    & 2    & 13.5\\
+	 2    & 1    & 14.2\\
+	 2    & 1    & 14.5\\
+	 2    & 1    & 13.9\\
+	 2    & 1    & 13.6\\
+	 2    & 1    & 14.4\\
+	 2    & 2    & 13.5\\
+	 2    & 2    & 13.1\\
+	 2    & 2    & 13.3\\
+	 2    & 2    & 13.1\\
+	 2    & 2    & 13.4\\
+\end{tabular}
+
+
+    
+    \subsubsection*{(a)}\label{a}
+
+Write out the 2-way complete model for this experiment.
+
+\[Y_{ijt} = \mu + \alpha_i + \beta_j + (\alpha \beta)_{ij} + \epsilon_{ijt}, \: \epsilon_{ijt}
+\stackrel{iid}{\sim} N(0, \sigma^2)\]
+
+\[i = 1, 2\] \[j = 1, 2\] \[t = 1, 2, 3, 4, 5\]
+
+    \subsubsection*{(b)}\label{b}
+
+Fit the model using R and examine the residuals. Transform the response
+if needed to address any problems with normality or constant error
+variance. If you transform the response, clearly show the residuals from
+the un-transformed response, and your best transformation, and describe
+why you chose the transformation you did.
+
+    \paragraph{Null hypothesis:}\label{null-hypothesis}
+
+\[H_0 : (\alpha \beta)_{ij} = 0 \: for \: all \: i, j\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}90}]:} modelAB\PY{o}{=}aov\PY{p}{(}resp\PY{o}{\PYZti{}}A\PY{o}{+}B\PY{o}{+}A\PY{o}{:}B\PY{p}{,} data\PY{o}{=}df\PY{p}{)}
+         anova\PY{p}{(}modelAB\PY{p}{)}
+         Anova\PY{p}{(}modelAB\PY{p}{,}type\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{III\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{tabular}{|r|l|l|l|l|l|}
+  & Df & Sum Sq & Mean Sq & F value & Pr(>F)\\
+\hline
+	A &  1           & 5.000        & 5.000        & 29.411765    & 5.632385e-05\\
+	B &  1           & 0.242        & 0.242        &  1.423529    & 2.502161e-01\\
+	A:B &  1           & 5.618        & 5.618        & 33.047059    & 2.991163e-05\\
+	Residuals & 16           & 2.720        & 0.170        &        NA    &           NA\\
+\end{tabular}
+
+\[\]
+\[\]
+  
+    
+    \begin{tabular}{|r|l|l|l|l|}
+  & Sum Sq & Df & F value & Pr(>F)\\
+\hline
+	(Intercept) & 727.218      &  1           & 4277.75294   & 7.312780e-21\\
+	A &  10.609      &  1           &   62.40588   & 6.528729e-07\\
+	B &   4.096      &  1           &   24.09412   & 1.574407e-04\\
+	A:B &   5.618      &  1           &   33.04706   & 2.991163e-05\\
+	Residuals &   2.720      & 16           &         NA   &           NA\\
+\end{tabular}
+
+\[\]
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}91}]:} P\PYZus{}AB \PY{o}{=} \PY{l+m}{2.991163e\PYZhy{}05}
+         P\PYZus{}AB \PY{o}{\PYZlt{}} \PY{l+m}{0.05}
+\end{Verbatim}
+
+    TRUE
+
+\[\]
+    
+    Since the p value of \texttt{A:B} are all smaller than 0.05, hence we
+are able to reject the null hypothesis at significance level of
+\(\alpha = 0.05\), assume that interaction effects are not zero.
+
+    \subsubsection*{check whether transformation is
+needed}\label{check-whether-transformation-is-needed}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}92}]:} par\PY{p}{(}mfrow\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+m}{2}\PY{p}{,}\PY{l+m}{2}\PY{p}{)}\PY{p}{)}
+         plot\PY{p}{(}modelAB\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_35_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the Residual vs. Fitted plot we can see that for each vertical line
+of points representing a different treatment, the spread on the points
+appear to be equal. So the assumption of constant variance is not
+violated.
+
+From the QQ-plot above we could conclude that since basically all the
+points fall on the dotted line, thus the residuals are normal.
+
+Thus no transformation needed in this case.
+
+    \subsubsection*{(c)}\label{c}
+
+Describe the effect of Factors A and B on mean respnose. This
+description should use the results of hypothesis tests and p-values as
+described in class. Discuss any relevant interaction effects, main
+effects and pairwise differences between treatment means. Provide a plot
+that shows the means for all combinations of factor levels. Provide R
+code and output that supports your results.
+
+    Since we reject the null hypothesis and find a significant interaction
+effect between A and B, so instead of looking at the levels of Factor A
+and Factor B independently, we proceed directly to looking for
+significant differences between all possible combinations of treatments.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}95}]:} lsminter\PY{o}{=}lsmeans\PY{p}{(}modelAB\PY{p}{,} \PY{o}{\PYZti{}} A\PY{o}{:}B\PY{p}{)}
+         contrast\PY{p}{(}lsminter\PY{p}{,}method\PY{o}{=}\PY{l+s}{\PYZdq{}}\PY{l+s}{pairwise\PYZdq{}}\PY{p}{)}
+         contrast\PYZus{}inter \PY{o}{=} cld\PY{p}{(}lsminter\PY{p}{,} alpha\PY{o}{=}\PY{l+m}{0.05}\PY{p}{)}
+         contrast\PYZus{}inter
+         plot\PY{p}{(}contrast\PYZus{}inter\PY{p}{)}
+\end{Verbatim}
+\[\]
+
+    
+    \begin{verbatim}
+ contrast  estimate        SE df t.ratio p.value
+ 1,1 - 2,1    -2.06 0.2607681 16  -7.900  <.0001
+ 1,1 - 1,2    -1.28 0.2607681 16  -4.909  0.0008
+ 1,1 - 2,2    -1.22 0.2607681 16  -4.678  0.0013
+ 2,1 - 1,2     0.78 0.2607681 16   2.991  0.0389
+ 2,1 - 2,2     0.84 0.2607681 16   3.221  0.0247
+ 1,2 - 2,2     0.06 0.2607681 16   0.230  0.9955
+
+P value adjustment: tukey method for comparing a family of 4 estimates 
+    \end{verbatim}
+
+\[\]
+    
+    \begin{tabular}{|r|l|l|l|l|l|l|l|l|}
+  & A & B & lsmean & SE & df & lower.CL & upper.CL & .group\\
+\hline
+	1 & 1         & 1         & 12.06     & 0.1843909 & 16        & 11.66911  & 12.45089  &  1       \\
+	4 & 2         & 2         & 13.28     & 0.1843909 & 16        & 12.88911  & 13.67089  &   2      \\
+	3 & 1         & 2         & 13.34     & 0.1843909 & 16        & 12.94911  & 13.73089  &   2      \\
+	2 & 2         & 1         & 14.12     & 0.1843909 & 16        & 13.72911  & 14.51089  &    3     \\
+\end{tabular}
+
+
+    
+    
+    
+    \begin{center}
+    \adjustimage{max size={0.7\linewidth}{0.9\paperheight}}{output_39_3.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    We could interpret the results of this analysis as follows: 
+    \begin{itemize}
+    	\item  A1-B1 has
+    	significantly lower mean than A2-B1, A1-B2, A2-B2.
+    	\item  A2-B1 has
+    	significantly lower mean than A1-B2, A2-B2.
+    	\item  No other comparisons are
+    	significantly different than zero.
+    \end{itemize}
+      
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
