@@ -1,384 +1,135 @@
-\section{Introduction}
+\section{Background}
 
-The \textit{proceedings} are the records of a conference.\footnote{This
-  is a footnote}  ACM seeks
-to give these conference by-products a uniform, high-quality
-appearance.  To do this, ACM has some rigid requirements for the
-format of the proceedings documents: there is a specified format
-(balanced double columns), a specified set of fonts (Arial or
-Helvetica and Times Roman) in certain specified sizes, a specified
-live area, centered on the page, specified size of margins, specified
-column width and gutter size.
-
-\section{The Body of The Paper}
-Typically, the body of a paper is organized into a hierarchical
-structure, with numbered or unnumbered headings for sections,
-subsections, sub-subsections, and even smaller sections.  The command
-\texttt{{\char'134}section} that precedes this paragraph is part of
-such a hierarchy.\footnote{This is a footnote.} \LaTeX\ handles the
-numbering and placement of these headings for you, when you use the
-appropriate heading commands around the titles of the headings.  If
-you want a sub-subsection or smaller part to be unnumbered in your
-output, simply append an asterisk to the command name.  Examples of
-both numbered and unnumbered headings will appear throughout the
-balance of this sample document.
-
-Because the entire article is contained in the \textbf{document}
-environment, you can indicate the start of a new paragraph with a
-blank line in your input file; that is why this sentence forms a
-separate paragraph.
-
-\subsection{Type Changes and {\itshape Special} Characters}
-
-We have already seen several typeface changes in this sample.  You can
-indicate italicized words or phrases in your text with the command
-\texttt{{\char'134}textit}; emboldening with the command
-\texttt{{\char'134}textbf} and typewriter-style (for instance, for
-computer code) with \texttt{{\char'134}texttt}.  But remember, you do
-not have to indicate typestyle changes when such changes are part of
-the \textit{structural} elements of your article; for instance, the
-heading of this subsection will be in a sans serif\footnote{Another
-  footnote here.  Let's make this a rather long one to see how it
-  looks.} typeface, but that is handled by the document class file.
-Take care with the use of\footnote{Another footnote.}  the
-curly braces in typeface changes; they mark the beginning and end of
-the text that is to be in the different typeface.
-
-You can use whatever symbols, accented characters, or non-English
-characters you need anywhere in your document; you can find a complete
-list of what is available in the \textit{\LaTeX\ User's Guide}
-\cite{Lamport:LaTeX}.
-
-\subsection{Math Equations}
-You may want to display math equations in three distinct styles:
-inline, numbered or non-numbered display.  Each of
-the three are discussed in the next sections.
-
-\subsubsection{Inline (In-text) Equations}
-A formula that appears in the running text is called an
-inline or in-text formula.  It is produced by the
-\textbf{math} environment, which can be
-invoked with the usual \texttt{{\char'134}begin\,\ldots{\char'134}end}
-construction or with the short form \texttt{\$\,\ldots\$}. You
-can use any of the symbols and structures,
-from $\alpha$ to $\omega$, available in
-\LaTeX~\cite{Lamport:LaTeX}; this section will simply show a
-few examples of in-text equations in context. Notice how
-this equation:
-\begin{math}
-  \lim_{n\rightarrow \infty}x=0
-\end{math},
-set here in in-line math style, looks slightly different when
-set in display style.  (See next section).
-
-\subsubsection{Display Equations}
-A numbered display equation---one set off by vertical space from the
-text and centered horizontally---is produced by the \textbf{equation}
-environment. An unnumbered display equation is produced by the
-\textbf{displaymath} environment.
-
-Again, in either environment, you can use any of the symbols
-and structures available in \LaTeX\@; this section will just
-give a couple of examples of display equations in context.
-First, consider the equation, shown as an inline equation above:
-\begin{equation}
-  \lim_{n\rightarrow \infty}x=0
-\end{equation}
-Notice how it is formatted somewhat differently in
-the \textbf{displaymath}
-environment.  Now, we'll enter an unnumbered equation:
-\begin{displaymath}
-  \sum_{i=0}^{\infty} x + 1
-\end{displaymath}
-and follow it with another numbered equation:
-\begin{equation}
-  \sum_{i=0}^{\infty}x_i=\int_{0}^{\pi+2} f
-\end{equation}
-just to demonstrate \LaTeX's able handling of numbering.
-
-\subsection{Citations}
-Citations to articles~\cite{bowman:reasoning,
-clark:pct, braams:babel, herlihy:methodology},
-conference proceedings~\cite{clark:pct} or maybe
-books \cite{Lamport:LaTeX, salas:calculus} listed
-in the Bibliography section of your
-article will occur throughout the text of your article.
-You should use BibTeX to automatically produce this bibliography;
-you simply need to insert one of several citation commands with
-a key of the item cited in the proper location in
-the \texttt{.tex} file~\cite{Lamport:LaTeX}.
-The key is a short reference you invent to uniquely
-identify each work; in this sample document, the key is
-the first author's surname and a
-word from the title.  This identifying key is included
-with each item in the \texttt{.bib} file for your article.
-
-The details of the construction of the \texttt{.bib} file
-are beyond the scope of this sample document, but more
-information can be found in the \textit{Author's Guide},
-and exhaustive details in the \textit{\LaTeX\ User's
-Guide} by Lamport~\shortcite{Lamport:LaTeX}.
-
-This article shows only the plainest form
-of the citation command, using \texttt{{\char'134}cite}.
-
-Some examples.  A paginated journal article \cite{Abril07}, an enumerated
-journal article \cite{Cohen07}, a reference to an entire issue \cite{JCohen96},
-a monograph (whole book) \cite{Kosiur01}, a monograph/whole book in a series (see 2a in spec. document)
-\cite{Harel79}, a divisible-book such as an anthology or compilation \cite{Editor00}
-followed by the same example, however we only output the series if the volume number is given
-\cite{Editor00a} (so Editor00a's series should NOT be present since it has no vol. no.),
-a chapter in a divisible book \cite{Spector90}, a chapter in a divisible book
-in a series \cite{Douglass98}, a multi-volume work as book \cite{Knuth97},
-an article in a proceedings (of a conference, symposium, workshop for example)
-(paginated proceedings article) \cite{Andler79}, a proceedings article
-with all possible elements \cite{Smith10}, an example of an enumerated
-proceedings article \cite{VanGundy07},
-an informally published work \cite{Harel78}, a doctoral dissertation \cite{Clarkson85},
-a master's thesis: \cite{anisi03}, an online document / world wide web
-resource \cite{Thornburg01, Ablamowicz07, Poker06}, a video game (Case 1) \cite{Obama08} and (Case 2) \cite{Novak03}
-and \cite{Lee05} and (Case 3) a patent \cite{JoeScientist001},
-work accepted for publication \cite{rous08}, 'YYYYb'-test for prolific author
-\cite{SaeediMEJ10} and \cite{SaeediJETC10}. Other cites might contain
-'duplicate' DOI and URLs (some SIAM articles) \cite{Kirschmer:2010:AEI:1958016.1958018}.
-Boris / Barbara Beeton: multi-volume works as books
-\cite{MR781536} and \cite{MR781537}.
-
-A couple of citations with DOIs: \cite{2004:ITE:1009386.1010128,
-  Kirschmer:2010:AEI:1958016.1958018}.
-
-Online citations: \cite{TUGInstmem, Thornburg01, CTANacmart}.
+With the exponentially generated and accumulated data from varied
+sources like mobile devices, mechanical sensors, financial transactions,
+satellite imaging, the task of data managing gets much more challenging
+day after day. And these collected raw data are in a wide range of
+forms, most are unstructured, like images, videos, audios, etc. In the
+whole data processing pipeline, starting from data integrating and
+storing, it's already a quite essential part. Since the consistency,
+accessibility, velocity of data inserting and retrieving might make a
+huge difference to the following data manipulation tasks, especially in
+fields like finance, social networks, etc. Thus making an optimal choice
+of the right database for different data format, different data volume,
+different business focus like whether velocity or consistency is more
+important for the client's perspective.
 
 
-\subsection{Tables}
-Because tables cannot be split across pages, the best
-placement for them is typically the top of the page
-nearest their initial cite.  To
-ensure this proper ``floating'' placement of tables, use the
-environment \textbf{table} to enclose the table's contents and
-the table caption.  The contents of the table itself must go
-in the \textbf{tabular} environment, to
-be aligned properly in rows and columns, with the desired
-horizontal and vertical rules.  Again, detailed instructions
-on \textbf{tabular} material
-are found in the \textit{\LaTeX\ User's Guide}.
 
-Immediately following this sentence is the point at which
-Table~\ref{tab:freq} is included in the input file; compare the
-placement of the table here with the table in the printed
-output of this document.
+\section{Introduction of NoSQL Databases}
 
-\begin{table}
-  \caption{Frequency of Special Characters}
-  \label{tab:freq}
-  \begin{tabular}{ccl}
-    \toprule
-    Non-English or Math&Frequency&Comments\\
-    \midrule
-    \O & 1 in 1,000& For Swedish names\\
-    $\pi$ & 1 in 5& Common in math\\
-    \$ & 4 in 5 & Used in business\\
-    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
-  \bottomrule
-\end{tabular}
-\end{table}
+Widely used Database Management Systems are Relational DBMS such as SQL
+(MySQL, SQL Server), and NoSQL(Not Only SQL). NoSQL is not built for the entire replacement of SQL, but as a complementary option for different tasks. 
+The architecture of NoSQL databases are distributed and fault-tolerant by utilizing replica sets among multiple machine to 
+guarantee data availability in the case of network disruption or when certain servers accidentally go down.
+Why the relational DBMS is
+limited is that due to its strong focus on consistency and reliability
+and ACID guaranteed (ACID: Atomicity, Consistency, Isolation and
+Durability), thus also making it difficult for scaling, which is one of
+the many reasons why NoSQL is considered better than SQL. To reach a
+balance between availability and consistency, NoSQL achieve more optimal
+level of consistency by slightly sacrificing its availability.\\
 
-To set a wider table, which takes up the whole width of the page's
-live area, use the environment \textbf{table*} to enclose the table's
-contents and the table caption.  As with a single-column table, this
-wide table will ``float'' to a location deemed more desirable.
-Immediately following this sentence is the point at which
-Table~\ref{tab:commands} is included in the input file; again, it is
-instructive to compare the placement of the table here with the table
-in the printed output of this document.
+\noindent NoSQL also can reduce the level of availability to achieve higher
+consistency. However there are still many remaining problems which NoSQL
+databases cannot solve. As a result, providers produced distinct data
+model CDBMSs(Cloud Database Management System) to satisfy different
+requirements, whereas each of them are present an imperfection.\\
+
+\noindent By design, NoSQL databases and management systems are relation-less (or
+schema-less). They are not based on a single model (e.g. relational
+model of RDBMSs) and each database, depending on their
+target-functionality, adopt a different one.\\
 
 
-\begin{table*}
-  \caption{Some Typical Commands}
-  \label{tab:commands}
-  \begin{tabular}{ccl}
-    \toprule
-    Command &A Number & Comments\\
-    \midrule
-    \texttt{{\char'134}author} & 100& Author \\
-    \texttt{{\char'134}table}& 300 & For tables\\
-    \texttt{{\char'134}table*}& 400& For wider tables\\
-    \bottomrule
-  \end{tabular}
-\end{table*}
-% end the environment with {table*}, NOTE not {table}!
-
-It is strongly recommended to use the package booktabs~\cite{Fear05}
-and follow its main principles of typography with respect to tables:
-\begin{enumerate}
-\item Never, ever use vertical rules.
-\item Never use double rules.
-\end{enumerate}
-It is also a good idea not to overuse horizontal rules.
+\noindent In a way, RDBMS is still the mainstay in the industry, however, scalability is the major limitation of RDBMS since it is not built to support distributed system. That's when the NoSQL comes into play. Compared with the conventional relational data storage system, one of the main reasons that NoSQL stands out is that it is easy to scale horizontally. With sharding, which would be explored in more details later, it partitions data onto a cluster of remote machines, boosting the overall performance while controlling cost with cheap commodity hardware. And the ability to process massive amount of data with a schema-less structure is also what makes NoSQL more popular in data mining industries where the data that most engineers and data scientists have to work with are  unstructured with flexible schema.\\
 
 
-\subsection{Figures}
-
-Like tables, figures cannot be split across pages; the best placement
-for them is typically the top or the bottom of the page nearest their
-initial cite.  To ensure this proper ``floating'' placement of
-figures, use the environment \textbf{figure} to enclose the figure and
-its caption.
-
-This sample document contains examples of \texttt{.eps} files to be
-displayable with \LaTeX.  If you work with pdf\LaTeX, use files in the
-\texttt{.pdf} format.  Note that most modern \TeX\ systems will convert
-\texttt{.eps} to \texttt{.pdf} for you on the fly.  More details on
-each of these are found in the \textit{Author's Guide}.
-
-\begin{figure}
-\includegraphics{fly}
-\caption{A sample black and white graphic.}
-\end{figure}
-
-\begin{figure}
-\includegraphics[height=1in, width=1in]{fly}
-\caption{A sample black and white graphic
-that has been resized with the \texttt{includegraphics} command.}
-\end{figure}
+\section{Characteristics of NoSQL Databases}
 
 
-As was the case with tables, you may want a figure that spans two
-columns.  To do this, and still to ensure proper ``floating''
-placement of tables, use the environment \textbf{figure*} to enclose
-the figure and its caption.  And don't forget to end the environment
-with \textbf{figure*}, not \textbf{figure}!
 
-\begin{figure*}
-\includegraphics{flies}
-\caption{A sample black and white graphic
-that needs to span two columns of text.}
-\end{figure*}
+\subsection{Availability}
+
+\subsubsection{Replication}\mbox{}
+
+To guarantee high availability, the mechanism of failover is utilized by creating replica sets as remedy for server malfunctions, network disruptions, system maintenance and upgrade. 
+
+\subsection{Scalability}
+
+\subsubsection{Master-slave}\mbox{}
+
+For databases with master-slave mechanism, all writes into the database are written to the master node, and all reads are processed through the replication set of slave nodes. This centralization architecture could encounter significant inconvenience when the incoming dataset is large, the step when the master node duplicates the data and then passes them down to slave nodes will slow down the entire processing speed. Moreover, if the data written in is somehow incorrect, the mistake would be propogated down to all the slave nodes as well, hence providing the wrong version of data to the users for that the master node is the only source that receives the input raw data.
+
+\subsubsection{Sharding}\mbox{}
+
+In the partitioning step, carefully designed hashing functions are applied to distribute the data as balanced as possible to multiple workers on a cluster to process in parallel. However the improvement of performance comes with sacrifice as well, that across partitions, operations such as joins since the lack of consistency and flexible schema all violate the prerequisite of executing joins. And complex relation features are not supported and referential integrity constraints can also no longer be maintained.
 
 
-\begin{figure}
-\includegraphics[height=1in, width=1in]{rosette}
-\caption{A sample black and white graphic that has
-been resized with the \texttt{includegraphics} command.}
-\end{figure}
+\subsection{Consistency}\mbox{}
 
-\subsection{Theorem-like Constructs}
+As a distributed system, since the writes of data into storage is asynchronous, thus with different architecture, the real-time consistency is not guaranteed. But the eventual consistency is absolute after all updates are propagated throughout the system 
 
-Other common constructs that may occur in your article are the forms
-for logical constructs like theorems, axioms, corollaries and proofs.
-ACM uses two types of these constructs:  theorem-like and
-definition-like.
 
-Here is a theorem:
-\begin{theorem}
-  Let $f$ be continuous on $[a,b]$.  If $G$ is
-  an antiderivative for $f$ on $[a,b]$, then
-  \begin{displaymath}
-    \int^b_af(t)\,dt = G(b) - G(a).
-  \end{displaymath}
-\end{theorem}
 
-Here is a definition:
-\begin{definition}
-  If $z$ is irrational, then by $e^z$ we mean the
-  unique number that has
-  logarithm $z$:
-  \begin{displaymath}
-    \log e^z = z.
-  \end{displaymath}
-\end{definition}
 
-The pre-defined theorem-like constructs are \textbf{theorem},
-\textbf{conjecture}, \textbf{proposition}, \textbf{lemma} and
-\textbf{corollary}.  The pre-defined de\-fi\-ni\-ti\-on-like constructs are
-\textbf{example} and \textbf{definition}.  You can add your own
-constructs using the \textsl{amsthm} interface~\cite{Amsthm15}.  The
-styles used in the \verb|\theoremstyle| command are \textbf{acmplain}
-and \textbf{acmdefinition}.
+\section{Data Models of NoSQL Databases}
 
-Another construct is \textbf{proof}, for example,
+Although various NoSQL databases are currently used in industries depending on the different products and services each company offers to their target clients, there are several major NoSQL in each of its four categories that are most widely used: Redis as key-value store database, Cassandra as column-oriented database, MongoDB as document-oriented database and Neo4j as graph database.
+\subsection{Key-Value Databases}
 
-\begin{proof}
-  Suppose on the contrary there exists a real number $L$ such that
-  \begin{displaymath}
-    \lim_{x\rightarrow\infty} \frac{f(x)}{g(x)} = L.
-  \end{displaymath}
-  Then
-  \begin{displaymath}
-    l=\lim_{x\rightarrow c} f(x)
-    = \lim_{x\rightarrow c}
-    \left[ g{x} \cdot \frac{f(x)}{g(x)} \right ]
-    = \lim_{x\rightarrow c} g(x) \cdot \lim_{x\rightarrow c}
-    \frac{f(x)}{g(x)} = 0\cdot L = 0,
-  \end{displaymath}
-  which contradicts our assumption that $l\neq 0$.
-\end{proof}
+Key-value database storage systems store data in a distributed system
+
+\subsubsection{Redis}\mbox{}\mbox{}
+
+As a NoSQL database written in C++, the excel performance and high I/O speed of Redis makes it an optimal choice for 
+caching. Redis supports varied data structures such as list, queue, set (basic operations like union, intersection, difference), hash table, stc. 
+
+Redis is preferred for applications with real-time data collecting and processing, which specifically requires high I/O speed because the incoming data is updating rapidly.
+
+\subsection{Column-oriented Databases}
+
+\subsubsection{Cassandra}\mbox{}\mbox{}
+
+Cassandra shines in the applications with large clusters. The replication mechanism guarantees high availability of each data center. And the querying language (CQL) used in Cassandra is quite similar to SQL, hence the learning curve is not as steep as databases like HBase with the entire ecosystem including zookeeper, pig, hive, etc.
+
+\subsection{Document-oriented Databases}
+
+\subsubsection{MongoDB}\mbox{}
+
+Among many NoSQL databases, MongoDB is considered the most popular with the largest number of users. Because not only does it has features of NoSQL database system like flexible schema, easy to scale out and also MongoDB is quite SQL-friendly, for instance, MongoDB allows users to create indexes to speed up the searching process. And the support of writing quries in Javascript and inserting data with a semi-structured format like json, bson, etc. makes MongoDB a user-friendly choice because unlike the other NoSQL databases, it does not require users to learn new syntax specific to the database in order to start using it.
+
+
+\subsection{Graph Databases}
+
+
+\subsubsection{Neo4J}
+
+
+
+\section{Benefits And Drawbacks}
+
+\subsection{Benefits}
+
+\subsubsection{Scaling Capability}
+
+\subsubsection{Process Big Data}
+
+\subsubsection{Flexible schema}
+
+\subsubsection{Cost}
+
+\subsection{Drawbacks}
+
+\subsubsection{Not Support Complicated transactions}
+
+\begin{itemize}
+	\item Join
+	\item Aggregate
+\end{itemize}
+
+\subsubsection{Stability}
 
 \section{Conclusions}
-This paragraph will end the body of this sample document.
-Remember that you might still have Acknowledgments or
-Appendices; brief samples of these
-follow.  There is still the Bibliography to deal with; and
-we will make a disclaimer about that here: with the exception
-of the reference to the \LaTeX\ book, the citations in
-this paper are to articles which have nothing to
-do with the present subject and are used as
-examples only.
-%\end{document}  % This is where a 'short' article might terminate
 
 
-
-\appendix
-%Appendix A
-\section{Headings in Appendices}
-The rules about hierarchical headings discussed above for
-the body of the article are different in the appendices.
-In the \textbf{appendix} environment, the command
-\textbf{section} is used to
-indicate the start of each Appendix, with alphabetic order
-designation (i.e., the first is A, the second B, etc.) and
-a title (if you include one).  So, if you need
-hierarchical structure
-\textit{within} an Appendix, start with \textbf{subsection} as the
-highest level. Here is an outline of the body of this
-document in Appendix-appropriate form:
-\subsection{Introduction}
-\subsection{The Body of the Paper}
-\subsubsection{Type Changes and  Special Characters}
-\subsubsection{Math Equations}
-\paragraph{Inline (In-text) Equations}
-\paragraph{Display Equations}
-\subsubsection{Citations}
-\subsubsection{Tables}
-\subsubsection{Figures}
-\subsubsection{Theorem-like Constructs}
-\subsubsection*{A Caveat for the \TeX\ Expert}
-\subsection{Conclusions}
-\subsection{References}
-Generated by bibtex from your \texttt{.bib} file.  Run latex,
-then bibtex, then latex twice (to resolve references)
-to create the \texttt{.bbl} file.  Insert that \texttt{.bbl}
-file into the \texttt{.tex} source file and comment out
-the command \texttt{{\char'134}thebibliography}.
-% This next section command marks the start of
-% Appendix B, and does not continue the present hierarchy
-\section{More Help for the Hardy}
-
-Of course, reading the source code is always useful.  The file
-\path{acmart.pdf} contains both the user guide and the commented
-code.
-
-\begin{acks}
-  The authors would like to thank Dr. Yuhua Li for providing the
-  MATLAB code of the \textit{BEPS} method.
-
-  The authors would also like to thank the anonymous referees for
-  their valuable comments and helpful suggestions. The work is
-  supported by the \grantsponsor{GS501100001809}{National Natural
-    Science Foundation of
-    China}{http://dx.doi.org/10.13039/501100001809} under Grant
-  No.:~\grantnum{GS501100001809}{61273304}
-  and~\grantnum[http://www.nnsf.cn/youngscientists]{GS501100001809}{Young
-    Scientists' Support Program}.
-
-\end{acks}

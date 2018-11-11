@@ -1,38 +1,127 @@
-\begin{thebibliography}{1}
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\bibitem{Loureno2015ChoosingTR}
-Jo{\~a}o~Ricardo Lourenço, Bruno Cabral, Paulo Carreiro, Marco Vieira, and
-  Jorge Bernardino.
-\newblock Choosing the right nosql database for the job: a quality attribute
-  evaluation.
-\newblock {\em Journal of Big Data}, 2:1--26, 2015.
+\begin{thebibliography}{6}
 
-\bibitem{DBLP:journals/corr/MoniruzzamanH13}
-A.~B.~M. Moniruzzaman and Syed~Akhter Hossain.
-\newblock Nosql database: New era of databases for big data analytics -
-  classification, characteristics and comparison.
-\newblock {\em CoRR}, abs/1307.0191, 2013.
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
 
-\bibitem{DBLP:journals/corr/Sharma15b}
-Sugam Sharma.
-\newblock An extended classification and comparison of nosql big data models.
-\newblock {\em CoRR}, abs/1509.08035, 2015.
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
 
-\bibitem{Strl2015SchemalessND}
-Uta St{\"o}rl, Thomas Hauf, Meike Klettke, and Stefanie Scherzinger.
-\newblock Schemaless nosql data stores - object-nosql mappers to the rescue?
-\newblock In {\em BTW}, 2015.
+\bibitem[\protect\citeauthoryear{Lourenço, Cabral, Carreiro, Vieira, and
+  Bernardino}{Lourenço et~al\mbox{.}}{2015}]%
+        {Loureno2015ChoosingTR}
+\bibfield{author}{\bibinfo{person}{Jo{\~a}o~Ricardo Lourenço},
+  \bibinfo{person}{Bruno Cabral}, \bibinfo{person}{Paulo Carreiro},
+  \bibinfo{person}{Marco Vieira}, {and} \bibinfo{person}{Jorge Bernardino}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Choosing the right NoSQL database for the job: a
+  quality attribute evaluation}.
+\newblock \bibinfo{journal}{\emph{Journal of Big Data}}  \bibinfo{volume}{2}
+  (\bibinfo{year}{2015}), \bibinfo{pages}{1--26}.
+\newblock
 
-\bibitem{Truica2015PerformanceEF}
-Ciprian-Octavian Truica, Florin Radulescu, Alexandru Boicea, and Ion Bucur.
-\newblock Performance evaluation for crud operations in asynchronously
-  replicated document oriented database.
-\newblock {\em 2015 20th International Conference on Control Systems and
-  Computer Science}, pages 191--196, 2015.
 
-\bibitem{DBLP:journals/corr/abs-1804-00465}
-Xi~Zheng.
-\newblock Database as a service - current issues and its future.
-\newblock {\em CoRR}, abs/1804.00465, 2018.
+\bibitem[\protect\citeauthoryear{Moniruzzaman and Hossain}{Moniruzzaman and
+  Hossain}{2013}]%
+        {DBLP:journals/corr/MoniruzzamanH13}
+\bibfield{author}{\bibinfo{person}{A.~B.~M. Moniruzzaman} {and}
+  \bibinfo{person}{Syed~Akhter Hossain}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{NoSQL Database: New Era of Databases for Big data
+  Analytics - Classification, Characteristics and Comparison}.
+\newblock \bibinfo{journal}{\emph{CoRR}}  \bibinfo{volume}{abs/1307.0191}
+  (\bibinfo{year}{2013}).
+\newblock
+\showeprint[arxiv]{1307.0191}
+\urldef\tempurl%
+\url{http://arxiv.org/abs/1307.0191}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Sharma}{Sharma}{2015}]%
+        {DBLP:journals/corr/Sharma15b}
+\bibfield{author}{\bibinfo{person}{Sugam Sharma}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{An Extended Classification and Comparison of NoSQL
+  Big Data Models}.
+\newblock \bibinfo{journal}{\emph{CoRR}}  \bibinfo{volume}{abs/1509.08035}
+  (\bibinfo{year}{2015}).
+\newblock
+\showeprint[arxiv]{1509.08035}
+\urldef\tempurl%
+\url{http://arxiv.org/abs/1509.08035}
+\showURL{%
+\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{St{\"o}rl, Hauf, Klettke, and
+  Scherzinger}{St{\"o}rl et~al\mbox{.}}{2015}]%
+        {Strl2015SchemalessND}
+\bibfield{author}{\bibinfo{person}{Uta St{\"o}rl}, \bibinfo{person}{Thomas
+  Hauf}, \bibinfo{person}{Meike Klettke}, {and} \bibinfo{person}{Stefanie
+  Scherzinger}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Schemaless NoSQL Data Stores - Object-NoSQL Mappers
+  to the Rescue?}. In \bibinfo{booktitle}{\emph{BTW}}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Truica, Radulescu, Boicea, and Bucur}{Truica
+  et~al\mbox{.}}{2015}]%
+        {Truica2015PerformanceEF}
+\bibfield{author}{\bibinfo{person}{Ciprian-Octavian Truica},
+  \bibinfo{person}{Florin Radulescu}, \bibinfo{person}{Alexandru Boicea}, {and}
+  \bibinfo{person}{Ion Bucur}.} \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Performance Evaluation for CRUD Operations in
+  Asynchronously Replicated Document Oriented Database}.
+\newblock \bibinfo{journal}{\emph{2015 20th International Conference on Control
+  Systems and Computer Science}} (\bibinfo{year}{2015}),
+  \bibinfo{pages}{191--196}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Zheng}{Zheng}{2018}]%
+        {DBLP:journals/corr/abs-1804-00465}
+\bibfield{author}{\bibinfo{person}{Xi Zheng}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Database as a Service - Current Issues and Its
+  Future}.
+\newblock \bibinfo{journal}{\emph{CoRR}}  \bibinfo{volume}{abs/1804.00465}
+  (\bibinfo{year}{2018}).
+\newblock
+\showeprint[arxiv]{1804.00465}
+\urldef\tempurl%
+\url{http://arxiv.org/abs/1804.00465}
+\showURL{%
+\tempurl}
+
 
 \end{thebibliography}
