@@ -1,0 +1,819 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+    \usepackage{float}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    \usepackage{mathrsfs}
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    \title{Assignment 12}
+    \author{Jiarong Ye}
+    
+    
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in, left=1cm, right=1cm}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+\subsection*{\texorpdfstring{ \href{http://cs431project-jxy225.herokuapp.com/view/schedule_emptype_display.php}{click for
+			demo}}{test cases (click for demo)}}\label{test-cases-click-for-demo}
+    
+    \subsection*{SQL queries}\label{sql-queries}
+
+    \paragraph{list all available
+employees}\label{list-all-available-employees}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{select} \PY{n}{empid}\PY{p}{,} \PY{n}{emptype}
+        \PY{k+kn}{from} \PY{n+nn}{employees2}
+        \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{empid} \PY{o+ow}{not} \PY{o+ow}{in}
+            \PY{p}{(}\PY{n}{select} \PY{n}{empid} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}\PY{p}{,} \PY{n}{table2}\PY{o}{.}\PY{n}{date} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{empid}
+                \PY{k+kn}{from} \PY{n+nn}{employees2}
+                \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{table1}
+            \PY{n}{inner} \PY{n}{join}
+            \PY{p}{(}\PY{n}{select} \PY{o}{*}
+                \PY{k+kn}{from} \PY{n+nn}{daysoff}\PY{p}{)} \PY{k}{as} \PY{n}{table2}
+            \PY{n}{on} \PY{n}{table1}\PY{o}{.}\PY{n}{empid} \PY{o}{=} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}
+            \PY{n}{where} \PY{n}{date} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{request\PYZus{}day\PYZus{}off}\PY{p}{)}
+        \PY{o+ow}{and} \PY{n}{empid} \PY{o+ow}{not} \PY{o+ow}{in}
+            \PY{p}{(}\PY{n}{select} \PY{n}{empid} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}\PY{p}{,} \PY{n}{table2}\PY{o}{.}\PY{n}{date} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{empid}
+                \PY{k+kn}{from} \PY{n+nn}{employees2}
+                \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{table1}
+            \PY{n}{inner} \PY{n}{join}
+            \PY{p}{(}\PY{n}{select} \PY{o}{*}
+                \PY{k+kn}{from} \PY{n+nn}{schedule2}\PY{p}{)} \PY{k}{as} \PY{n}{table2}
+            \PY{n}{on} \PY{n}{table1}\PY{o}{.}\PY{n}{empid} \PY{o}{=} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}
+            \PY{n}{where} \PY{n}{date} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{already\PYZus{}scheduled}\PY{p}{)}
+\end{Verbatim}
+
+    \paragraph{schedule avaiable employee}\label{schedule-avaiable-employee}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{insert} \PY{n}{into} \PY{n}{schedule2} \PY{p}{(}\PY{n}{dept}\PY{p}{,} \PY{n}{date}\PY{p}{,} \PY{n}{shift}\PY{p}{,} \PY{n}{empid}\PY{p}{)}
+                     \PY{n}{values} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{p}{empid}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+    \paragraph{update the department needs
+table}\label{update-the-department-needs-table}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{update} \PY{n}{department\PYZus{}need}
+        \PY{n+nb}{set} \PY{n}{number\PYZus{}of\PYZus{}employees} \PY{o}{=} \PY{n}{number\PYZus{}of\PYZus{}employees} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+        \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{date}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{period}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{department\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}
+        
+        \PY{c+c1}{\PYZsh{} or delete if the number of employees needed for the department is 0 after updating      }
+        \PY{n}{delete} \PY{k+kn}{from} \PY{n+nn}{department\PYZus{}need}
+        \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{date}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{period}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}
+        \PY{o+ow}{and} \PY{n}{department\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+    \subsection*{php code}\label{php-code}
+
+    \subsubsection*{list all available employees (not scheduled or requested
+any day
+off)}\label{list-all-available-employees-not-scheduled-or-requested-any-day-off}
+
+\begin{itemize}
+\tightlist
+\item
+  input
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Date
+  \item
+    Employee Type
+  \end{itemize}
+\item
+  output
+
+  \begin{itemize}
+  \tightlist
+  \item
+    a list of all available employees of the assigned employee type on
+    that assigned date
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZlt{}}\PY{n}{?}\PY{n}{php}
+        \PY{o}{/}\PY{o}{*}\PY{o}{*}
+         \PY{o}{*} \PY{n}{Created} \PY{n}{by} \PY{n}{PhpStorm}\PY{o}{.}
+         \PY{o}{*} \PY{n}{User}\PY{p}{:} \PY{n}{karen}
+         \PY{o}{*} \PY{n}{Date}\PY{p}{:} \PY{l+m+mi}{11}\PY{o}{/}\PY{l+m+mi}{14}\PY{o}{/}\PY{l+m+mi}{18}
+         \PY{o}{*} \PY{n}{Time}\PY{p}{:} \PY{l+m+mi}{4}\PY{p}{:}\PY{l+m+mi}{41} \PY{n}{PM}
+         \PY{o}{*}\PY{o}{/}
+        
+        
+        \PY{n}{require\PYZus{}once}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../connect/connect.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{require\PYZus{}once}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../helper/schedulehelper.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        
+        \PY{n}{function} \PY{n}{check\PYZus{}available}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+            \PY{k}{if} \PY{p}{(}\PY{n}{isset}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+                      \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n}{\PYZdl{}}\PY{n}{date} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{emptype} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}
+                    \PY{n}{select} \PY{n}{empid}\PY{p}{,} \PY{n}{emptype}
+                        \PY{k+kn}{from} \PY{n+nn}{employees2}
+                        \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+                        \PY{o+ow}{and} \PY{n}{empid} \PY{o+ow}{not} \PY{o+ow}{in}
+                            \PY{p}{(}\PY{n}{select} \PY{n}{empid} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}\PY{p}{,} \PY{n}{table2}\PY{o}{.}\PY{n}{date} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{empid}
+                                                                    \PY{k+kn}{from} \PY{n+nn}{employees2}
+                                                                    \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{table1}
+                                                                     \PY{n}{inner} \PY{n}{join}
+                                                                       \PY{p}{(}\PY{n}{select} \PY{o}{*}
+                                                                        \PY{k+kn}{from} \PY{n+nn}{daysoff}\PY{p}{)} \PY{k}{as} \PY{n}{table2}
+                                                                       \PY{n}{on} \PY{n}{table1}\PY{o}{.}\PY{n}{empid} \PY{o}{=} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}
+                             \PY{n}{where} \PY{n}{date} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{request\PYZus{}day\PYZus{}off}\PY{p}{)}
+                        \PY{o+ow}{and} \PY{n}{empid} \PY{o+ow}{not} \PY{o+ow}{in}
+                            \PY{p}{(}\PY{n}{select} \PY{n}{empid} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}\PY{p}{,} \PY{n}{table2}\PY{o}{.}\PY{n}{date} \PY{k+kn}{from} \PY{p}{(}\PY{n}{select} \PY{n}{empid}
+                                                                    \PY{k+kn}{from} \PY{n+nn}{employees2}
+                                                                    \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{table1}
+                                                                     \PY{n}{inner} \PY{n}{join}
+                                                                       \PY{p}{(}\PY{n}{select} \PY{o}{*}
+                                                                        \PY{k+kn}{from} \PY{n+nn}{schedule2}\PY{p}{)} \PY{k}{as} \PY{n}{table2}
+                                                                       \PY{n}{on} \PY{n}{table1}\PY{o}{.}\PY{n}{empid} \PY{o}{=} \PY{n}{table2}\PY{o}{.}\PY{n}{empid}
+                             \PY{n}{where} \PY{n}{date} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{k}{as} \PY{n}{already\PYZus{}scheduled}\PY{p}{)}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+        
+                \PY{k}{if} \PY{p}{(}\PY{o}{!}\PY{o}{(}\PY{n+nv}{\PYZdl{}result} \PY{o}{=} mysqli\PYZus{}query\PY{o}{(}\PY{n+nv}{\PYZdl{}con}, \PY{n+nv}{\PYZdl{}query}\PY{o}{)}\PY{o}{)}\PY{o}{)} \PY{o}{\PYZob{}}
+                    \PY{n}{\PYZdl{}}\PY{n}{msg} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MySQL error \PYZsh{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}errno}\PY{p}{(}\PY{p}{)} \PY{o}{.} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}error}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+        
+                    \PY{n}{printf}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{msg}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}FILE\PYZus{}\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}LINE\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{;}
+        
+                \PY{p}{\PYZcb{}} \PY{k}{else} \PY{k}{if} \PY{p}{(}\PY{l+m+mi}{0} \PY{o}{==} \PY{n}{mysqli\PYZus{}num\PYZus{}rows}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+                    \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}center\PYZgt{}\PYZlt{}h3\PYZgt{}There}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{re no \PYZdl{}emptype employees available on \PYZdl{}date!\PYZlt{}/h3\PYZgt{}\PYZlt{}/center\PYZgt{}\PYZlt{}br\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                    \PY{k}{return} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                \PY{p}{\PYZcb{}} \PY{k}{else} \PY{p}{\PYZob{}}
+                    \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                    \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}center\PYZgt{}\PYZlt{}h4\PYZgt{}The available list of \PYZdl{}emptype employees on \PYZdl{}date\PYZlt{}/h4\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                    \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}table class=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{table table\PYZhy{}striped}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ border=1\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                    \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}tr\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                    \PY{n}{\PYZdl{}}\PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+                    \PY{n}{\PYZdl{}}\PY{n}{col\PYZus{}name} \PY{o}{=} \PY{n}{array}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+                    \PY{k}{while} \PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{mysqli\PYZus{}num\PYZus{}fields}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+                        \PY{n}{\PYZdl{}}\PY{n}{meta} \PY{o}{=} \PY{n}{mysqli\PYZus{}fetch\PYZus{}field\PYZus{}direct}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{i}\PY{p}{)}\PY{p}{;}
+                        \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{meta}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{name} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                        \PY{n}{\PYZdl{}}\PY{n}{i} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{;}
+                        \PY{n}{array\PYZus{}push}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{col\PYZus{}name}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{meta}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{name}\PY{p}{)}\PY{p}{;}
+                    \PY{p}{\PYZcb{}}
+                    \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}Date\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                    \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}Department\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                    \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}Shift\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                    \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}Schedule\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+        
+        
+                    \PY{k}{while} \PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{row} \PY{o}{=} \PY{n}{mysqli\PYZus{}fetch\PYZus{}assoc}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+                        \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}tr\PYZgt{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                        \PY{n}{\PYZdl{}}\PY{n}{index} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+                        \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}form class=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{post\PYZus{}form}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ action=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{../tasks/add\PYZus{}schedule.php}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ method=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{post}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                        \PY{n}{foreach} \PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{row} \PY{k}{as} \PY{n}{\PYZdl{}}\PY{n}{cell}\PY{p}{)} \PY{p}{\PYZob{}}
+                            \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}td\PYZgt{}\PYZlt{}input style=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{width: 100px}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ type=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ name=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdl{}col\PYZus{}name[\PYZdl{}index]}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ value=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdl{}cell}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZgt{}\PYZlt{}/td\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                            \PY{n}{\PYZdl{}}\PY{n}{index}\PY{o}{+}\PY{o}{+}\PY{p}{;}
+                        \PY{p}{\PYZcb{}}
+                        \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}td\PYZgt{}\PYZlt{}input style=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{width: 100px}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ type=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{text}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ name=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ value=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZdl{}date}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZgt{}\PYZlt{}/td\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                        \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}\PYZlt{}select name=}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{dept}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{DepartmentNeedList}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}\PY{o}{.}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}/select\PYZgt{}\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                        \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}td\PYZgt{}\PYZlt{}select name=}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{shift}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{ShiftList}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}\PY{o}{.}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}/select\PYZgt{}\PYZlt{}/td\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                        \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}td\PYZgt{}\PYZlt{}input type=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{submit}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ value=}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{schedule}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{\PYZgt{}\PYZlt{}/td\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                        \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}/tr\PYZgt{}\PYZlt{}/form\PYZgt{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                    \PY{p}{\PYZcb{}}
+        
+                    \PY{n}{echo} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}/table\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{;}
+                \PY{p}{\PYZcb{}}
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{n}{check\PYZus{}available}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}\PY{p}{;}
+\end{Verbatim}
+
+    \subsubsection*{schedule someone from the available employees list and
+decrement the needs table for that
+dept/date/shift/emptype}\label{schedule-someone-from-the-available-employees-list-and-decrement-the-needs-table-for-that-deptdateshiftemptype}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{\PYZlt{}}\PY{n}{?}\PY{n}{php}
+        \PY{o}{/}\PY{o}{*}\PY{o}{*}
+         \PY{o}{*} \PY{n}{Created} \PY{n}{by} \PY{n}{PhpStorm}\PY{o}{.}
+         \PY{o}{*} \PY{n}{User}\PY{p}{:} \PY{n}{karen}
+         \PY{o}{*} \PY{n}{Date}\PY{p}{:} \PY{l+m+mi}{11}\PY{o}{/}\PY{l+m+mi}{14}\PY{o}{/}\PY{l+m+mi}{18}
+         \PY{o}{*} \PY{n}{Time}\PY{p}{:} \PY{l+m+mi}{7}\PY{p}{:}\PY{l+m+mi}{31} \PY{n}{PM}
+         \PY{o}{*}\PY{o}{/}
+        \PY{n}{require\PYZus{}once}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../view/navbar.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{require\PYZus{}once}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../connect/connect.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        \PY{n}{require\PYZus{}once}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../helper/schedulehelper.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+        
+        
+        \PY{n}{function} \PY{n}{delete\PYZus{}from\PYZus{}needs}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+            \PY{k}{if} \PY{p}{(}\PY{n}{isset}\PY{p}{(}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{empid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{dept} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{date} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{shift} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{emptype} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}
+                    \PY{n}{update} \PY{n}{department\PYZus{}need}
+                    \PY{n+nb}{set} \PY{n}{number\PYZus{}of\PYZus{}employees} \PY{o}{=} \PY{n}{number\PYZus{}of\PYZus{}employees} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+                    \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+                    \PY{o+ow}{and} \PY{n}{date}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}
+                    \PY{o+ow}{and} \PY{n}{period}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}
+                    \PY{o+ow}{and} \PY{n}{department\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{result} \PY{o}{=} \PY{n}{mysqli\PYZus{}query}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{query}\PY{p}{)}\PY{p}{;}
+                \PY{k}{if} \PY{p}{(}\PY{o}{!}\PY{o}{(}\PY{n+nv}{\PYZdl{}result}\PY{o}{)}\PY{o}{)} \PY{o}{\PYZob{}}
+                    \PY{n}{\PYZdl{}}\PY{n}{msg} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MySQL error \PYZsh{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}errno}\PY{p}{(}\PY{p}{)} \PY{o}{.} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}error}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+                    \PY{n}{printf}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{msg}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}FILE\PYZus{}\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}LINE\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{;}
+                \PY{p}{\PYZcb{}}\PY{k}{else}\PY{p}{\PYZob{}}
+                    \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}h3\PYZgt{}\PYZlt{}center\PYZgt{}The number of employees needed for department }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{dept} \PY{o}{.}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ is updated.\PYZlt{}/center\PYZgt{}\PYZlt{}/h3\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                \PY{p}{\PYZcb{}}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}
+                    \PY{n}{select} \PY{n}{number\PYZus{}of\PYZus{}employees}
+                        \PY{k+kn}{from} \PY{n+nn}{department\PYZus{}need}
+                        \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{o+ow}{and} \PY{n}{date}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{o+ow}{and} \PY{n}{period}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{o+ow}{and} \PY{n}{department\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{result} \PY{o}{=} \PY{n}{mysqli\PYZus{}query}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{query}\PY{p}{)}\PY{p}{;}
+                \PY{k}{if} \PY{p}{(}\PY{o}{!}\PY{o}{(}\PY{n+nv}{\PYZdl{}result}\PY{o}{)}\PY{o}{)} \PY{o}{\PYZob{}}
+                    \PY{n}{\PYZdl{}}\PY{n}{msg} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MySQL error \PYZsh{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}errno}\PY{p}{(}\PY{p}{)} \PY{o}{.} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}error}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+                    \PY{n}{printf}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{msg}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}FILE\PYZus{}\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}LINE\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{;}
+                \PY{p}{\PYZcb{}}\PY{k}{else} \PY{p}{\PYZob{}}
+                    \PY{n}{\PYZdl{}}\PY{n}{num\PYZus{}emp} \PY{o}{=} \PY{n}{mysqli\PYZus{}fetch\PYZus{}assoc}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{)}\PY{p}{;}
+        
+                    \PY{k}{if} \PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{num\PYZus{}emp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{number\PYZus{}of\PYZus{}employees}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{p}{\PYZob{}}
+                        \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}
+                        \PY{n}{delete} \PY{k+kn}{from} \PY{n+nn}{department\PYZus{}need}
+                            \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+                              \PY{o+ow}{and} \PY{n}{date}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}
+                              \PY{o+ow}{and} \PY{n}{period}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}
+                              \PY{o+ow}{and} \PY{n}{department\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+                        \PY{n}{\PYZdl{}}\PY{n}{result} \PY{o}{=} \PY{n}{mysqli\PYZus{}query}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{query}\PY{p}{)}\PY{p}{;}
+                        \PY{k}{if} \PY{p}{(}\PY{o}{!}\PY{o}{(}\PY{n+nv}{\PYZdl{}result}\PY{o}{)}\PY{o}{)} \PY{o}{\PYZob{}}
+                            \PY{n}{\PYZdl{}}\PY{n}{msg} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MySQL error \PYZsh{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}errno}\PY{p}{(}\PY{p}{)} \PY{o}{.} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}error}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+                            \PY{n}{printf}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{msg}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}FILE\PYZus{}\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}LINE\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{;}
+                        \PY{p}{\PYZcb{}}
+                    \PY{p}{\PYZcb{}}
+                \PY{p}{\PYZcb{}}
+        
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{n}{function} \PY{n}{schedule\PYZus{}by\PYZus{}emptype}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+            \PY{k}{if} \PY{p}{(}\PY{n}{isset}\PY{p}{(}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{empid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{date}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{emptype} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{emptype}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{empid} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{empid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{dept} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{date} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{shift} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{\PYZus{}POST}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+        
+                \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}
+                    \PY{n}{select} \PY{o}{*}
+                        \PY{k+kn}{from} \PY{n+nn}{department\PYZus{}need}
+                        \PY{n}{where} \PY{n}{emptype}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}emptype}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{o+ow}{and} \PY{n}{date}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{o+ow}{and} \PY{n}{period}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}
+                          \PY{o+ow}{and} \PY{n}{department\PYZus{}name}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}
+                \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+                \PY{n}{\PYZdl{}}\PY{n}{result} \PY{o}{=} \PY{n}{mysqli\PYZus{}query}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{query}\PY{p}{)}\PY{p}{;}
+                \PY{k}{if} \PY{p}{(}\PY{o}{!}\PY{o}{(}\PY{n+nv}{\PYZdl{}result}\PY{o}{)}\PY{o}{)} \PY{o}{\PYZob{}}
+                    \PY{n}{\PYZdl{}}\PY{n}{msg} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MySQL error \PYZsh{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}errno}\PY{p}{(}\PY{p}{)} \PY{o}{.} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}error}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+                    \PY{n}{printf}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{msg}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}FILE\PYZus{}\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}LINE\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{;}
+                \PY{p}{\PYZcb{}}\PY{k}{else} \PY{p}{\PYZob{}}
+                    \PY{k}{if} \PY{p}{(}\PY{l+m+mi}{0} \PY{o}{==} \PY{n}{mysqli\PYZus{}num\PYZus{}rows}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+                        \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}h3\PYZgt{}\PYZlt{}center\PYZgt{}No }\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{emptype} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ employees are needed for department }\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{dept} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ from }\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{shift} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ on }\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{date} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.\PYZlt{}/center\PYZgt{}\PYZlt{}/h3\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+                    \PY{p}{\PYZcb{}} \PY{k}{else} \PY{p}{\PYZob{}}
+                        \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}
+                    \PY{n}{insert} \PY{n}{into} \PY{n}{schedule2} \PY{p}{(}\PY{n}{dept}\PY{p}{,} \PY{n}{date}\PY{p}{,} \PY{n}{shift}\PY{p}{,} \PY{n}{empid}\PY{p}{)}
+                    \PY{n}{values} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}dept}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}shift}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{empid}\PY{p}{)}\PY{p}{;}
+                        \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+        
+                        \PY{n}{\PYZdl{}}\PY{n}{result} \PY{o}{=} \PY{n}{mysqli\PYZus{}query}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{query}\PY{p}{)}\PY{p}{;}
+                        \PY{k}{if} \PY{p}{(}\PY{o}{!}\PY{o}{(}\PY{n+nv}{\PYZdl{}result}\PY{o}{)}\PY{o}{)} \PY{o}{\PYZob{}}
+                            \PY{n}{\PYZdl{}}\PY{n}{msg} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{MySQL error \PYZsh{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}errno}\PY{p}{(}\PY{p}{)} \PY{o}{.} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{: }\PY{l+s+s2}{\PYZdq{}} \PY{o}{.} \PY{n}{mysqli\PYZus{}connect\PYZus{}error}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+                            \PY{n}{printf}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{msg}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}FILE\PYZus{}\PYZus{}}\PY{p}{,} \PY{n}{\PYZus{}\PYZus{}LINE\PYZus{}\PYZus{}}\PY{p}{)}\PY{p}{;}
+                        \PY{p}{\PYZcb{}} \PY{k}{else} \PY{p}{\PYZob{}}
+                            \PY{n}{\PYZdl{}}\PY{n}{query} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{SELECT firstname, lastname}
+                          \PY{n}{FROM} \PY{n}{employees2}
+                          \PY{n}{WHERE} \PY{n}{empid} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZdl{}empid}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}
+                            \PY{n}{\PYZdl{}}\PY{n}{result} \PY{o}{=} \PY{n}{mysqli\PYZus{}query}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{,} \PY{n}{\PYZdl{}}\PY{n}{query}\PY{p}{)}\PY{p}{;}
+                            \PY{n}{\PYZdl{}}\PY{n}{row} \PY{o}{=} \PY{n}{mysqli\PYZus{}fetch\PYZus{}assoc}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{result}\PY{p}{)}\PY{p}{;}
+                            \PY{n}{\PYZdl{}}\PY{n}{firstname} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{firstname}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                            \PY{n}{\PYZdl{}}\PY{n}{lastname} \PY{o}{=} \PY{n}{\PYZdl{}}\PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lastname}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+                            \PY{n}{echo} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}br\PYZgt{}\PYZlt{}br\PYZgt{}\PYZlt{}h3\PYZgt{}\PYZlt{}center\PYZgt{}\PYZlt{}i\PYZgt{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{firstname} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{lastname} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZlt{}/i\PYZgt{} (id: }\PY{l+s+s1}{\PYZsq{}} \PY{o}{.} \PY{n}{\PYZdl{}}\PY{n}{empid} \PY{o}{.} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{) is successfully scheduled}
+                        \PY{k}{for} \PY{n}{department} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ . \PYZdl{}dept . }\PY{l+s+s1}{\PYZsq{}} \PY{k+kn}{from} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ . \PYZdl{}shift . }\PY{l+s+s1}{\PYZsq{}} \PY{n}{on} \PY{n}{date} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ . \PYZdl{}date . }\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZlt{}}\PY{o}{/}\PY{n}{center}\PY{o}{\PYZgt{}}\PY{o}{\PYZlt{}}\PY{o}{/}\PY{n}{h3}\PY{o}{\PYZgt{}}\PY{o}{\PYZlt{}}\PY{n}{br}\PY{o}{\PYZgt{}}\PY{o}{\PYZlt{}}\PY{n}{br}\PY{o}{\PYZgt{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{;}
+                        \PY{p}{\PYZcb{}}
+        
+                        \PY{n}{delete\PYZus{}from\PYZus{}needs}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}\PY{p}{;}
+                    \PY{p}{\PYZcb{}}
+                \PY{p}{\PYZcb{}}
+            \PY{p}{\PYZcb{}}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{n}{schedule\PYZus{}by\PYZus{}emptype}\PY{p}{(}\PY{n}{\PYZdl{}}\PY{n}{con}\PY{p}{)}\PY{p}{;}
+        
+        \PY{o}{?}\PY{o}{\PYZgt{}}
+        
+        \PY{o}{\PYZlt{}}\PY{n}{script}\PY{o}{\PYZgt{}}
+            \PY{n}{setTimeout}\PY{p}{(}\PY{n}{function} \PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+                \PY{n}{window}\PY{o}{.}\PY{n}{location}\PY{o}{.}\PY{n}{href} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../view/schedule\PYZus{}emptype\PYZus{}display.php}\PY{l+s+s1}{\PYZsq{}}\PY{p}{;}
+            \PY{p}{\PYZcb{}}\PY{p}{,} \PY{l+m+mi}{5000}\PY{p}{)}\PY{p}{;}
+        \PY{o}{\PYZlt{}}\PY{o}{/}\PY{n}{script}\PY{o}{\PYZgt{}}
+\end{Verbatim}
+
+    \subsection*{database design}\label{database-design}
+
+    \begin{figure}[H]
+\centering
+\includegraphics{er.png}
+\caption{}
+\end{figure}
+
+    \subsection*{table description}\label{table-description}
+
+    \begin{figure}[H]
+\centering
+\includegraphics{1.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{2.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{3.png}
+\caption{}
+\end{figure}
+
+    \subsection*{\texorpdfstring{Test cases \href{http://cs431project-jxy225.herokuapp.com/view/schedule_emptype_display.php}{(click for
+demo)}}{test cases (click for demo)}}\label{test-cases-click-for-demo}
+
+    \subsubsection*{Date: Dec 24 2018; Emptype: LPN; Department: SUR; Shift:
+3PM-11PM}\label{date-dec-24-2018-emptype-lpn-department-sur-shift-3pm-11pm}
+
+    \begin{figure}[H]
+\centering
+\includegraphics{4.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{5.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{6.png}
+\caption{}
+\end{figure}
+
+\[\]
+
+pick an employee to schedule for a shift in a department
+
+\begin{figure}[H]
+\centering
+\includegraphics{7.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{8.png}
+\caption{}
+\end{figure}
+
+and after being scheduled, the employee (id:1) will no longer appear on
+the available list
+
+\begin{figure}[H]
+\centering
+\includegraphics{9.png}
+\caption{}
+\end{figure}
+
+the scheduling information will be added to the schedule table:
+
+\begin{figure}[H]
+\centering
+\includegraphics{15.png}
+\caption{}
+\end{figure}
+
+    \subsubsection*{Date: Jan 06 2018, Emptype: RN; Department: MAT; Shift:
+11AM-7PM}\label{date-jan-06-2018-emptype-rn-department-mat-shift-11am-7pm}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{16.png}
+	\caption{}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{18.png}
+	\caption{}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{19.png}
+	\caption{}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{20.png}
+	\caption{}
+\end{figure}
+
+\[\]
+
+pick an employee to schedule for a shift in a department
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{21.png}
+	\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{22.png}
+\caption{}
+\end{figure}
+
+and after being scheduled, the employee (id:99) will no longer appear on
+the available list 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{23.png}
+	\caption{}
+\end{figure}
+
+the scheduling information will be added to the schedule table:
+
+\begin{figure}[H]
+\centering
+\includegraphics{24.png}
+\caption{}
+\end{figure}
+
+    \subsubsection*{Date: Dec 30 2018, Emptype: ULTRA; Department: ICU; Shift:
+3PM-11PM}\label{date-dec-30-2018-emptype-ultra-department-icu-shift-3pm-11pm}
+
+    \begin{figure}[H]
+\centering
+\includegraphics{10.png}
+\caption{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics{11.png}
+\caption{}
+\end{figure}
+
+\[\]
+pick an employee to schedule for a shift in a department
+
+\begin{figure}[H]
+\centering
+\includegraphics{12.png}
+\caption{}
+\end{figure}
+
+\textbf{Fail to schedule since the assigned department has no need for
+that employee type on the assigned date}
+
+\begin{figure}[H]
+\centering
+\includegraphics{13.png}
+\caption{}
+\end{figure}
+
+So there no changes will be made to the list of available employees:
+
+\begin{figure}[H]
+\centering
+\includegraphics{14.png}
+\caption{}
+\end{figure}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
