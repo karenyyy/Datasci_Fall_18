@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{pymysql}
+Yutaka Matsubara.
+\newblock Pymysql documentation.
+\newblock 2016.
+
+\bibitem{kaggle}
+City of~Oakland.
+\newblock Oakland crime statistics 2011 to 2016.
+\newblock {\em Kaggle}, 2018.
+
+\end{thebibliography}

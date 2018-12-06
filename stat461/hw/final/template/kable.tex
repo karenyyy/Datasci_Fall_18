@@ -1,0 +1,17 @@
+%latex.default(kable(anova(aov.sleep), format = "markdown"))%
+\begin{table}[!tbp]
+\begin{center}
+\begin{tabular}{l}
+\hline\hline
+\multicolumn{1}{c}{}\tabularnewline
+\hline
+|                                                     | Df|   Sum Sq|   Mean Sq|   F value|    Pr(\textgreater F)|\tabularnewline
+|:----------------------------------------------------|--:|--------:|---------:|---------:|---------:|\tabularnewline
+|class                                                |  3| 2.994167| 0.9980556|  9.818221| 0.0000769|\tabularnewline
+|major                                                |  2| 9.305000| 4.6525000| 45.768266| 0.0000000|\tabularnewline
+|I(num_of_dues_per_week - mean(num_of_dues_per_week)) |  1| 1.131582| 1.1315821| 11.131768| 0.0020198|\tabularnewline
+|class:major                                          |  6| 1.563882| 0.2606470|  2.564076| 0.0364869|\tabularnewline
+|Residuals                                            | 35| 3.557869| 0.1016534|        NA|        NA|\tabularnewline
+\hline
+\end{tabular}\end{center}
+\end{table}
