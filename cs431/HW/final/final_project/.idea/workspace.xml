@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e19d8ff6-bb83-4cd8-b898-5829118b01f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/final_project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/connect.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/department/report_unfilled_needs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/employee/report_all_info_of_employees.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/employee/report_cost.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/employee/report_happiness.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/report/employee/report_unused_shift_and_utilization.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schedule/schedule_for_department.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/schedule/schedule_single_employee.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/draw_report.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/util/preprocess.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sql/finalproj.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources/11d5f571-1d78-4c04-abe8-93f9e5683297.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources/416a83c2-4d0c-469d-b595-865388de6712.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../helper/schedulehelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/../helper/schedulehelper.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sql/assignment12.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../sql/assignment12.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tasks/add_schedule.php" beforeDir="false" afterPath="$PROJECT_DIR$/../tasks/add_schedule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tasks/request_day_off.php" beforeDir="false" afterPath="$PROJECT_DIR$/../tasks/request_day_off.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tasks/schedule.php" beforeDir="false" afterPath="$PROJECT_DIR$/../tasks/schedule.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tasks/schedule_by_emptype.php" beforeDir="false" afterPath="$PROJECT_DIR$/../tasks/schedule_by_emptype.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tests/tests.php" beforeDir="false" afterPath="$PROJECT_DIR$/../tests/tests.php" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cs431_final@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cs431_final@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="cs431_final@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="cs431_final: schema" type="c314c289:MysqlImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ExecutionTargetDialog">
+    <checked>
+      <node key="0fa4349e-1cfa-4ae0-b987-01cde7b476a2" />
+    </checked>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="815898935">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.13" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="csv" value="22" />
+          <entry key="day_off" value="14" />
+          <entry key="employee" value="41" />
+          <entry key="employee_available_shift_count" value="5" />
+          <entry key="employee_happiness" value="2" />
+          <entry key="md" value="3" />
+          <entry key="need" value="26" />
+          <entry key="php" value="118" />
+          <entry key="schedule" value="19" />
+          <entry key="sql" value="19" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Database Element" value="107" />
+          <entry key="Markdown" value="3" />
+          <entry key="PHP" value="118" />
+          <entry key="PLAIN_TEXT" value="22" />
+          <entry key="SQL" value="13" />
+          <entry key="Scratch" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cell" value="112" />
+          <entry key="csv" value="2" />
+          <entry key="md" value="87" />
+          <entry key="php" value="7079" />
+          <entry key="sql" value="3986" />
+          <entry key="txt" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Markdown" value="87" />
+          <entry key="PHP" value="6915" />
+          <entry key="PLAIN_TEXT" value="17" />
+          <entry key="SQL" value="242" />
+          <entry key="Scratch" value="4020" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0fa4349e-1cfa-4ae0-b987-01cde7b476a2/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="333">
+              <caret line="294" column="15" selection-start-line="293" selection-start-column="44" selection-end-line="294" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/report/employee/report_all_info_of_employees.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1264">
+              <caret line="102" column="57" selection-start-line="102" selection-start-column="57" selection-end-line="102" selection-end-column="57" />
+              <folding>
+                <marker date="1544321986811" expanded="true" signature="183:777" ph="select tmp2.... empid" />
+                <marker date="1544321986811" expanded="true" signature="716:777" ph="select e2.em... " />
+                <marker date="1544321986811" expanded="true" signature="799:862" ph="if(e2.ftpt='... " />
+                <marker date="1544321986811" expanded="true" signature="845:862" ph="as default_s... " />
+                <marker date="1544321986811" expanded="true" signature="884:2242" ph="if(tmp.total... " />
+                <marker date="1544321986811" expanded="true" signature="936:2242" ph="as total_shi... " />
+                <marker date="1544321986811" expanded="true" signature="2266:2971" ph="SELECT empid... " />
+                <marker date="1544321986811" expanded="true" signature="3264:3333" ph="SELECT sum(s... ${$query}" />
+                <marker date="1544321986811" expanded="true" signature="3744:3829" ph="SELECT round... ${$query}" />
+                <marker date="1544321986811" expanded="true" signature="5658:5775" ph="SELECT round... ${$query}" />
+                <marker date="1544321986811" expanded="true" signature="6287:6404" ph="SELECT round... ${$query}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/report/employee/report_unused_shift_and_utilization.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/report/employee/report_happiness.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-70">
+              <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sql/Please_run_these_MYSQL_codes_first.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/schedule/schedule_for_department.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="11" column="68" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>wage</find>
+      <find>edit_</find>
+      <find>;&quot;</find>
+      <find>emplo</find>
+      <find>shift_l</find>
+      <find>sche</find>
+      <find>emp_</find>
+      <find>=</find>
+      <find>query</find>
+      <find>0.5</find>
+      <find>echo</find>
+      <find>create</find>
+      <find>desc</find>
+      <find>shiftc</find>
+      <find>order</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>&quot;</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test.php" />
+        <option value="$PROJECT_DIR$/schedule/schedule_employee.php" />
+        <option value="$PROJECT_DIR$/tests/dataset/needs.csv" />
+        <option value="$PROJECT_DIR$/report/report_cost.php" />
+        <option value="$PROJECT_DIR$/config/connect.php" />
+        <option value="$PROJECT_DIR$/sql/sql_script.php" />
+        <option value="$PROJECT_DIR$/tests/test.php" />
+        <option value="$PROJECT_DIR$/report/report_unused_shift.php" />
+        <option value="$PROJECT_DIR$/report/report_utilization.php" />
+        <option value="$PROJECT_DIR$/report/report_unfilled_needs.php" />
+        <option value="$PROJECT_DIR$/report/report_unused_shift_and_utilization.php" />
+        <option value="$PROJECT_DIR$/report/report_all.php" />
+        <option value="$PROJECT_DIR$/report/report_happiness.php" />
+        <option value="$PROJECT_DIR$/report/report_all_info_of_employees.php" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/report/employee/report_cost.php" />
+        <option value="$PROJECT_DIR$/report/employee/report_happiness.php" />
+        <option value="$PROJECT_DIR$/util/draw_report.php" />
+        <option value="$PROJECT_DIR$/config/config.php" />
+        <option value="$PROJECT_DIR$/util/preprocess.php" />
+        <option value="$PROJECT_DIR$/report/department/report_unfilled_needs.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/0fa4349e-1cfa-4ae0-b987-01cde7b476a2/console.sql" />
+        <option value="$PROJECT_DIR$/report/employee/report_all_info_of_employees.php" />
+        <option value="$PROJECT_DIR$/schedule/schedule_single_employee.php" />
+        <option value="$PROJECT_DIR$/main.php" />
+        <option value="$PROJECT_DIR$/sql/Please_run_these_MYSQL_codes_first.sql" />
+        <option value="$PROJECT_DIR$/report/employee/report_unused_shift_and_utilization.php" />
+        <option value="$PROJECT_DIR$/schedule/schedule_for_department.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-129" />
+    <option name="y" value="-474" />
+    <option name="width" value="1977" />
+    <option name="height" value="1215" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
+              <item name="department" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
+              <item name="employee" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="schedule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="sql" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="final_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="final_project" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tests/dataset" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/report/employee" />
+      <recent name="$PROJECT_DIR$/report/department" />
+      <recent name="$PROJECT_DIR$/tests" />
+      <recent name="$PROJECT_DIR$/sql" />
+      <recent name="$PROJECT_DIR$/dataset" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e19d8ff6-bb83-4cd8-b898-5829118b01f4" name="Default Changelist" comment="" />
+      <created>1544023345702</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1544023345702</updated>
+      <workItem from="1544023347558" duration="2230000" />
+      <workItem from="1544028751052" duration="54604000" />
+      <workItem from="1544160935536" duration="1779000" />
+      <workItem from="1544317999376" duration="7374000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="65987000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18636364" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.329582" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.23794213" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Mongo Explorer" order="3" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.18636364" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27045456" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" visible="true" weight="0.329582" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Database Console" order="8" weight="0.23794213" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Mongo Explorer" order="3" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.18636364" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/day_off.sql" />
+    <entry file="file://$PROJECT_DIR$/tests/dataset/daysoffrequests.csv" />
+    <entry file="file://$PROJECT_DIR$/dataset/employee4.csv" />
+    <entry file="file://$PROJECT_DIR$/tests/dataset/employee4.csv" />
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/employee_happiness" />
+    <entry file="file://$PROJECT_DIR$/sql/sql_script.php" />
+    <entry file="file://$PROJECT_DIR$/tests/dataset/needs.csv" />
+    <entry file="file://$PROJECT_DIR$/dataset/needs.csv" />
+    <entry file="file://$PROJECT_DIR$/tests/test.php" />
+    <entry file="file://$PROJECT_DIR$/report/report_utilization.php" />
+    <entry file="file://$PROJECT_DIR$/dataset/431_FINAL_DATA_SET/daysoffrequests_final.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-253" />
+      </provider>
+    </entry>
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/day_off" />
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/need" />
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/schedule" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="90">
+            <caret line="6" column="13" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/employee/report_cost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/draw_report.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="47" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/79b557bd/0fa4349e-1cfa-4ae0-b987-01cde7b476a2/cs431_final.employee_available_shift_count" />
+    <entry file="file://$PROJECT_DIR$/config/connect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/employee_available_shift_count">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/79b557bd/0fa4349e-1cfa-4ae0-b987-01cde7b476a2/cs431_final.day_off">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://0fa4349e-1cfa-4ae0-b987-01cde7b476a2/schema/cs431_final/table/employee">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/department/report_unfilled_needs.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0fa4349e-1cfa-4ae0-b987-01cde7b476a2/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="294" column="15" selection-start-line="293" selection-start-column="44" selection-end-line="294" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/employee/report_happiness.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-70">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/schedule_single_employee.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="503">
+          <caret line="73" column="44" lean-forward="true" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/preprocess.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-390">
+          <caret line="22" column="22" lean-forward="true" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/employee/report_all_info_of_employees.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1264">
+          <caret line="102" column="57" selection-start-line="102" selection-start-column="57" selection-end-line="102" selection-end-column="57" />
+          <folding>
+            <marker date="1544321986811" expanded="true" signature="183:777" ph="select tmp2.... empid" />
+            <marker date="1544321986811" expanded="true" signature="716:777" ph="select e2.em... " />
+            <marker date="1544321986811" expanded="true" signature="799:862" ph="if(e2.ftpt='... " />
+            <marker date="1544321986811" expanded="true" signature="845:862" ph="as default_s... " />
+            <marker date="1544321986811" expanded="true" signature="884:2242" ph="if(tmp.total... " />
+            <marker date="1544321986811" expanded="true" signature="936:2242" ph="as total_shi... " />
+            <marker date="1544321986811" expanded="true" signature="2266:2971" ph="SELECT empid... " />
+            <marker date="1544321986811" expanded="true" signature="3264:3333" ph="SELECT sum(s... ${$query}" />
+            <marker date="1544321986811" expanded="true" signature="3744:3829" ph="SELECT round... ${$query}" />
+            <marker date="1544321986811" expanded="true" signature="5658:5775" ph="SELECT round... ${$query}" />
+            <marker date="1544321986811" expanded="true" signature="6287:6404" ph="SELECT round... ${$query}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/report/employee/report_unused_shift_and_utilization.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/schedule/schedule_for_department.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="11" column="68" selection-start-line="11" selection-start-column="68" selection-end-line="11" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/Please_run_these_MYSQL_codes_first.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
