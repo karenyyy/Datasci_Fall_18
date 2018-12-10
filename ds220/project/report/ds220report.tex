@@ -48,18 +48,38 @@
 
 \begin{abstract}
 
-[Please complete this part ...]
+In the report, we systematically analyze the crime occurrence pattern in Oakland city from California with dataset we collected from Kaggle. We format our data in Jupyter Notebook and load them in to MySQL. Then we conduct exploratory analysis with graphs and figures of 3 topics: What crime has the highest occurrence across Oakland, What crime has the highest occurrence in each location and What is the incident solving time for each incident. 
 
 \end{abstract}
 
 \section{Introduction}
 
-[Please complete this part ...]
+
+Safety issue is always a focus for American citizens. It is a matter of happiness, living quality and sense of safety. An explicit crime statistic can help people see and understand how safe/danger their living environment is. However, for most of the data we can reach, many of them are raw data, which takes a lot of time for normal people to interpret. Therefore, we decided to do an exploratory analysis on the criminal data from Oakland, CA so that it is more self-explanatory, intuitive and meaningful. 
 
 \section{Data Set}
 
+The crime statistics dataset (\textbf{6 csv files}) in Oakland from 2011 to 2016 is collected from Kaggle \cite{kaggle}. It is published and maintained by the city of Oakland. 
 
-The crime statistics dataset in Oakland from 2011 to 2016 is collected from Kaggle \cite{kaggle}. It is published and maintained by the city of Oakland. 
+
+\subsection{Size of the dataset}
+\begin{table}[H]
+	\centering
+\begin{tabular}{|l|l|}
+	\toprule
+	dataset &  number of rows \\
+	\midrule
+	crimedata\_2011 &    180009\\
+	crimedata\_2012 &   187412 \\
+	crimedata\_2013 &   188050 \\
+	crimedata\_2014 &  187480 \\
+	crimedata\_2015 &   192581 \\
+	crimedata\_2016 & 110827 \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Attributes of the dataset}
 The attributes contained in the dataset include:
 \begin{itemize}
 \item  Agency
@@ -76,27 +96,317 @@ The attributes contained in the dataset include:
 
 \end{itemize}
 
+\[\]
+
+\subsection{Before processing}
+
+For instance, we randomly choose 5 raw data entries from one of the 6 csv files we used in our analysis:
+
+\[\]
+
+\begin{tabular}{|l|l|l|r|l|r|l|l|}
+	\toprule
+	{} & Agency &          Create Time &  Area Id & Beat &  Priority & Incident Type Id & Incident Type Description \\
+	\midrule
+	0 &     OP &  2012-01-01T00:00:25 &      2.0 &  32Y &       2.0 &            415GS &              415 GUNSHOTS \\
+	1 &     OP &  2012-01-01T00:00:27 &      2.0 &  30Y &       2.0 &            415GS &              415 GUNSHOTS \\
+	2 &     OP &  2012-01-01T00:00:48 &      1.0 &  06X &       2.0 &              949 &        SUSPICIOUS VEHICLE \\
+	3 &     OP &  2012-01-01T00:00:58 &      2.0 &  35X &       2.0 &            415GS &              415 GUNSHOTS \\
+	4 &     OP &  2012-01-01T00:01:14 &      1.0 &  02Y &       2.0 &            415GS &              415 GUNSHOTS \\
+	\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{|l|l|l|}
+	\toprule
+	Event Number &          Closed Time  &                                        Location 1 \\
+	\midrule
+	LOP120101000004 &  2012-01-01T00:40:27 &  \{'human\_address': '\{"address":"OLIVE ST","city... \\
+	LOP120101000003 &  2012-01-01T01:34:31 &  \{'human\_address': '\{"address":"AV\&amp;MACARTHU... \\
+	LOP120101000005 &  2012-01-01T01:18:38 &  \{'human\_address': '\{"address":"SYCAMORE ST","c... \\
+	LOP120101000008 &  2012-01-01T02:37:00 &  \{'human\_address': '\{"address":"AV\&amp;MACARTHU... \\
+	LOP120101000007 &  2012-01-01T02:12:39 &  \{'human\_address': '\{"address":"ST\&amp;WOOD ST"... \\
+	\bottomrule
+\end{tabular}
+
+\[\]
+
+\subsection{Data Cleaning}
+
+\begin{itemize}
+\item clean the \textbf{Location 1} attribute of the raw dataset to\textbf{ extract the street} from the json-like format in the raw dataset;
+
+\lstset{language=python}
+\lstset{showstringspaces=false}
+\lstset{frame=lines}
+\lstset{caption={Clean address for data}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+def convert_location_col(df, filename):
+	reg_pattern = '\"address\":\"([A-Za-z0-9\s./#\(\),-]+)\"'
+	address_lst = list(map(lambda x: re.findall(pattern=reg_pattern,
+			string=df['Location 1'][x].replace('&amp;', ' ')), 
+			range(len(df))))
+	address_lst_flattened = []
+	for i in range(len(address_lst)):
+		try:
+			address_lst_flattened.append(address_lst[i][0])
+		except Exception as e:
+			address_lst_flattened.append(np.nan)
+	df['Location'] = address_lst_flattened
+	df = df.drop(columns=['Location 1'])
+	df = pd.concat([df.iloc[:,:2], df.Location, df.iloc[:,2:-1]], axis=1)
+	df.to_csv(filename, index=None)
+	return df
+\end{lstlisting}
+
+\noindent \textbf{After cleaning}: 
+\[\]
+
+\begin{tabular}{|l|l|}
+	\toprule
+	{} &           Location \\
+	\midrule
+	0 &           OLIVE ST \\
+	1 &  AV MACARTHUR BLVD \\
+	2 &        SYCAMORE ST \\
+	3 &  AV MACARTHUR BLVD \\
+	4 &         ST WOOD ST \\
+	\bottomrule
+\end{tabular}
+
+\[\]
+
+\item format the \textbf{Create/Closed Time} attribute raw dataset to be MySQL compatible, and add a column of \textbf{Average Resolving Time}
+
+\lstset{language=python}
+\lstset{showstringspaces=false}
+\lstset{frame=lines}
+\lstset{caption={Convert time format to be MySQL compatible}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+def convert_time_sql_format():
+   columns = ['Create Time', 'Closed Time']
+   for y in range(1,7):
+     filename = PATH + 'records-for-201{}.csv'.format(y)
+     df = pd.read_csv(filename)
+     for column in columns:
+       tmp = []
+       df = df.iloc[df[column].dropna().index, :].reset_index(drop=True)
+       for i in df[column]:
+         ymy = i.split('T')[0]
+         hms = i.split('T')[1]
+         splited_lst = ymy.split('-')
+         year = splited_lst[0]
+         month = splited_lst[1][1:] if splited_lst[1].startswith('0')
+					else splited_lst[1]
+         day = splited_lst[2][1:] if splited_lst[2].startswith('0')
+					else splited_lst[2]
+         splited_lst = hms.split(':')
+         hour = splited_lst[0][1:] if splited_lst[0].startswith('0')
+					else splited_lst[0]
+         minute = splited_lst[1][1:] if splited_lst[1].startswith('0')
+					else splited_lst[1]
+         second = splited_lst[2][1:] if splited_lst[2].startswith('0')
+					else splited_lst[2]
+         tmp.append(datetime(int(year), int(month), int(day), int(hour), int(minute), 
+         			int(second)))
+      df[column] = pd.DataFrame(tmp)
+      df['Days to Resolve'] = pd.DataFrame(list(map(lambda x: x.days, df[columns[1]] 
+      								- df[columns[0]])))
+      df['Area Id'] = df['Area Id'].fillna(value=0)
+      df['Priority'] = df['Priority'].dropna(axis=0)
+      df['Incident Type Id'] = df['Incident Type Id'].dropna(axis=0)
+      df['Event Number'] = df['Event Number'].dropna(axis=0)
+      df.to_csv(filename, index=None)
+
+convert_time_sql_format()
+\end{lstlisting}
+\[\]
+
+\textbf{After cleaning:}
+
+\begin{tabular}{|l|l|l|r|}
+	\toprule
+	{} &          Create Time &          Closed Time &  Days to Resolve \\
+	\midrule
+	0 &  2012-01-01 00:00:25 &  2012-01-01 00:40:27 &                0 \\
+	1 &  2012-01-01 00:00:27 &  2012-01-01 01:34:31 &                0 \\
+	2 &  2012-01-01 00:00:48 &  2012-01-01 01:18:38 &                0 \\
+	3 &  2012-01-01 00:00:58 &  2012-01-01 02:37:00 &                0 \\
+	4 &  2012-01-01 00:01:14 &  2012-01-01 02:12:39 &                0 \\
+	\bottomrule
+\end{tabular}
+
+
+\end{itemize}
+
+\[\]
+\textbf{Thus after cleaning, the dataset before loading into MySQL looks like:}
+
+
+\begin{tabular}{|l|l|l|l|r|l|r|l|}
+	\toprule
+	{} & Agency &          Create Time &           Location &  Area Id & Beat &  Priority & Incident Type Id \\
+	\midrule
+	0 &     OP &  2012-01-01 00:00:25 &           OLIVE ST &      2.0 &  32Y &       2.0 &            415GS \\
+	1 &     OP &  2012-01-01 00:00:27 &  AV MACARTHUR BLVD &      2.0 &  30Y &       2.0 &            415GS \\
+	2 &     OP &  2012-01-01 00:00:48 &        SYCAMORE ST &      1.0 &  06X &       2.0 &              949 \\
+	3 &     OP &  2012-01-01 00:00:58 &  AV MACARTHUR BLVD &      2.0 &  35X &       2.0 &            415GS \\
+	4 &     OP &  2012-01-01 00:01:14 &         ST WOOD ST &      1.0 &  02Y &       2.0 &            415GS \\
+	\bottomrule
+\end{tabular}
+
+
+\begin{tabular}{|l|l|l|l|r|}
+	\toprule
+	Incident Type Description &     Event Number &          Closed Time &  Days to Resolve \\
+	\midrule
+	              415 GUNSHOTS &  LOP120101000004 &  2012-01-01 00:40:27 &                0 \\
+	              415 GUNSHOTS &  LOP120101000003 &  2012-01-01 01:34:31 &                0 \\
+	        SUSPICIOUS VEHICLE &  LOP120101000005 &  2012-01-01 01:18:38 &                0 \\
+	              415 GUNSHOTS &  LOP120101000008 &  2012-01-01 02:37:00 &                0 \\
+	              415 GUNSHOTS &  LOP120101000007 &  2012-01-01 02:12:39 &                0 \\
+	\bottomrule
+\end{tabular}
+
+
+\[\]
+
 
 \section{MySQL Data Loading Pipeline}
 
 
-Why choose MySQL: [please complete this part ...]
 
-\textit{it would be better if you can do a comparison between MySQL and other databases, list the pros and cons and illustrate why MySQL should be chosen}
+MySQL is not only easy to use, but also it’s a high-performance but relatively simple database system and is much less complex to set up and administer than larger systems.
+\begin{itemize}
+	\item Considering the fact that the process of exploratory analysis to observe the crime occurrence and crime resolving pattern across 6 years from 2011 to 2016 consists a lot of table joining, so when choosing the database for data storage, MySQL is a better option in this case compared with NoSQL databases such as MongoDB, because aggregation operation like join is not supported in NoSQL databases.
+	\item Besides, there are various python wrappers available that makes interacting with MySQL databases easy, which makes MySQL a preferable database.
+\end{itemize}
+  
+
+\[\]
+
+ In order to implement the cleaning and visualization of the aggregated data extracted from databases afterwards, we wrote a data processing pipeline to combine the merits of Jupyter Notebook and MySQL and present our observation with proper interpretability through tables and graphs. The python package we applied to connect to the MySQL local server is PyMySQL \cite{pymysql}, by which we were able to integrate the database and the programming environment together.
 
 
-Regarding the advantages and drawbacks of several databases discussed, the database we choose for the class project is MySQL (local server). And in order to implement the cleaning and visualization of the aggregated data extracted from databases afterwards, we wrote a data processing pipeline to combine the merits of Jupyter Notebook and MySQL and present our observation with proper interpretability through tables and graphs. The python package we applied to connect to the MySQL local server is PyMySQL \cite{pymysql}, by which we were able to integrate the database and the programming environment together.
-
-
-Then we construct a \hyperref[appendix:preprocess]{pipeline} to:
+We construct a pipeline to:
 
 \begin{itemize}
-	\item clean the \textbf{location} attribute of the raw dataset since its format is not consistent in all the 6 tables (from 2011 to 2016);
-	\item format the \textbf{Create/Closed Time} attribute raw dataset to be MySQL compatible;
 	\item create tables in MySQL
 	\item insert cleaned data into MySQL
 	\item extract data from MySQL given a query
 \end{itemize} 
+\[\]
+
+\lstset{language=python}
+\lstset{frame=lines}
+\lstset{caption={Load data into MySQL}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+class DataSqlLoader:
+	def __init__(self, database):
+	  # connect to mysql local server
+	  self.database = database
+	  self.db = pymysql.Connect(
+			host = 'localhost',	
+			user = 'root',	
+			passwd = '',
+			db=self.database)
+	  self.c = self.db.cursor()
+
+	def creat_tables(self):
+	  for year in range(1, 7):
+	    try:
+	      self.c.execute('''
+			CREATE TABLE IF NOT EXISTS crimedata_201{}
+				(
+				`Agency`                   VARCHAR(5)   NULL,
+				`Create Time`              DATETIME     NULL,
+				Location                   VARCHAR(100) NULL,
+				`Area Id`                  VARCHAR(5)   NULL,
+				Beat                       VARCHAR(10)  NULL,
+				Priority                   Double       NULL,
+				`Incident Type Id`         VARCHAR(10)  NULL,
+				`Incident Type Description` TEXT         NULL,
+				`Event Number`            VARCHAR(30)  NOT NULL
+				PRIMARY KEY,
+				`Closed Time`              DATETIME     NULL,
+				`Days to Resolve`          INT          NULL,
+				CONSTRAINT crimedata_2011_EventNumber_uindex
+				UNIQUE (`Event Number`)
+				);
+				'''.format(year))
+		 except Exception as e:
+			print(e) 
+
+	def insert_into_tables(self, filename, tablename):
+	  query = '''
+		LOAD DATA INFILE '{}'
+		INTO TABLE {} fields terminated by ',' lines terminated by '\r\n'
+		'''.format(filename, tablename)
+	  try:
+	    self.c.execute(query)
+	  except Exception as e:
+	    print(e)
+
+	def drop_table(self, tablename):
+	  try:
+	    self.c.execute('''drop table {}'''.format(tablename))
+	  except Exception as e:
+	    print(e)
+
+
+	def get_sample(self, table, limit=None):
+	  if limit == None:
+	    query = '''SELECT * FROM {};'''.format(table)
+	  else:
+	    query = '''SELECT * FROM {} limit {};'''.format(table, limit)
+	  pd.read_sql(sql=query, con=self.db)
+	  return pd.read_sql(sql=query, con=self.db)
+
+	def sql_query(self, query):
+	  try:
+	    return pd.read_sql(sql=query, con=self.db)
+	  except Exception as e:
+	    print(e)
+
+	def close(self):
+	  self.db.close()
+
+dsl = DataSqlLoader('ds220')
+dsl.creat_tables()
+dsl.insert_into_tables(FILE_2011, 'crime_2011')
+dsl.insert_into_tables(FILE_2012, 'crime_2012')
+dsl.insert_into_tables(FILE_2013, 'crime_2013')
+dsl.insert_into_tables(FILE_2014, 'crime_2014')
+dsl.insert_into_tables(FILE_2015, 'crime_2015')
+dsl.insert_into_tables(FILE_2016, 'crime_2016')
+\end{lstlisting}
+
+
+The layout of dataset loaded into MySQL looks like:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|}
+		\toprule
+		{} &                     Field &          Type & Null &  Key & Default & Extra \\
+		\midrule
+		0  &                    Agency &    varchar(5) &  YES &      &    None &       \\
+		1  &               Create Time &      datetime &  YES &      &    None &       \\
+		2  &                  Location &  varchar(100) &  YES &      &    None &       \\
+		3  &                   Area Id &    varchar(5) &  YES &      &    None &       \\
+		4  &                      Beat &   varchar(10) &  YES &      &    None &       \\
+		5  &                  Priority &        double &  YES &      &    None &       \\
+		6  &          Incident Type Id &   varchar(10) &  YES &      &    None &       \\
+		7  &  Incident Type Desciption &          text &  YES &      &    None &       \\
+		8  &              Event Number &   varchar(30) &   NO &  PRI &    None &       \\
+		9  &               Closed Time &      datetime &  YES &      &    None &       \\
+		10 &           Days to Resolve &       int(11) &  YES &      &    None &       \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 \section{Exploratory Data Analysis \textit{}}
 
@@ -105,7 +415,7 @@ Then we construct a \hyperref[appendix:preprocess]{pipeline} to:
 \begin{figure}[H]
 	\begin{center}
 		%\framebox[4.0in]{$\;$}
-		\includegraphics[height=8cm, width=11cm]{1.png}
+		\includegraphics[height=6cm, width=9cm]{1.png}
 	\end{center}
 	\caption{\hyperref[appendix:plot1]{The most frequent crime in Oakland from 2011 to 2016}}
 \end{figure}
@@ -117,7 +427,7 @@ Then we construct a \hyperref[appendix:preprocess]{pipeline} to:
 \begin{figure}[H]
 	\begin{center}
 		%\framebox[4.0in]{$\;$}
-		\includegraphics[height=10cm, width=15cm]{2.png}
+		\includegraphics[height=8cm, width=15cm]{2.png}
 	\end{center}
 	\caption{\hyperref[appendix:plot1]{Locations with the most frequent crime in Oakland from 2011 to 2016}}
 \end{figure}
@@ -142,7 +452,7 @@ The top locations with the most crime reporting counts across 6 years:
 \begin{figure}[H]
 	\begin{center}
 		%\framebox[4.0in]{$\;$}
-		\includegraphics[height=8cm, width=11cm]{3.png}
+		\includegraphics[height=8cm, width=9cm]{3.png}
 	\end{center}
 	\caption{\hyperref[appendix:plot2]{The location with highest crime rate from 2011 to 2016}}
 \end{figure}
@@ -215,536 +525,49 @@ The average resolving days of the top incident types that took the longest days 
 \begin{figure}[H]
 	\begin{center}
 		%\framebox[4.0in]{$\;$}
-		\includegraphics[height=8cm, width=10cm]{6.png}
+		\includegraphics[height=7cm, width=9cm]{6.png}
 	\end{center}
 	\caption{\hyperref[appendix:plot4]{The time cost trend of top incident types that took the longest resolving time  from 2011 to 2016}}
 \end{figure}
 
+\section{Discussion}
+In retrospect, we run into a few blocks and encounter several challenges throughout the implementation of the project. For instance:
 
+\begin{itemize}
+\item Which database to use?
+
+Since the IST MySQL server has restriction on the size of data uploaded, and our dataset consists of 6 csv files with each containing approximately 200000 rows, thus we use our local MySQL server for the task instead (in fact, MySQL RDS on AWS works as well, but the latency when executing SQL queries slows down the data extracting and processing, thus for the sake of this project, local MySQL server is a better option. Of course in real-life data processing, things would not be as easy, but it's always a good practice to sample pieces of data onto our localhost server and test out the processing and cleaning code before deploying).
+
+\item Which process is the most time-consuming?
+
+Although the data is collected from Kaggle and already quite well-structured and clean, there are many data cleaning tasks that we need to attend to before successfully insert all the tables into MySQL, including formating the time attribute to make sure it is MySQL compatible in order to calculate the time difference (\textbf{Days took to resolve a reported crime = Time when the file closed - Time when the file opened}), and writing regex pattern to extract information that is useful for us. From this process we got some useful experience of data cleaning and preprocessing. It's quite important to know the general layout and format of the data we got before we do any transformation on it,  otherwise the whole dataset could be messed up by the wrong processing code, which step could not be roll-backed. The tip we got from this part of our project is to always sample from the whole dataset to test on our data preprocessing code.
+
+\item Any failed attempts?
+
+Originally we planned to write up some machine learning algorithms, one for classification and one for regression, to apply on the dataset. However, after fully examining the data including the layout, data type of each  attribute, we then decided to turn to exploratory analysis instead. Since what we got is a historical dataset and there are no unknown data ready to be tagged or predict, therefore the point of constructing a linear regression or a tree-based (Decision Tree, Random Forest, etc.) classification is moot. In this case, if we build a classifier, then the use of doing so would be to explore which exact attributes are the more important determinants of crime occurrence frequency, which unfortunately we are not able to finalize due to time management situation. (It contains lots of work. Since basically all attributes in our dataset are categorical, before constructing the classifier, we will need to do \textbf{one-hot} transformation to convert each attribute into binary format  with high dimension. However this transformation would turn the each dataset into a one large sparse table, then the execution time becomes a new problem, but it would be a good direction to go for future endeavor.)
+
+\end{itemize}
 
 \section{Conclusion}
 
+From this project, we have been exposed to many problems that we have never encountered before: this is the very first time that we are doing a data analysis on such a large volume of data, even for the previous projects we have taken for other data science courses, we have never tackled over 10,000 lines of data. Also, the theme we choose for this project is very close to our daily life, in other words, doing the whole project is a lot of fun. Meanwhile, we must integrate data processing with programming techniques, which means there are a lot of syntax and third-party libraries we need to learn.
 
-[Please complete this part ...]
+As for our research results, we found that: 
+\begin{itemize}
+	\item Starting from 2011, the incident type that costs most days to investigate was \textbf{Murder} until 2016
+	\item the \textbf{International Blvd} is the area where most incidents were reported for the past years
+	\item Among all incidents, \textbf{Alarm Ringer} is the most frequently reported type in Oakland as well as the International Blvd
+\end{itemize}
 
+To sum up, though it is a time-consuming project, we still learned a lot during the process of solving problems, especially the coding and data processing skill. It is a pleasant journey to apply what we have learned from the class to the real-life problem, which not only gives us a better understanding of MySQL dataset, but also propelled us to learn something extremely useful outside of the class.
 \[\]
 
 
 \bibliographystyle{plain}
 \bibliography{ref}
 
-\section{Appendix: Python Code}
-
-\[\]
-
-\appendix
-
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={Import Packages}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-import pandas as pd
-import os
-import re
-import numpy as np
-import pymysql 
-from datetime import datetime
-import matplotlib.pyplot as plt
-import seaborn as sns
-\end{lstlisting}
 
 
-
-\label{appendix:preprocess}
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={Clean address for data in 2012 and 2014}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-PATH = 'oakland-crime-statistics-2011-to-2016/'
-FILE_2011 = PATH+'records-for-2011.csv'
-FILE_2012 = PATH+'records-for-2012.csv'
-FILE_2013 = PATH+'records-for-2013.csv'
-FILE_2014 = PATH+'records-for-2014.csv'
-FILE_2015 = PATH+'records-for-2015.csv'
-FILE_2016 = PATH+'records-for-2016.csv'
-
-def convert_location_col(df, filename):
-	reg_pattern = '\"address\":\"([A-Za-z0-9\s./#\(\),-]+)\"'
-	address_lst = list(map(lambda x: re.findall(pattern=reg_pattern,
-		 string=df['Location 1'][x].replace('&amp;', ' ')), range(len(df))))
-	address_lst_flattened = []
-	for i in range(len(address_lst)):
-		try:
-			address_lst_flattened.append(address_lst[i][0])
-		except Exception as e:
-			address_lst_flattened.append(np.nan)
-	df['Location'] = address_lst_flattened
-	df = df.drop(columns=['Location 1'])
-	df = pd.concat([df.iloc[:,:2], df.Location, df.iloc[:,2:-1]], axis=1)
-	df.to_csv(filename, index=None)
-	return df
-
-df1 = convert_location_col(pd.read_csv(FILE_2012), FILE_2012)
-df2 = convert_location_col(pd.read_csv(FILE_2014), FILE_2014)
-\end{lstlisting}
-
-
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={Convert time format to be MySQL compatible}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-def convert_time_sql_format():
-    columns = ['Create Time', 'Closed Time']
-    for y in range(1,7):
-    	filename = PATH + 'records-for-201{}.csv'.format(y)
-    	df = pd.read_csv(filename)
-    	for column in columns:
-    		tmp = []
-    		df = df.iloc[df[column].dropna().index, :].reset_index(drop=True)
-    		for i in df[column]:
-    			ymy = i.split('T')[0]
-    			hms = i.split('T')[1]
-    			splited_lst = ymy.split('-')
-    			year = splited_lst[0]
-    			month = splited_lst[1][1:] if splited_lst[1].startswith('0')
-    							 else splited_lst[1]
-    			day = splited_lst[2][1:] if splited_lst[2].startswith('0')
-    							else splited_lst[2]
-    			splited_lst = hms.split(':')
-    			hour = splited_lst[0][1:] if splited_lst[0].startswith('0')
-    							else splited_lst[0]
-    			minute = splited_lst[1][1:] if splited_lst[1].startswith('0')
-    							else splited_lst[1]
-    			second = splited_lst[2][1:] if splited_lst[2].startswith('0')
-    							else splited_lst[2]
-    			tmp.append(datetime(int(year), int(month), int(day),
-    						int(hour), int(minute), int(second)))
-    		df[column] = pd.DataFrame(tmp)
-	df['Days to Resolve'] = pd.DataFrame(list(map(lambda x: x.days,
-						 df[columns[1]] - df[columns[0]])))
-	df['Area Id'] = df['Area Id'].fillna(value=0)
-	df['Priority'] = df['Priority'].dropna(axis=0)
-	df['Incident Type Id'] = df['Incident Type Id'].dropna(axis=0)
-	df['Event Number'] = df['Event Number'].dropna(axis=0)
-	df.to_csv(filename, index=None)
-	
-convert_time_sql_format()
-\end{lstlisting}
-
-
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={Load data into MySQL}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-class DataSqlLoader:
-   def __init__(self, database):
-      # connect to mysql local server
-      self.database = database
-      self.db = pymysql.Connect(
-      	host = 'localhost',	
-      	user = 'root',	
-      	passwd = '',
-      	db=self.database)
-      self.c = self.db.cursor()
-
-   def creat_tables(self):
-      for year in range(1, 7):
-         try:
-            self.c.execute('''
-			CREATE TABLE IF NOT EXISTS crimedata_201{}
-			(
-			`Agency`                   VARCHAR(5)   NULL,
-			`Create Time`              DATETIME     NULL,
-			Location                   VARCHAR(100) NULL,
-			`Area Id`                  VARCHAR(5)   NULL,
-			Beat                       VARCHAR(10)  NULL,
-			Priority                   Double       NULL,
-			`Incident Type Id`         VARCHAR(10)  NULL,
-			`Incident Type Description` TEXT         NULL,
-			`Event Number`             VARCHAR(30)  NOT NULL
-			PRIMARY KEY,
-			`Closed Time`              DATETIME     NULL,
-			`Days to Resolve`          INT          NULL,
-			CONSTRAINT crimedata_2011_EventNumber_uindex
-			UNIQUE (`Event Number`)
-			);
-			'''.format(year))
-           except Exception as e:
-               print(e) 
-   
-   def insert_into_tables(self, filename, tablename):
-      query = '''
-         LOAD DATA INFILE '{}'
-         INTO TABLE {} fields terminated by ',' lines terminated by '\r\n'
-         '''.format(filename, tablename)
-      try:
-        self.c.execute(query)
-      except Exception as e:
-        print(e)
-          
-   def drop_table(self, tablename):
-     try:
-       self.c.execute('''drop table {}'''.format(tablename))
-     except Exception as e:
-       print(e)
-
-
-   def get_sample(self, table, limit=None):
-     if limit == None:
-       query = '''SELECT * FROM {};'''.format(table)
-     else:
-       query = '''SELECT * FROM {} limit {};'''.format(table, limit)
-       pd.read_sql(sql=query, con=self.db)
-     return pd.read_sql(sql=query, con=self.db)
-
-   def sql_query(self, query):
-     try:
-       return pd.read_sql(sql=query, con=self.db)
-     except Exception as e:
-       print(e)
-
-  def close(self):
-     self.db.close()
-     
-dsl = DataSqlLoader('ds220')
-dsl.creat_tables()
-dsl.insert_into_tables(FILE_2011, 'crime_2011')
-dsl.insert_into_tables(FILE_2012, 'crime_2012')
-dsl.insert_into_tables(FILE_2013, 'crime_2013')
-dsl.insert_into_tables(FILE_2014, 'crime_2014')
-dsl.insert_into_tables(FILE_2015, 'crime_2015')
-dsl.insert_into_tables(FILE_2016, 'crime_2016')
-\end{lstlisting}
-
-
-\label{appendix:plot1}
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{showstringspaces=false}
-\lstset{caption={What crime has the highest occurrence all across Oakland}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-query = '''
-select t1.tag, t1.cnt, t2.cnt, t3.cnt, t4.cnt, t5.cnt, t6.cnt
-	from
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2011
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t1
-	inner join
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2012
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t2
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2013
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t3
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2014
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t4
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2015
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t5
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2016
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t6
-	on t1.tag=t2.tag
-	and t2.tag=t3.tag
-	and t3.tag=t4.tag
-	and t4.tag=t5.tag
-	and t5.tag=t6.tag;
-	'''
-highest_freq_crime_all_6_years = dsl.sql_query(query=query)
-highest_freq_crime_all_6_years = highest_freq_crime_all_6_years.set_index('tag').transpose()
-highest_freq_crime_all_6_years.plot(legend=True, figsize=(15,15), 
-		marker='.', lw=3, mew=15, title='The most frequent crime from 2011 to 2016')
-\end{lstlisting}
-
-\label{appendix:plot2}
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={What crime has the highest occurrence in each location?}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-# each year
-plt.figure(figsize=(17, 18))
-for year in range(1, 7):
-	location_cnt = dsl.sql_query("""select Location,
-	`Incident Type Desciption`,
-	count(*) cnt
-	from crimedata_2011
-	group by Location
-	order by cnt desc
-	limit 10;
-	""".format(year))
-	print('The top 3 location with highest crime rate in year 201{}:'.format(year))
-	print(incident_location_cnt.iloc[:3, :].values)
-	print('\n')
-	
-	plt.subplot(2, 3, year)
-	plt.bar(x=location_cnt.Location, height=location_cnt.cnt)
-	plt.xticks(rotation=90)
-	plt.ylabel('Crime Occurence Number Count')
-	plt.title('201{}'.format(year))
-	plt.tight_layout()
-plt.show()
-
-# trend across 6 years
-query = '''
-	select t1.Location, 
-		t1.cnt as count_2011, 
-		t2.cnt as count_2012, 
-		t3.cnt as count_2013, 
-		t4.cnt as count_2014, 
-		t5.cnt as count_2015, 
-		t6.cnt as count_2016
-	from
-		(select Location,
-		count(*) cnt
-		from crimedata_2011
-		group by Location
-		order by cnt desc limit 10) as t1
-	inner join
-		(select Location,
-		count(*) cnt
-		from crimedata_2012
-		group by Location
-		order by cnt desc limit 10) as t2
-	inner join 
-		(select Location,
-		count(*) cnt
-		from crimedata_2013
-		group by Location
-		order by cnt desc limit 10) as t3
-	inner join 
-		(select Location,
-		count(*) cnt
-		from crimedata_2014
-		group by Location
-		order by cnt desc limit 10) as t4
-	inner join 
-		(select Location,
-		count(*) cnt
-		from crimedata_2015
-		group by Location
-		order by cnt desc limit 10) as t5
-	inner join 
-		(select Location,
-		count(*) cnt
-		from crimedata_2016
-		group by Location
-		order by cnt desc limit 10) as t6
-	on t1.Location=t2.Location
-	and t2.Location=t3.Location
-	and t3.Location=t4.Location
-	and t4.Location=t5.Location
-	and t5.Location=t6.Location;
-	'''
-highest_freq_crime_location_all_6_years = dsl.sql_query(query=query)
-highest_freq_crime_location_all_6_years = highest_freq_crime_location_all_6_years
-							.set_index('Location').transpose()
-highest_freq_crime_location_all_6_years.plot(legend=True, figsize=(15,15), 
-			marker='.', lw=3, mew=15, 
-			title='The location with highest crime rate from 2011 to 2016')
-\end{lstlisting}
-
-\label{appendix:plot3}
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={What crime has the highest occurrence in International Blvd?}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-query = '''
-	select t1.tag, 
-			t1.cnt, 
-			t2.cnt, 
-			t3.cnt, 
-			t4.cnt, 
-			t5.cnt, 
-			t6.cnt
-	from
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2011
-		where Location='INTERNATIONAL BLVD'
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t1
-	inner join
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2012
-		where Location='INTERNATIONAL BLVD'
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t2
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2013
-		where Location='INTERNATIONAL BLVD'
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t3
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2014
-		where Location='INTERNATIONAL BLVD'
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t4
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2015
-		where Location='INTERNATIONAL BLVD'
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t5
-	inner join 
-		(select `Incident Type Desciption` as tag, count(*) as cnt
-		from crimedata_2016
-		where Location='INTERNATIONAL BLVD'
-		group by `Incident Type Desciption`
-		order by cnt desc
-		limit 10) as t6
-	on t1.tag=t2.tag
-	and t2.tag=t3.tag
-	and t3.tag=t4.tag
-	and t4.tag=t5.tag
-	and t5.tag=t6.tag;
-	'''
-highest_freq_crime_internationalblvd_all_6_years = dsl.sql_query(query=query)
-highest_freq_crime_internationalblvd_all_6_years =
-	 pd.concat([highest_freq_crime_internationalblvd_all_6_years.tag, 
-		highest_freq_crime_internationalblvd_all_6_years.sum(axis=1)], axis=1)
-highest_freq_crime_internationalblvd_all_6_years.columns = ['crime type', 'occurrence']
-
-# high frequency crime type in the location with the highest crime rate
-
-plt.figure(figsize=(10, 10))
-plt.pie(highest_freq_crime_internationalblvd_all_6_years.occurrence,
-	labels=highest_freq_crime_internationalblvd_all_6_years['crime type'],
-	autopct = '%.2f',
-	shadow=True)
-plt.title('The most frequent crime type occurred in INTERNATIONAL BLVD from 2011-2016')
-plt.tight_layout()
-plt.show()
-\end{lstlisting}
-
-
-\label{appendix:plot4}
-\lstset{language=python}
-\lstset{frame=lines}
-\lstset{caption={What is the incident solving time for each incident?}}
-\lstset{basicstyle=\footnotesize}
-\begin{lstlisting}
-# each year
-plt.figure(figsize=(15,15))
-for year in range(1, 7):
-	query = '''
-		SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		concat(`Incident Type Id`, ' : ', `Incident Type Desciption`) as tag,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_201{}
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 20;
-	'''.format(year)
-	df_tmp = dsl.sql_query(query)
-	print('The top 3 crime that took the longest time to resolve in 
-		year 201{}:'.format(year))
-	print(df_tmp.iloc[:3, :].values)
-	print('\n')
-	plt.subplot(2, 3, year)
-	plt.bar(x=df_tmp['tag'].astype('str').values,
-		 height=df_tmp['avg_day_to_resolve'].values)
-	plt.xticks(rotation=90)
-	#plt.xlabel(xlabel='Incident Type Id')
-	plt.ylabel('avg_day_to_resolve')
-	plt.title('201{}'.format(year))
-	plt.tight_layout()
-plt.show()
-
-# trend across 6 years
-query = '''
-	select t1.`Incident Type Desciption`, 
-			t1.avg_day_to_resolve, 
-			t2.avg_day_to_resolve, 
-			t3.avg_day_to_resolve, 
-			t4.avg_day_to_resolve, 
-			t5.avg_day_to_resolve, 
-			t6.avg_day_to_resolve
-	from
-		(SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_2011
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 50) as t1
-	inner join
-		(SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_2012
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 50) as t2
-	inner join 
-		(SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_2013
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 50) as t3
-	inner join 
-		(SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_2014
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 50) as t4
-	inner join 
-		(SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_2015
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 50) as t5
-	inner join 
-		(SELECT `Incident Type Id`,
-		`Incident Type Desciption`,
-		avg(`Days to Resolve`) as avg_day_to_resolve
-		FROM crimedata_2016
-		GROUP BY `Incident Type Id`
-		order by avg_day_to_resolve desc
-		limit 50) as t6
-	on t1.`Incident Type Id`=t2.`Incident Type Id`
-	and t2.`Incident Type Id`=t3.`Incident Type Id`
-	and t3.`Incident Type Id`=t4.`Incident Type Id`
-	and t4.`Incident Type Id`=t5.`Incident Type Id`
-	and t5.`Incident Type Id`=t6.`Incident Type Id`;
-	'''
-\end{lstlisting}
 
 
 \end{document}

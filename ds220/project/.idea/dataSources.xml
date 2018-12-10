@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="anychart_db@localhost" uuid="fbc369cd-7be9-4970-adac-61a3e48ea7cf">
+    <data-source source="LOCAL" name="ds220@localhost" uuid="96b6597c-a1cd-4e54-b43b-824654202279">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/anychart_db</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/ds220</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

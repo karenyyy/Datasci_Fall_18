@@ -19,7 +19,7 @@ College of Engineering\\
 \And
 Yuan Meng\\
 College of Information Science and Technology\\
-\texttt{xxx@psu.edu} \\
+\texttt{yfm5047@psu.edu} \\
 }
 
 
@@ -40,24 +40,40 @@ The goal of the mini project is to get a hands-on personal experience regarding 
 
 \section{Introduction}
 
-[to be completed ...]
+The project is to use one unlabeled dataset which we later tagged by designing our own labeling strategy with crowd-sourced stances and one labeled dataset to construct and improve a model that can predict sentiments of tweets about climate change. The model is able to discriminate if one tweet is supporting for the topic of climate change or not. 
 
 \section{Data Preparation}
 
-
-[to be completed ...]
-
-
-\section{Feature Extraction}
+Two datasets are used in the project. DS1 is the unlabeled set, so we design a label aggregation strategy on the original 3 labels collected from crowd-sourcing to put a binary label (supportive as 1, non-supportive as 0) on it. It is the dataset that we use for constructing the basic model. DS2 is the labeled set. As the logic of labeling supportive level is not same as the previous one, both datasets have some differences. The combination of DS1 and DS2 is used to improve the model.
 
 
-[to be completed ...]
+\section{Label Aggregation}
+
+The logic to determine the stance of each tweet: 
+
+\begin{itemize}
+	\item  First, assign numerical numbers to  different sentiment
+	\begin{itemize}
+		\item[*] 1 for positive
+		\item[*] 0 for neutral
+		\item[*] -1 for negative
+		\item[*] -2 for irrelevant
+	\end{itemize}
+	\item  Second, add up three numbers for each tweet
+	\item  Third, if the result $\ge$ 1, the tweet is Support; Otherwise, it is Non-Support
+\end{itemize}
+
+
 
 \section{Model Construction}
 
-Using the set of provided tweets (which have been tagged both for Relevant and for Stance) to construct two Decision Tree-based predictive models predicting whether a tweet is supportive or lack of support for the topic.
+Using the set of provided tweets (which have been tagged) to construct two Decision Tree based predictive models predicting whether a tweet is supportive or lack of support for the topic.
 
-\subsection{Baseline Model}
+\subsection{Baseline Model (Model B: trained by DS1)}
+
+\subsubsection{Dataset}
+After we aggregate the labels, DS1 has 716 supporting tweets and 567 non-supporting tweets. It is not too unbalanced, so it can avoid the result being overfitting to the label with significantly larger volume than other labels to some extent.
+
 
 \subsubsection{Parameters}
 
@@ -77,32 +93,82 @@ Using the set of provided tweets (which have been tagged both for Relevant and f
 	* min_samples_leaf = 2
 \end{lstlisting}
 
-\subsubsection{Dataset}
 
-DS1 [Descriptions to be completed ...]
+\subsubsection{Pipeline}
 
-\subsection{Improved Model}
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{caption={Model 1 (DS1)}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+clf = Pipeline(
+		[('vect', CountVectorizer(token_pattern='(([#@]|[0-9]|[a-z]|[A-Z])+)',
+					analyzer = 'word',
+					min_df = 3)),
+		('clf', DecisionTreeClassifier(criterion='entropy',
+					random_state = 100,
+					max_depth = 7,
+					min_samples_leaf = 2))
+		])
+\end{lstlisting}
+
+
+
+\subsection{Improved Model (Model A: trained by DS1+DS2)}
 
 The improvements of the following parameters of the Baseline Model were implemented:
 
 
+
+\subsubsection{Dataset}
+
+Besides DS1, a new dataset is added into the training phase. DS2 has 800 supporting tweets and 800 non-supporting tweets. It is perfectly balanced, which is good for modeling.
+
+
 \subsubsection{Token Pattern}
 
+By designing a new regular expression as \textbf{token\_pattern} in sklearn CountVectorizer to extract words, usernames and hashtags from the raw tweets, we are aiming to output the feature displayed in each node of the decision tree with better interpretability.
+
+\hyperref[token:tuple]{tree1}
 \lstset{language=Python}
 \lstset{frame=lines}
-\lstset{caption={Adjustment of token pattern to improve the model's interpretability}}
+\lstset{caption={Previous token pattern}}
 \lstset{basicstyle=\footnotesize}
 \begin{lstlisting}
 * Baseline Model
-	* token_pattern="(([#@]|[0-9]|[a-z]|[A-Z])+)"
-	
+	* token_pattern="(([#@]|[0-9]|[a-z]|[A-Z])+)" 
+\end{lstlisting}
+
+\hyperref[token:word]{tree2}
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{caption={Adjusted token pattern}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}	
 * Improved Model
 	* token_pattern="(?!RT|rt|\d+)[@#]*[\w\'_-]{2,100}"
 \end{lstlisting}
 
+
+
+
 \subsubsection{Max Depth}
 
-1-15 [Details to be completed ...]
+We tried the max depth 1-15 of tree to enhance the model. The F1 Score is list in Table1 and Table 2. By comparing every f1 score, we decide to assign 15 as the max\_depth for our final decision tree.
+
+
+\subsubsection{N-Gram}
+
+We change the n-gram parameter when constructing word dictionary as well to include not just single words but also phrases into consideration for the feature set.
+
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{caption={Adjusted n-gram}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}	
+* Improved Model
+	* n-gram=(1,2)
+\end{lstlisting}
 
 \subsubsection{Stop Words}
 
@@ -142,12 +208,12 @@ default ('english')
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=7cm, width=8cm]{2.png}
+	\includegraphics[height=6cm, width=8cm]{2.png}
 	\caption{F1 score of training and testing set}
 \end{figure}
 
 
-\textbf{option 2: }
+\textbf{Option 2: }
 
 self-defined: {'a', 'an', 'the', 'it', 'is', 'are', 'be', 'of', 'this', 'that', 'RT', 'rt','https'}
 
@@ -189,7 +255,7 @@ self-defined: {'a', 'an', 'the', 'it', 'is', 'are', 'be', 'of', 'this', 'that', 
 \end{figure}
 
 
-\textbf{option 3:}
+\textbf{Option 3$^*$:}
 
 The top 30 most common words in DS1+DS2 tweets (exclude semantic sensitive words like \textbf{climate} and \textbf{change})
 
@@ -248,42 +314,46 @@ output:
 	\caption{F1 score of training and testing set}
 \end{figure}
 
-\subsection{Optimal Model}
 
 
+\subsubsection{Pipeline}
 
 \lstset{language=Python}
 \lstset{frame=lines}
-\lstset{caption={optimal parameters}}
+\lstset{caption={Model 2 (DS2)}}
 \lstset{basicstyle=\footnotesize}
 \begin{lstlisting}
-* CountVector
-	* token_pattern = "(?!RT|rt|\d+)[@#]*[\w\'_-]{2,100}"
-	* analyzer = 'word'
-	* stop_words = ['the', 'to', 'RT', 'of', 'is',	'and','in', 'that',
-			'on', 'for', 'are',	'you', 'we', 'The', 'it', 
-			'this', 'about', 'be', 'by', 'have', 'not', 
-			'will', 'our', 'from', 'as', 'with', 'can', 'all', 
-			'We', 'do']
-	* min_df = 3
-* DecisionTree
-	* criterion='entropy'
-	* max_depth = 10
-	* min_samples_leaf = 2
+stop_w = [i[0] for i in Counter([word for sentence in X 
+		for word in sentence.split() 
+		if 'climate' not in word.lower() and 'change' not in word.lower()
+		and word.isalpha() 
+		and len(word)>1]).most_common()[:30]]
+
+output: 
+	['the', 'to', 'RT', 'of', 'is',	'and','in', 'that', 'on', 'for', 'are',	'you', 
+	'we', 'The', 'it', 'this', 'about', 'be', 'by', 'have', 'not', 'will', 'our', 
+	'from', 'as', 'with', 'can', 'all', 'We', 'do']
+
+clf = Pipeline(
+	[('vect',CountVectorizer(token_pattern="(?!RT|rt|\d+)[@#]*[\w\'_-]{2,100}",
+				analyzer = 'word',
+				stop_words = stop_w,
+				min_df = 10,
+				ngram_range=(1,2))),
+	('clf', DecisionTreeClassifier(criterion='entropy',
+				random_state = 100,
+				max_depth = 15,
+				min_samples_leaf = 2))
+	])
 \end{lstlisting}
-
-
-\subsubsection{Dataset}
-
-DS2 [Descriptions [to be completed ...]]
 
 
 \section{Model Assessment}
 
-\subsection{Baseline Model}
+\subsection{Baseline Model (Model B: trained by DS1)}
 
 \begin{table}[H]
-	\caption{5-fold output of decision tree with max\_path=5, min\_samples\_leaf=2}
+	\caption{5-fold output of decision tree with max\_path=7, min\_samples\_leaf=2}
 	\label{sample-table}
 	\begin{center}
 		\begin{tabular}{|l|l|l|l|l|}
@@ -303,19 +373,20 @@ DS2 [Descriptions [to be completed ...]]
 	\end{center}
 \end{table}
 
+
+We check overfitting risk by comparing the model's confusion matrix for training data vs the model's confusion matrix for testing data based on max\_path=7, min\_samples\_leaf=2 of the decision tree:
+
 \begin{figure}[H]
 	\includegraphics[height=5cm, width=17cm]{5.png}
 	\caption{Confusion Matrix of training and testing set to observe overfitting}
 \end{figure}
 
 
-[to be completed ...]
 
-
-\subsection{Improved Model}
+\subsection{Improved Model (Model A: trained by DS1+DS2)}
 
 \begin{table}[H]
-	\caption{5-fold output of decision tree with max\_path=10, min\_samples\_leaf=2}
+	\caption{5-fold output of decision tree with max\_path=15, min\_samples\_leaf=2}
 	\label{sample-table}
 	\begin{center}
 		\begin{tabular}{|l|l|l|l|l|}
@@ -335,64 +406,68 @@ DS2 [Descriptions [to be completed ...]]
 	\end{center}
 \end{table}
 
+We check overfitting risk by comparing the model's confusion matrix for training data vs the model's confusion matrix for testing data based on max\_path=15, min\_samples\_leaf=2 of the decision tree:
 
 \begin{figure}[H]
-	\includegraphics[height=5cm, width=17cm]{1.png}
+	\includegraphics[height=6cm, width=17cm]{1.png}
 	\caption{Confusion Matrix of training and testing set to observe overfitting}
 \end{figure}
 
-
-[to be completed ...]
+Then we use max\_path=15, min\_samples\_leaf=2 for the decision tree to test the model, and the new data is better than the previous one.
 
 
 \section{Model Interpretation}
 
-\subsection{Baseline Model}
+\subsection{Baseline Model (Model B: trained by DS1)}
 
-
-[Detailed discussion to be completed ...]
-
+\label{token:tuple}
 \subsubsection{Fold 1}
 
 \begin{figure}[H]
 	\includegraphics[height=5cm, width=17cm]{6.png}
-	\caption{Decision Tree Fold 1}
+	\caption{Decision Tree Fold 1 (partial)}
 \end{figure}
 
 \subsubsection{Fold 2}
 
 \begin{figure}[H]
 	\includegraphics[height=5cm, width=17cm]{7.png}
-	\caption{Decision Tree Fold 2}
+	\caption{Decision Tree Fold 2 (partial)}
 \end{figure}
 
 \subsubsection{Fold 3}
 
 \begin{figure}[H]
 	\includegraphics[height=5cm, width=17cm]{8.png}
-	\caption{Decision Tree Fold 3}
+	\caption{Decision Tree Fold 3 (partial)}
 \end{figure}
 
 \subsubsection{Fold 4}
 
 \begin{figure}[H]
 	\includegraphics[height=5cm, width=17cm]{9.png}
-	\caption{Decision Tree Fold 4}
+	\caption{Decision Tree Fold 4 (partial)}
 \end{figure}
 
 \subsubsection{Fold 5}
 
 \begin{figure}[H]
 	\includegraphics[height=5cm, width=17cm]{10.png}
-	\caption{Decision Tree Fold 5}
+	\caption{Decision Tree Fold 5 (partial)}
 \end{figure}
 
 
-\subsection{Improved Model}
+Rule examples of Baseline Model (Model B: trained by DS1): 
+\begin{itemize}
+	\item  If a tweet does not contain 'climate', '\#climatechange', but contains 'levels', then it is much more likely to \textbf{SUPPORT} Climate Change.
+	\item  If a tweet contains 'climate', 'corporations', but does not contain 'rt', 'into', 'get',  then it is much more likely to \textbf{NOT SUPPORT} Climate Change.
+\end{itemize}
 
 
-[Detailed discussion to be completed ...]
+\subsection{Improved Model (Model A: trained by DS1+DS2)}
 
+
+\label{token:word}
 \subsubsection{Fold 1}
 
 \begin{figure}[H]
@@ -428,16 +503,26 @@ DS2 [Descriptions [to be completed ...]]
 	\caption{Decision Tree Fold 5 (partial)}
 \end{figure}
 
+\textit{Note$^*$: The improved decision tree does not have unmeaningful nodes such as \textbf{"rt/RT"}, and its max depth is deeper than the original one.}
+
+Rule examples of Improved Model: 
+\begin{itemize}
+	\item If a tweet does not contain 'climate', '\#climatechange', 'change', 'carbon', 'been', 'an', but contains 'respond', 'if', then it is much more likely to \textbf{SUPPORT} Climate Change.
+	\item If a tweet contains 'climate', 'years', but does not contain 'could', 'it's', 'now', 'make', 'might', 'planet', 'scientists', then it is much more likely to \textbf{NOT SUPPORT} Climate Change.
+\end{itemize}
+
+
+
+
 
 \section{Conclusion/Future Work}
 
 
-to be completed \cite{DBLP:journals/corr/abs-1802-05365} ...
+We generated two models during the progress of the project. Model A is trained with the combination of DS1 and DS2, and Model B is only trained with DS1. We have Model B first, then we improve the model and get Model A. 
 
-
-\bibliographystyle{plain}
-\bibliography{ref}
-
+In retrospective, there are several lessons we learned throughout the implementation of the twitter-based project, which is like a NLP 101. We got some really useful hands-on experience with the twitter data from first applying for a Twitter developer account, then collecting with a script pipeline written in python, then preprocessing it by dropping all replicates to avoid potential overfitting in the model training phase later and writing regular expressions to extract words, usernames and hashtags ready to build a word dictionary by sklearn CountVectorizer. In the model building step, we got to try setting up a Decision Tree for the stance classification task followed by  a 5-fold cross-validation strategy for model evaluation. We got a decent final result at last.  We change the max depth from 7 to 15, make some adjustments about stop-words, n-grams and the f1 score bumps up from 0.718 to 0.719. In the process, there are a few tips worth mentioning. The stop word is useful for building the decision tree. Some words occur in tweets frequently but they do not contribute for identifying the sentiment of tweets, the usage of stop words helps prevent words such as "rt" or "the" from appearing in the trees. We forget to change the min\_sample\_leaf of the tree to get the better score, this is the lesson we should learn.
+ 
+For future endeavor, there are a lot of word-encoding strategies and classifiers to examine for the twitter binary stance classification task, for instance, besides count-based bag-of-words, tf-idf \cite{scikit-learn} could also be considered as an alternative (however, since the fact that the word count of each tweet is limited, tf-idf might not works as well as it does for similar binary sentiment classification trained by documents as corpus, in which case vectorized by tf-idf could reduce the over-sparsity of the feature set significantly). Besides statistical measured word encoding approaches, pre-trained Glove \cite{glove} or Word2Vec \cite{w2v} for twitter corpus is worthing trying out as well regarding text encoding. And for the binary classifier, to improve the f1 score with tree-based algorithm, we could try the ensemble method as a combination of multiple weak learners, for instance, Random Forest \cite{scikit-learn}, AdaBoosting \cite{scikit-learn}, XGBoost \cite{xg}, despite the major drawback as comprising the interpretability of the decision rules.
 
 \[\]
 
@@ -549,7 +634,7 @@ def custom_split(train_index, test_index):
 
 \lstset{language=Python}
 \lstset{frame=lines}
-\lstset{caption={Split data into training and validation dataset}}
+\lstset{caption={Classifier}}
 \lstset{basicstyle=\footnotesize}
 \begin{lstlisting}
 def classifier(X_train, y_train, X_test, fold, max_depth, min_samples_leaf):
@@ -557,7 +642,7 @@ def classifier(X_train, y_train, X_test, fold, max_depth, min_samples_leaf):
 		[('vect', CountVectorizer(token_pattern="(?!RT|rt|\d+)[@#]*[\w\'_-]{2,100}",
 			analyzer = 'word',
 			stop_words = 'english',
-			min_df = 4,
+			min_df = 10,
 			ngram_range=(1,2))),
 		('clf', DecisionTreeClassifier(criterion='entropy',
 			random_state = 100,
@@ -694,10 +779,16 @@ for d in range(1, 15):
 \lstset{caption={Final Result}}
 \lstset{basicstyle=\footnotesize}
 \begin{lstlisting}
-k_fold_evaluate(X, y, max_depth=10, min_samples_leaf=2, 
+k_fold_evaluate(X, y, max_depth=15, min_samples_leaf=2, 
 stop_words=stop_w, 
 print_eval=True, overfit_risk=False)
 clf2 = joblib.load('ClimateTeam7PD2.pkl')
 \end{lstlisting}
+
+
+
+\bibliographystyle{plain}
+\bibliography{ref}
+
 
 \end{document}

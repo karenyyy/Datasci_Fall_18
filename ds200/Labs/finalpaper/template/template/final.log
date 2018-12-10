@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.1)  6 DEC 2018 19:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.11.1)  9 DEC 2018 00:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -345,498 +345,530 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 37.
-
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-)
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 69.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 70.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 70.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 71.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 71.
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<2.png, id=150, 382.42876pt x 280.04625pt>
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 85.
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <9> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 86.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 87.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 87.
+
+Overfull \hbox (66.91974pt too wide) in paragraph at lines 105--106
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[2]
+<2.png, id=182, 382.42876pt x 280.04625pt>
 File: 2.png Graphic file (type png)
 <use 2.png>
-Package pdftex.def Info: 2.png  used on input line 145.
-(pdftex.def)             Requested size: 227.62086pt x 199.17607pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [2pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
+Package pdftex.def Info: 2.png  used on input line 211.
+(pdftex.def)             Requested size: 227.62086pt x 170.72112pt.
+ [3pdfTeX warning (ext4): destination with the same identifier (name{table.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.148 
-      ]
-<3.png, id=163, 382.42876pt x 280.04625pt>
+l.218 s
+       elf-defined: {'a', 'an', 'the', 'it', 'is', 'are', 'be', 'of', 'this'...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.218 s
+       elf-defined: {'a', 'an', 'the', 'it', 'is', 'are', 'be', 'of', 'this'...
+ <./2.png>]
+<3.png, id=194, 382.42876pt x 280.04625pt>
 File: 3.png Graphic file (type png)
 <use 3.png>
-Package pdftex.def Info: 3.png  used on input line 187.
+Package pdftex.def Info: 3.png  used on input line 253.
 (pdftex.def)             Requested size: 227.62086pt x 199.17607pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3pdfTeX warning (ext4): destination with the same identifier (name{figure.1})
- has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.190 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.2
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.190 
-       <./2.png>]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 201.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 267.
 
-Overfull \hbox (56.11963pt too wide) in paragraph at lines 201--202
+Overfull \hbox (56.11963pt too wide) in paragraph at lines 267--268
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
 
  []
 
 
-Overfull \hbox (39.91946pt too wide) in paragraph at lines 202--203
+Overfull \hbox (39.91946pt too wide) in paragraph at lines 268--269
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-LaTeX Font Info:    Try loading font information for OML+ptm on input line 204.
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 270.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd
 File: omlptm.fd 
 )
 LaTeX Font Info:    Font shape `OML/ptm/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 204.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 270.
 
-Overfull \hbox (66.91974pt too wide) in paragraph at lines 207--208
+Overfull \hbox (66.91974pt too wide) in paragraph at lines 273--274
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (61.51968pt too wide) in paragraph at lines 208--209
+Overfull \hbox (61.51968pt too wide) in paragraph at lines 274--275
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][] 
  []
 
-<4.png, id=172, 382.42876pt x 280.04625pt>
+[4pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.275 	'f
+         rom', 'as', 'with', 'can', 'all', 'We', 'do']pdfTeX warning (ext4): de
+stination with the same identifier (name{figure.2}) has been already used, dupl
+icate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.275 	'f
+         rom', 'as', 'with', 'can', 'all', 'We', 'do'] <./3.png>]
+<4.png, id=211, 382.42876pt x 280.04625pt>
 File: 4.png Graphic file (type png)
 <use 4.png>
-Package pdftex.def Info: 4.png  used on input line 247.
+Package pdftex.def Info: 4.png  used on input line 313.
 (pdftex.def)             Requested size: 227.62086pt x 199.17607pt.
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
-has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.250 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.3
-}) has been already used, duplicate ignored
+Overfull \hbox (39.91946pt too wide) in paragraph at lines 328--329
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.250 
-       <./3.png>]
-Overfull \hbox (7.51913pt too wide) in paragraph at lines 263--264
+
+Overfull \hbox (66.91974pt too wide) in paragraph at lines 333--334
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][] 
+][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.11908pt too wide) in paragraph at lines 266--267
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (61.51968pt too wide) in paragraph at lines 334--335
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][] 
  []
 
-<5.png, id=191, 1435.3625pt x 483.8075pt>
+[5pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.337 clf 
+          = Pipeline(pdfTeX warning (ext4): destination with the same identifie
+r (name{figure.3}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.337 clf 
+          = Pipeline( <./4.png>]
+Overfull \hbox (50.71957pt too wide) in paragraph at lines 338--339
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+<5.png, id=231, 1435.3625pt x 483.8075pt>
 File: 5.png Graphic file (type png)
 <use 5.png>
-Package pdftex.def Info: 5.png  used on input line 307.
+Package pdftex.def Info: 5.png  used on input line 380.
 (pdftex.def)             Requested size: 483.68024pt x 142.26427pt.
 
-Overfull \hbox (86.19525pt too wide) in paragraph at lines 307--308
-[][]
- []
-
-[5pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.310 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.4
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.310 
-       <./4.png>]
-<1.png, id=213, 1435.3625pt x 483.8075pt>
-File: 1.png Graphic file (type png)
-<use 1.png>
-Package pdftex.def Info: 1.png  used on input line 340.
-(pdftex.def)             Requested size: 483.68024pt x 142.26427pt.
-
-Overfull \hbox (86.19525pt too wide) in paragraph at lines 340--341
-[][]
- []
-
-<6.png, id=214, 1700.3525pt x 690.58pt>
-File: 6.png Graphic file (type png)
-<use 6.png>
-Package pdftex.def Info: 6.png  used on input line 358.
-(pdftex.def)             Requested size: 483.69742pt x 142.25475pt.
-
-Overfull \hbox (86.21243pt too wide) in paragraph at lines 358--359
-[][]
- []
-
-[6pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.361 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.5
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.361 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-5}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.361 
-       <./5.png> <./1.png>]
-<7.png, id=224, 1741.50626pt x 611.28375pt>
-File: 7.png Graphic file (type png)
-<use 7.png>
-Package pdftex.def Info: 7.png  used on input line 365.
-(pdftex.def)             Requested size: 483.6856pt x 142.2619pt.
-
-Overfull \hbox (86.2006pt too wide) in paragraph at lines 365--366
-[][]
- []
-
-<8.png, id=225, 1736.4875pt x 613.29124pt>
-File: 8.png Graphic file (type png)
-<use 8.png>
-Package pdftex.def Info: 8.png  used on input line 372.
-(pdftex.def)             Requested size: 483.69601pt x 142.2612pt.
-
-Overfull \hbox (86.21103pt too wide) in paragraph at lines 372--373
-[][]
- []
-
-<9.png, id=226, 1574.88374pt x 679.53876pt>
-File: 9.png Graphic file (type png)
-<use 9.png>
-Package pdftex.def Info: 9.png  used on input line 379.
-(pdftex.def)             Requested size: 483.69113pt x 142.26149pt.
-
-Overfull \hbox (86.20615pt too wide) in paragraph at lines 379--380
-[][]
- []
-
-[7pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.382 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-7}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.382 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-8}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.382 
-       <./6.png> <./7.png> <./8.png>]
-<10.png, id=238, 1654.18pt x 653.44125pt>
-File: 10.png Graphic file (type png)
-<use 10.png>
-Package pdftex.def Info: 10.png  used on input line 386.
-(pdftex.def)             Requested size: 483.68796pt x 142.2619pt.
-
-Overfull \hbox (86.20297pt too wide) in paragraph at lines 386--387
-[][]
- []
-
-<11.png, id=239, 1732.4725pt x 815.045pt>
-File: 11.png Graphic file (type png)
-<use 11.png>
-Package pdftex.def Info: 11.png  used on input line 399.
-(pdftex.def)             Requested size: 483.68793pt x 142.2619pt.
-
-Overfull \hbox (86.20294pt too wide) in paragraph at lines 399--400
+Overfull \hbox (86.19525pt too wide) in paragraph at lines 380--381
 [][]
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
+ [6pdfTeX warning (ext4): destination with the same identifier (name{table.4}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.408 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+4}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.408 
+       <./5.png>]
+<1.png, id=253, 1435.3625pt x 483.8075pt>
+File: 1.png Graphic file (type png)
+<use 1.png>
+Package pdftex.def Info: 1.png  used on input line 412.
+(pdftex.def)             Requested size: 483.68024pt x 170.71565pt.
+
+Overfull \hbox (86.19525pt too wide) in paragraph at lines 412--413
+[][]
+ []
+
+<6.png, id=254, 1246.6575pt x 538.01pt>
+File: 6.png Graphic file (type png)
+<use 6.png>
+Package pdftex.def Info: 6.png  used on input line 427.
+(pdftex.def)             Requested size: 483.70253pt x 142.26001pt.
+
+Overfull \hbox (86.21754pt too wide) in paragraph at lines 427--428
+[][]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7pdfTeX warning (ext4): destination with the same identifier (name{table.5}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.430 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+5}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.430 
+       <./1.png>]
+<7.png, id=263, 1147.28625pt x 567.11874pt>
+File: 7.png Graphic file (type png)
+<use 7.png>
+Package pdftex.def Info: 7.png  used on input line 434.
+(pdftex.def)             Requested size: 483.69508pt x 142.26393pt.
+
+Overfull \hbox (86.2101pt too wide) in paragraph at lines 434--435
+[][]
+ []
+
+<8.png, id=264, 1291.82625pt x 570.13pt>
+File: 8.png Graphic file (type png)
+<use 8.png>
+Package pdftex.def Info: 8.png  used on input line 441.
+(pdftex.def)             Requested size: 483.68462pt x 142.26247pt.
+
+Overfull \hbox (86.19963pt too wide) in paragraph at lines 441--442
+[][]
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.402 
+l.444 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
-10}) has been already used, duplicate ignored
+7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.402 
-       <./9.png> <./10.png>]
-<12.png, id=248, 1738.495pt x 902.37125pt>
+l.444 
+       <./6.png> <./7.png>]
+<9.png, id=273, 1283.79625pt x 627.34375pt>
+File: 9.png Graphic file (type png)
+<use 9.png>
+Package pdftex.def Info: 9.png  used on input line 448.
+(pdftex.def)             Requested size: 483.69475pt x 142.26622pt.
+
+Overfull \hbox (86.20976pt too wide) in paragraph at lines 448--449
+[][]
+ []
+
+<10.png, id=274, 1295.84125pt x 628.3475pt>
+File: 10.png Graphic file (type png)
+<use 10.png>
+Package pdftex.def Info: 10.png  used on input line 455.
+(pdftex.def)             Requested size: 483.70494pt x 142.26375pt.
+
+Overfull \hbox (86.21996pt too wide) in paragraph at lines 455--456
+[][]
+ []
+
+[9pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.462 	\item  I
+               f a tweet does not contain 'climate', '\#climatechange', but ...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.462 	\item  I
+               f a tweet does not contain 'climate', '\#climatechange', but ...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.462 	\item  I
+               f a tweet does not contain 'climate', '\#climatechange', but ...
+ <./8.png> <./9.png> <./10.png>]
+<11.png, id=286, 1256.695pt x 556.0775pt>
+File: 11.png Graphic file (type png)
+<use 11.png>
+Package pdftex.def Info: 11.png  used on input line 474.
+(pdftex.def)             Requested size: 483.68526pt x 142.26031pt.
+
+Overfull \hbox (86.20027pt too wide) in paragraph at lines 474--475
+[][]
+ []
+
+<12.png, id=287, 1202.4925pt x 591.20876pt>
 File: 12.png Graphic file (type png)
 <use 12.png>
-Package pdftex.def Info: 12.png  used on input line 406.
-(pdftex.def)             Requested size: 483.69812pt x 142.26192pt.
+Package pdftex.def Info: 12.png  used on input line 481.
+(pdftex.def)             Requested size: 483.70406pt x 142.26286pt.
 
-Overfull \hbox (86.21313pt too wide) in paragraph at lines 406--407
+Overfull \hbox (86.21907pt too wide) in paragraph at lines 481--482
 [][]
  []
 
-<13.png, id=249, 1709.38625pt x 912.40875pt>
+<13.png, id=288, 1283.79625pt x 581.17125pt>
 File: 13.png Graphic file (type png)
 <use 13.png>
-Package pdftex.def Info: 13.png  used on input line 413.
-(pdftex.def)             Requested size: 483.68501pt x 142.25722pt.
+Package pdftex.def Info: 13.png  used on input line 488.
+(pdftex.def)             Requested size: 483.69475pt x 142.25961pt.
 
-Overfull \hbox (86.20003pt too wide) in paragraph at lines 413--414
+Overfull \hbox (86.20976pt too wide) in paragraph at lines 488--489
 [][]
  []
 
-<14.png, id=250, 1680.2775pt x 907.39pt>
-File: 14.png Graphic file (type png)
-<use 14.png>
-Package pdftex.def Info: 14.png  used on input line 420.
-(pdftex.def)             Requested size: 483.67856pt x 142.26393pt.
 
-Overfull \hbox (86.19357pt too wide) in paragraph at lines 420--421
-[][]
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[9pdfTeX warning (ext4): destination with the same identifier (name{figure.11})
- has been already used, duplicate ignored
+ [10pdfTeX warning (ext4): destination with the same identifier (name{figure.11
+}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.423 
+l.491 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 12}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.423 
-      pdfTeX warning (ext4): destination with the same identifier (name{figure.
-13}) has been already used, duplicate ignored
+l.491 
+       <./11.png> <./12.png>]
+<14.png, id=297, 1300.86pt x 584.1825pt>
+File: 14.png Graphic file (type png)
+<use 14.png>
+Package pdftex.def Info: 14.png  used on input line 495.
+(pdftex.def)             Requested size: 483.69261pt x 142.26576pt.
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.423 
-       <./11.png> <./12.png> <./13.png>]
-<15.png, id=261, 1671.24374pt x 889.3225pt>
-File: 15.png Graphic file (type png)
-<use 15.png>
-Package pdftex.def Info: 15.png  used on input line 427.
-(pdftex.def)             Requested size: 483.67924pt x 142.25378pt.
-
-Overfull \hbox (86.19426pt too wide) in paragraph at lines 427--428
+Overfull \hbox (86.20763pt too wide) in paragraph at lines 495--496
 [][]
  []
 
-(./final.bbl) [10pdfTeX warning (ext4): destination with the same identifier (n
-ame{figure.14}) has been already used, duplicate ignored
+<15.png, id=298, 1236.62pt x 586.19pt>
+File: 15.png Graphic file (type png)
+<use 15.png>
+Package pdftex.def Info: 15.png  used on input line 502.
+(pdftex.def)             Requested size: 483.69505pt x 142.26271pt.
+
+Overfull \hbox (86.21007pt too wide) in paragraph at lines 502--503
+[][]
+ []
+
+LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 506.
+[11pdfTeX warning (ext4): destination with the same identifier (name{figure.13}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.456 import 
-             numpy as nppdfTeX warning (ext4): destination with the same identi
-fier (name{figure.15}) has been already used, duplicate ignored
+l.508 R
+       ule examples of Improved Model:pdfTeX warning (ext4): destination with t
+he same identifier (name{figure.14}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.456 import 
-             numpy as np <./14.png> <./15.png>]
-Overfull \hbox (18.31924pt too wide) in paragraph at lines 462--463
+l.508 R
+       ule examples of Improved Model:pdfTeX warning (ext4): destination with t
+he same identifier (name{figure.15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.508 R
+       ule examples of Improved Model: <./13.png> <./14.png> <./15.png>]
+Overfull \hbox (18.31924pt too wide) in paragraph at lines 547--548
 [][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (66.91974pt too wide) in paragraph at lines 466--467
+[12]
+Overfull \hbox (66.91974pt too wide) in paragraph at lines 551--552
 [][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (66.91974pt too wide) in paragraph at lines 469--470
+Overfull \hbox (66.91974pt too wide) in paragraph at lines 554--555
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (56.11963pt too wide) in paragraph at lines 487--488
+Overfull \hbox (56.11963pt too wide) in paragraph at lines 572--573
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.91919pt too wide) in paragraph at lines 488--489
+Overfull \hbox (12.91919pt too wide) in paragraph at lines 573--574
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.91919pt too wide) in paragraph at lines 507--508
+Overfull \hbox (12.91919pt too wide) in paragraph at lines 592--593
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (88.51996pt too wide) in paragraph at lines 528--529
+Overfull \hbox (88.51996pt too wide) in paragraph at lines 613--614
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[11]
-Overfull \hbox (12.91919pt too wide) in paragraph at lines 555--556
+[13]
+Overfull \hbox (12.91919pt too wide) in paragraph at lines 640--641
 [][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (99.32007pt too wide) in paragraph at lines 557--558
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (66.91974pt too wide) in paragraph at lines 570--571
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (18.31924pt too wide) in paragraph at lines 589--590
-[][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (12.91919pt too wide) in paragraph at lines 607--608
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (12.91919pt too wide) in paragraph at lines 608--609
-[][][][][][][][] 
- []
-
-
-Overfull \hbox (7.51913pt too wide) in paragraph at lines 609--610
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (7.51913pt too wide) in paragraph at lines 611--612
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[12]
-Overfull \hbox (12.91919pt too wide) in paragraph at lines 612--613
-[][][][][][][][] 
- []
-
-
-Overfull \hbox (2.11908pt too wide) in paragraph at lines 613--614
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (56.11963pt too wide) in paragraph at lines 635--637
-[][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (34.51941pt too wide) in paragraph at lines 640--641
-[][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (23.7193pt too wide) in paragraph at lines 641--642
-[][][][][][][][][][] 
  []
 
 
 Overfull \hbox (99.32007pt too wide) in paragraph at lines 642--643
-[][][][][][][][][][] 
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (34.51941pt too wide) in paragraph at lines 643--644
-[][][][][][][][][][] 
+Overfull \hbox (66.91974pt too wide) in paragraph at lines 655--656
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (45.31952pt too wide) in paragraph at lines 644--645
+Overfull \hbox (18.31924pt too wide) in paragraph at lines 674--675
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (12.91919pt too wide) in paragraph at lines 692--693
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (12.91919pt too wide) in paragraph at lines 693--694
 [][][][][][][][] 
  []
 
 
-Overfull \hbox (83.1199pt too wide) in paragraph at lines 649--651
+Overfull \hbox (7.51913pt too wide) in paragraph at lines 694--695
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (7.51913pt too wide) in paragraph at lines 696--697
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (12.91919pt too wide) in paragraph at lines 697--698
+[][][][][][][][] 
+ []
+
+
+Overfull \hbox (2.11908pt too wide) in paragraph at lines 698--699
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[14]
+Overfull \hbox (56.11963pt too wide) in paragraph at lines 720--722
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (34.51941pt too wide) in paragraph at lines 725--726
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (23.7193pt too wide) in paragraph at lines 726--727
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (99.32007pt too wide) in paragraph at lines 727--728
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (34.51941pt too wide) in paragraph at lines 728--729
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (45.31952pt too wide) in paragraph at lines 729--730
+[][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.1199pt too wide) in paragraph at lines 734--736
 [][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (56.11963pt too wide) in paragraph at lines 676--677
+Overfull \hbox (56.11963pt too wide) in paragraph at lines 761--762
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 703.
- [14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 703.
+(./final.bbl [15])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 794.
+ [16]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 794.
  (./final.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 703.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 703.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 794.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 794.
 Package rerunfilecheck Info: File `final.out' has not changed.
-(rerunfilecheck)             Checksum: B31AC0BA87CD54EDD774B3EFC4C4108F;1980.
+(rerunfilecheck)             Checksum: 7DD600A05409C72EC7E01C4EF0B5D1A1;2298.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 703.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 794.
  ) 
 Here is how much of TeX's memory you used:
- 7918 strings out of 492982
- 113897 string characters out of 6134896
- 358092 words of memory out of 5000000
- 11089 multiletter control sequences out of 15000+600000
- 20585 words of font info for 41 fonts, out of 8000000 for 9000
+ 7962 strings out of 492982
+ 114436 string characters out of 6134896
+ 357482 words of memory out of 5000000
+ 11102 multiletter control sequences out of 15000+600000
+ 22214 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,9n,40p,232b,1707s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,9n,40p,1370b,1709s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
-w/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on final.pdf (14 pages, 1416844 bytes).
+-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
+w/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8
+a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on final.pdf (16 pages, 1964434 bytes).
 PDF statistics:
- 566 PDF objects out of 1000 (max. 8388607)
- 508 compressed objects within 6 object streams
- 294 named destinations out of 1000 (max. 500000)
- 332 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 631 PDF objects out of 1000 (max. 8388607)
+ 568 compressed objects within 6 object streams
+ 323 named destinations out of 1000 (max. 500000)
+ 348 words of extra memory for PDF output out of 10000 (max. 10000000)
 

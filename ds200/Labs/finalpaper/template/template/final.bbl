@@ -1,9 +1,23 @@
 \begin{thebibliography}{1}
 
-\bibitem{DBLP:journals/corr/abs-1802-05365}
-Matthew~E. Peters, Mark Neumann, Mohit Iyyer, Matt Gardner, Christopher Clark,
-  Kenton Lee, and Luke Zettlemoyer.
-\newblock Deep contextualized word representations.
-\newblock {\em CoRR}, abs/1802.05365, 2018.
+\bibitem{xg}
+Xgboost documentation.
+\newblock 2016.
+
+\bibitem{w2v}
+Vector representations of words.
+\newblock 2018.
+
+\bibitem{scikit-learn}
+F.~Pedregosa, G.~Varoquaux, A.~Gramfort, V.~Michel, B.~Thirion, O.~Grisel,
+  M.~Blondel, P.~Prettenhofer, R.~Weiss, V.~Dubourg, J.~Vanderplas, A.~Passos,
+  D.~Cournapeau, M.~Brucher, M.~Perrot, and E.~Duchesnay.
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock {\em Journal of Machine Learning Research}, 12:2825--2830, 2011.
+
+\bibitem{glove}
+Jeffrey Pennington, Richard Socher, and Christopher~D. Manning.
+\newblock Glove: Global vectors for word representation.
+\newblock {\em Stanford NLP}, 2014.
 
 \end{thebibliography}

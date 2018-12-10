@@ -1003,17 +1003,17 @@ clusterings we got from (3) and (4). Because:
 \tightlist
 \item
   Impurity (in this case, the Gini Index) could be used as evaluation
-  criteria for the algorithm to determine its optimality:
+  criteria for the algorithm to determine its optimality. Clustering with smaller Gini Index is more optimal than the clustering with larger Gini Index:
 
   \begin{itemize}
   \tightlist
   \item[*]
     In question 3, Gini Index is used for comparison of clusterings
-    obtained between our KMeans and the one from sklearn package;
+    obtained between our KMeans and the one from sklearn package. From the result that the Gini Index of the best clustering we got from our kmeans algorithm and the sklearn package are the same, we could make an assumption that the optimality of our kmeans is close to that of kmeans. And from the visualization of both ours and sklearn compared with the ground truth, we are able to confirm our assumption.
   \item[*]
     In question 4, Gini Index is used for comparison of clusterings
     obtained between KMeans models trained with normalized and
-    unnormalized dataset
+    unnormalized dataset. From the result that the Gini Index of our kmeans algorithm trained with the normalized dataset is smaller than the one trained with un-normalized dataset, we could make an assumption that the optimality of our kmeans trained with normalized dataset is better than that trained with un-normalized dataset. And from the visualization of both with the ground truth, we are also able to confirm our assumption.
   \end{itemize}
 \end{itemize}
 

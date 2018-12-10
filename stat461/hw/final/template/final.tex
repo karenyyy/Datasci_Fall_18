@@ -9,7 +9,7 @@
 %\documentstyle[nips13submit_09,times,art10]{article} % For LaTeX 2.09
 
 
-\title{A Study of the Sleeping Situation of PSU students by  a Two-factor ANCOVA Experiment}
+\title{An Observation of the Sleeping Situation of PSU students by  a Two-factor ANCOVA Analysis}
 
 
 \author{
@@ -40,10 +40,10 @@ The motivation of this report is to observe the sleeping situation of PSU studen
 
 
 
-As students get heavier workload and higher stress level of students when the final month approaches, their sleeping condition is affected as well. And the effect differs for students in different class standing and majors. For example, compared with freshmen, seniors are more likely to take on a heavier workload and have more responsibilities such as academic research or job searching. And the majors students are in play an important role as well. Engineering students usually have more academic obligations such as experiments, labs, group projects, technical papers that they need  to work on. So are the students in the smeal college of business studying finance, accounting and marketing where case studies require lots of work. In comparison, Liberal Arts students might have a more flexible class schedule and not be as busy as their peers in Engineering and Business. Therefore in order to confirm this speculation, a Two-Factor ANCOVA Model is constructed to test the relations between the response (average sleeping hours per week), two factors (class standing and major) and one covariate (number of dues per week). 
+As students get heavier workload and higher stress level when the final month approaches, their sleeping condition is affected as well. And the effect differs for students in different class standing and majors. For example, compared with freshmen, seniors are more likely to take on a heavier workload and have more responsibilities such as academic research or job searching. And the majors students are in play an important role as well. Engineering students usually have more academic obligations such as experiments, labs, group projects, technical papers that they need  to work on. So are the students in the smeal college of business studying finance, accounting and marketing where case studies require lots of work. In comparison, Liberal Arts students might have a more flexible class schedule and not be as busy as their peers in Engineering and Business. Therefore in order to confirm this speculation, a Two-Factor ANCOVA Model is constructed to test the relations between the response (average sleeping hours per week), two factors (class standing and major) and one covariate (number of dues per week). 
 
 \section{Data Set}
-The dataset for the experiment is randomly collected from 60 full-time PSU students taking a bio-behavioral health general education class through informal surveys I conducted at the beginning of each class in November. The response from 48 students are used, among which 16 of them major in Engineering, 16 of them major in Business and 16 of them major in Liberal Arts in each class standing respectively (freshmen, sophomore, junior, senior). Their average sleeping hours and the total number of dues in that specific week are collected.
+The dataset for the experiment is randomly collected from 60 full-time PSU students taking a bio-behavioral health general education class through informal surveys I conducted at the beginning of each class in November. The response from 48 students are used, among which 16 of them major in Engineering, 16 of them major in Business and 16 of them major in Liberal Arts, and 4  students in each major are in each class standing respectively (freshmen, sophomore, junior, senior). Their average sleeping hours and the total number of dues in that specific week are collected.
 The attributes contained in the dataset include:
 \begin{itemize}
 \item  \textbf{Class standing}
@@ -180,7 +180,7 @@ Similar to the average sleeping hours, the number of dues per week share the sam
 
 \subsection{Description}
 
-In the experiment, firstly, the hypothesis of linearity and equal slope assumption of the covariate will be tested in order to confirm the assumption is actually valid. secondly, the hypothesis regarding the significance of the interaction term (class\_standing:major) will be tested, if it is proven to be significant, then the pairwise differences between the combination of class\_standing and major are tested to determine how the interactive term is significant; if proven to be not significant, then the interaction term is drop and pairwise differences of single factor (class\_standing and major, respectively) will be tested.
+In the experiment, firstly, the hypothesis of linearity and equal slope assumption of the covariate will be tested in order to confirm the assumption is actually valid. Secondly, the hypothesis regarding the significance of the interaction term (\textbf{class\_standing:major}) will be tested. If it is proven to be significant, then the pairwise differences of the interaction of class\_standing and major are tested to determine how the interactive term is significant; if it is proven to be not significant, then the interaction term is dropped and pairwise differences of single factor (class\_standing and major, respectively) will be tested.
 
 
 \subsection{Data Model}
@@ -190,8 +190,8 @@ The Two-factor covariance data model for this experiment is:
 $$Y_{ijt} = \mu + \alpha_{i} + \beta_{j} + (\alpha \beta)_{ij} + \gamma (X_{ijt} -\bar X_{...}) + \epsilon_{ijt}, \:\: \epsilon_{ijt}
 \stackrel{iid}{\sim} N(0, \sigma^2)$$
 
-\(\alpha\): The fixed effect of the factor class Standing (Freshmen, Sophomore, Junior, Senior) \\
-$\beta$:  Major (Engineering, Business, Liberal Arts) \\
+\(\alpha\): The fixed effect of the \textbf{Class Standing} factor (Freshmen, Sophomore, Junior, Senior) \\
+$\beta$:  The fixed effect of the \textbf{Major} factor (Engineering, Business, Liberal Arts) \\
 $X$: The number of dues per week  \\
 $Y$: The average sleeping hours per week \\
 $i = 1, 2, 3, 4, j = 1, 2, 3, t = 1, 2, 3, 4$ \\
@@ -247,7 +247,7 @@ $i = 1, 2, 3, 4, j = 1, 2, 3, t = 1, 2, 3, 4$ \\
 			\hline
 	\end{tabular}\end{center}
 \end{table}
-We can observe from there ANOVA contrast table that after adding the interaction term \textbf{I(num\_of\_dues\_per\_week-mean(num\_of\_dues\_per\_week))*class} and \textbf{I(num\_of\_dues\_per\_week-mean(num\_of\_dues\_per\_week))*major} to the ANOVA model, the new $p$ value becomes $0.1715765$ which is $>0.05$ and  0.961679, which is also $>0.05$, indicating the additional interaction term between \textbf{num\_of\_dues\_per\_week} and \textbf{class standing} is not significant, and  the additional interaction term between \textbf{num\_of\_dues\_per\_week} and \textbf{major} is not significant either.
+We can observe from there ANOVA contrast table that after adding the interaction term \textbf{I(num\_of\_dues\_per\_week-mean(num\_of\_dues\_per\_week))*class} and \textbf{I(num\_of\_dues\_per\_week-mean(num\_of\_dues\_per\_week))*major} to the ANOVA model, the new $p$ value become $0.1715765$ which is $>0.05$ and  0.961679, which is also $>0.05$, indicating the additional interaction term between \textbf{num\_of\_dues\_per\_week} and \textbf{class standing} is not significant, and  the additional interaction term between \textbf{num\_of\_dues\_per\_week} and \textbf{major} is not significant either. Therefore it's safe to conclude that the interaction between \textbf{class standing} and \textbf{number of dues per week}, and \textbf{major} and \textbf{number of dues per week} are not significant, hence the issue of interaction between covariate and main factors could be dropped later in the two-factor covariate model building without any transformation to the response.
 
 \subsubsection{Diagnostics of Linearity and Equal Slopes Assumptions}
 
@@ -280,7 +280,7 @@ $$H_a : (\alpha \beta)_{ij} \neq 0 \:\:\: for \:\: all \:\: i, j$$
 
 \textbf{ANOVA Table:}
 
-($note^*$ denote $x$: num\_of\_dues\_per\_week)
+($Note^*:$ denote $x$: num\_of\_dues\_per\_week)
 \begin{table}[H]
 	\begin{center}
 		\begin{tabular}{|l|r|r|r|r|r|}
@@ -325,12 +325,12 @@ From the diagnostic plots above we can see that the assumptions of  normality an
 	\caption{Interaction Plot}
 \end{figure}
 
-The interaction plot shows a strong interaction, with the lines for concentration=Freshmen, concentration=Sophomore, concentration=Junior, concentration=Senior not being parallel with each other. 
+The interaction plot shows a strong interaction, with the lines for class standing=Freshmen, class standing=Sophomore, class standing=Junior, class standing=Senior not being parallel with each other. 
 
 
 \subsubsection{Pairwise Difference Between Interactive Combinations}
 
-Since there are significant interactions, then we can't interpret the effects of each factor individually, and we move directly to testing for pairwise differences between all combinations between class standing and majors.\\
+Since there are significant interactions, then we can't interpret the effects of each factor individually, and we move directly to the testing for pairwise differences between all interaction of class standing and majors.\\
 
 
 \textbf{Null Hypothesis:}
@@ -341,6 +341,7 @@ $$H_0 : \tau_{ij} - \tau_{kl} = 0, \:\:\: for \:\: all \:\:\: i, j, k, l, \:\: w
 
 $$H_a :  \tau_{ij} - \tau_{kl} \neq 0$$
 
+$Note^*:  \tau_{ij} = \alpha_{i} + \beta_{j} + (\alpha \beta)_{ij}$
 
 \begin{figure}[H]
 	\begin{center}
@@ -459,10 +460,10 @@ From the p values of contrast table of interaction terms, we could make the foll
 \item  Senior majoring in Business sleep significantly less than sophomore majoring in Liberal Arts;
 \item  Sophomore majoring in Business sleeps significantly more than senior majoring in Engineering;
 \item  Freshmen majoring in Engineering sleeps significantly more than senior majoring in Engineering;
-\item  Junior,Engineering sleeps significantly less than freshmen majoring in Liberal Arts;
-\item  Senior Engineering sleeps significantly less than freshmen majoring in Liberal Arts;
-\item  Senior Engineering sleeps significantly less than junior majoring in Liberal Arts;
-\item  Senior Engineering sleeps significantly less than sophomore majoring in Liberal Arts;
+\item  Junior majoring in Engineering sleeps significantly less than freshmen majoring in Liberal Arts;
+\item  Senior majoring in Engineering sleeps significantly less than freshmen majoring in Liberal Arts;
+\item  Senior majoring in Engineering sleeps significantly less than junior majoring in Liberal Arts;
+\item  Senior majoring in Engineering sleeps significantly less than sophomore majoring in Liberal Arts;
 \item  No other comparisons are significantly different than zero.
 \end{itemize}
 \[\]
@@ -470,7 +471,7 @@ From the p values of contrast table of interaction terms, we could make the foll
 \section{Conclusion}
 
 
-From the Two-Factor ANCOVA experiment conducted above to study the sleeping condition of PSU students of different class standing and different majors in November (the month before the finals) we learn that the linearity and equal slope assumption between the covariate and the response is valid and there exists an interaction effect between class standing and major. Specifically from the contrast table of the interactive combination of class standing and major , juniors and seniors who are majoring in Engineering sleep significantly less than freshmen and sophomore majoring in Liberal Arts, which confirms the speculation made in the introduction that Engineering students are more likely to shoulder more workload and that affects their sleeping conditions. 
+From the Two-Factor ANCOVA analysis above to study the sleeping condition of PSU students of different class standing and different majors in November (the month before the finals) we learn that the linearity and equal slope assumption between the covariate and the response is valid and there exists a significant interaction effect between class standing and major. Specifically, from the contrast table of the interactive combination of class standing and major , juniors and seniors who are majoring in Engineering sleep significantly less than freshmen and sophomore majoring in Liberal Arts, which confirms the speculation made in the introduction that Engineering students are more likely to shoulder more workload and that affects their sleeping conditions. 
 
 \[\]
 
@@ -648,9 +649,9 @@ plot(aov.sleep)
 \begin{lstlisting}
 interaction.plot(x.factor = df$major, trace.factor = df$class,
 			response = df$avg_sleep_hrs_per_week, type ="b",col = 2:3,
-			xlab ="Location of StarBucks", 
-			ylab ="Number of People standing in the Starbucks line",
-			trace.label ="concentration")
+			xlab ="Majors", 
+			ylab ="Average sleeping hours per week",
+			trace.label ="class standing")
 \end{lstlisting}
 
 

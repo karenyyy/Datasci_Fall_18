@@ -1,10 +1,14 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Data Set}{}% 2
-\BOOKMARK [1][-]{section.3}{MySQL Data Loading Pipeline}{}% 3
-\BOOKMARK [1][-]{section.4}{Exploratory Data Analysis }{}% 4
-\BOOKMARK [2][-]{subsection.4.1}{What crime has the highest occurrence all across Oakland?}{section.4}% 5
-\BOOKMARK [2][-]{subsection.4.2}{What crime has the highest occurrence in each location?}{section.4}% 6
-\BOOKMARK [3][-]{subsubsection.4.2.1}{What crime has the highest occurrence in International Blvd?}{subsection.4.2}% 7
-\BOOKMARK [2][-]{subsection.4.3}{What is the incident solving time for each incident?}{section.4}% 8
-\BOOKMARK [1][-]{section.5}{Conclusion}{}% 9
-\BOOKMARK [1][-]{section.6}{Appendix: Python Code}{}% 10
+\BOOKMARK [2][-]{subsection.2.1}{Size of the dataset}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Attributes of the dataset}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Before processing}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Data Cleaning}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{MySQL Data Loading Pipeline}{}% 7
+\BOOKMARK [1][-]{section.4}{Exploratory Data Analysis }{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{What crime has the highest occurrence all across Oakland?}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{What crime has the highest occurrence in each location?}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.1}{What crime has the highest occurrence in International Blvd?}{subsection.4.2}% 11
+\BOOKMARK [2][-]{subsection.4.3}{What is the incident solving time for each incident?}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 13
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 14

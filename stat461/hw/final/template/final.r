@@ -122,9 +122,9 @@ plot(aov.sleep)
 ### interaction plot
 interaction.plot(x.factor = df$major, trace.factor = df$class,
                 response = df$avg_sleep_hrs_per_week, type ="b",col = 2:3,
-                xlab ="Location of StarBucks", 
-                ylab ="Number of People standing in the Starbucks line",
-                trace.label ="concentration")
+                xlab ="Majors", 
+                ylab ="Average sleeping hours per week",
+                trace.label ="class standing")
 
 ### test the pairwise difference of interactive terms
 lsminter=lsmeans(aov.sleep, ~ class:major)
