@@ -4,7 +4,7 @@ Data Science Courses Notes and Assignments (2018 Fall, PSU)
 
 ## cs431
   ### homework assignments 
-  ### [final project about job scheduling](
+  ### [final project about job scheduling](https://github.com/karenyyy/Datasci_Fall_18/tree/master/cs431/src/final_project)
 
 ## cs497
   ### programming assignments and homeworks
