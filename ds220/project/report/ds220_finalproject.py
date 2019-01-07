@@ -24,7 +24,7 @@ import numpy as np
 import pymysql
 from datetime import datetime
 import matplotlib.pyplot as plt
-
+t
 PATH = os.getcwd()
 PATH += '/oakland-crime-statistics-2011-to-2016'
 FILE_2011 = PATH + '/records-for-2011.csv'

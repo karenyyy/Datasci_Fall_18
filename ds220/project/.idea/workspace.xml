@@ -2,36 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="db81c6ce-5a3e-4825-9798-4455ddb3f12b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../cs431/HW/Paper/acmart-master/samples/coredump/coredump.bib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs431/HW/Paper/acmart-master/samples/coredump/coredump.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs431/HW/Paper/acmart-master/samples/coredump/coredump.synctex.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs431/HW/Paper/acmart-master/samples/coredump/coredump.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs431/HW/Paper/acmart-master/samples/coredump/coredump_body.tex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs431/HW/Paper/acmart-master/samples/coredump/cs431.bib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../cs497/hw/Programming3/programming3/programming3.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fbc369cd-7be9-4970-adac-61a3e48ea7cf.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/project1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/project1-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/project1.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/ds220report.aux" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220report.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/ds220report.log" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220report.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/ds220report.out" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220report.out" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/ds220report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/ds220report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220report.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/ds220report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220report.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/anova.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/anova.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/final.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/final.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/final.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/final.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/final.r" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/final.r" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/final.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/final.synctex.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/final.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/final.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../stat461/hw/final/template/finalreport.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../../stat461/hw/final/template/finalreport.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/ds220_finalproject.py" beforeDir="false" afterPath="$PROJECT_DIR$/report/ds220_finalproject.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,10 +49,12 @@
     <session id="1141785144">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="4" />
           <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.51" value="1" />
+          <entry key="project.open.time.52" value="1" />
           <entry key="project.open.time.64" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -109,14 +84,14 @@
         <counts>
           <entry key="Python Console" value="44" />
           <entry key="cell" value="8" />
-          <entry key="py" value="1057" />
+          <entry key="py" value="1058" />
           <entry key="txt" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="17" />
-          <entry key="Python" value="1101" />
+          <entry key="Python" value="1102" />
           <entry key="Scratch" value="8" />
         </counts>
       </usages-collector>
@@ -127,44 +102,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/report/ds220_finalproject.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <element signature="e#638#657#0" expanded="true" />
-                <element signature="e#1221#1874#0" />
-                <element signature="e#1964#3520#0" />
-                <element signature="e#6378#8570#0" />
-                <element signature="e#8680#11729#0" />
-                <element signature="e#11858#14812#0" />
-                <element signature="e#14908#18966#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://96b6597c-a1cd-4e54-b43b-824654202279/schema/ds220/table/crimedata_2012">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://96b6597c-a1cd-4e54-b43b-824654202279/schema/ds220/table/crimedata_2011">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96b6597c-a1cd-4e54-b43b-824654202279/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+              <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -197,10 +136,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="612" />
+    <option name="x" value="-1" />
     <option name="y" value="25" />
-    <option name="width" value="724" />
-    <option name="height" value="743" />
+    <option name="width" value="1368" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -292,7 +231,7 @@
   <component name="ToolWindowManager">
     <frame x="-1" y="25" width="1368" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24772727" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18787879" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -327,13 +266,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/sightings/routes.py" />
     <entry file="file://$PROJECT_DIR$/sightings/Procfile" />
-    <entry file="file://$PROJECT_DIR$/python-flask-mysql-template/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/python-flask-mysql-template/templates/index.html" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fbc369cd-7be9-4970-adac-61a3e48ea7cf/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -341,70 +274,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/python-flask-mysql-template/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="18" column="89" selection-start-line="18" selection-start-column="89" selection-end-line="18" selection-end-column="89" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fbc369cd-7be9-4970-adac-61a3e48ea7cf/schema/anychart_db/table/fruits">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://fbc369cd-7be9-4970-adac-61a3e48ea7cf/schema/anychart_db/table/department_need">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/python-flask-mysql-template/static/css/style.css">
+    <entry file="file://$PROJECT_DIR$/python-flask-mysql-template/app.py" />
+    <entry file="das://fbc369cd-7be9-4970-adac-61a3e48ea7cf/schema/anychart_db/table/fruits" />
+    <entry file="das://fbc369cd-7be9-4970-adac-61a3e48ea7cf/schema/anychart_db/table/department_need" />
+    <entry file="file://$PROJECT_DIR$/python-flask-mysql-template/static/css/style.css" />
+    <entry file="file://$PROJECT_DIR$/oakland-crime-statistics-2011-to-2016/records-for-2011.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/96b6597c-a1cd-4e54-b43b-824654202279/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/oakland-crime-statistics-2011-to-2016/records-for-2011.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://96b6597c-a1cd-4e54-b43b-824654202279/schema/ds220/table/crimedata_2011">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://96b6597c-a1cd-4e54-b43b-824654202279/schema/ds220/table/crimedata_2012">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://96b6597c-a1cd-4e54-b43b-824654202279/schema/ds220/table/crimedata_2011" />
+    <entry file="das://96b6597c-a1cd-4e54-b43b-824654202279/schema/ds220/table/crimedata_2012" />
     <entry file="file://$PROJECT_DIR$/report/ds220_finalproject.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#638#657#0" expanded="true" />
-            <element signature="e#1221#1874#0" />
-            <element signature="e#1964#3520#0" />
-            <element signature="e#6378#8570#0" />
-            <element signature="e#8680#11729#0" />
-            <element signature="e#11858#14812#0" />
-            <element signature="e#14908#18966#0" />
-          </folding>
+        <state relative-caret-position="15">
+          <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
         </state>
       </provider>
     </entry>
