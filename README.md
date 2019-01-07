@@ -7,7 +7,8 @@ Data Science Courses Notes and Assignments (2018 Fall, PSU)
   ### [final project about job scheduling](https://github.com/karenyyy/Datasci_Fall_18/tree/master/cs431/src/final_project)
 
 ## cs497
-  ### programming assignments and homeworks
+  ### homework assignments
+  ### programming assignments
   
 ## ds200
   ### [final report](https://github.com/karenyyy/Datasci_Fall_18/blob/master/ds200/Labs/finalpaper/template/template/ClimateTeam7FinalReport.pdf)
